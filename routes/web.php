@@ -4,6 +4,14 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\MovieDBController;
+use App\Http\Controllers\MovieController;
+
+// Route::get('/peliculas-series', function () {
+//     return Inertia::render('Movies/Index');
+// })->middleware('auth')->name('movies.index');
+
+Route::resource('movies', MovieController::class)->only('index', 'store', 'update', 'destroy')->middleware('auth');
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -14,7 +22,7 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/dashboard', function () {
+Route::get('/inicio', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
@@ -24,4 +32,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+
+
+
+Route::get('/test', [MovieDBController::class, 'getMovie']);
+require __DIR__ . '/auth.php';
