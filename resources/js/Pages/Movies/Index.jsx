@@ -9,7 +9,7 @@ export default function Index({ auth, movies }) {
             user={auth.user}
             header={
                 <h2 className="font-semibold text-xl text-gray-800 leading-tight">
-                    Películas y Series
+                    Recomendaciones
                 </h2>
             }
         >
@@ -24,7 +24,8 @@ export default function Index({ auth, movies }) {
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                     <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         <div className="p-6 text-gray-900">
-                            Aquí se mostrarán las películas y series
+                            Aquí se mostrarán las recomendaciones de tus amigos
+                            de películas y series
                             <MovieForm />
                         </div>
                     </div>

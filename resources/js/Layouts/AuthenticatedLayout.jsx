@@ -36,13 +36,15 @@ export default function Authenticated({ user, header, children }) {
                                     href={route("movies.index")}
                                     active={route().current("movies.index")}
                                 >
-                                    Películas y Series
+                                    Recomendaciones
                                 </NavLink>
                                 <NavLink
-                                    href={route("dashboard")}
-                                    active={route().current("dashboard")}
+                                    href={route("popularmovies/index")}
+                                    active={route().current(
+                                        "popularmovies/index"
+                                    )}
                                 >
-                                    Recomendaciones
+                                    Películas
                                 </NavLink>
                             </div>
                         </div>
@@ -152,7 +154,13 @@ export default function Authenticated({ user, header, children }) {
                             href={route("movies.index")}
                             active={route().current("movies.index")}
                         >
-                            Películas y series
+                            Recomendaciones
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink
+                            href={route("movies.index")}
+                            active={route().current("movies.index")}
+                        >
+                            Películas
                         </ResponsiveNavLink>
                     </div>
 
