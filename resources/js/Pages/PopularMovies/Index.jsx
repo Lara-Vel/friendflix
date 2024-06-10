@@ -1,7 +1,9 @@
 import { Link } from "@inertiajs/react";
+import { useState, useEffect } from "react";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
+import { HeartIcon as SolidHeartIcon } from "@heroicons/react/24/outline";
 
-const MovieCard = ({ film }) => {
+const MovieCard = ({ film, isFavorite }) => {
     return (
         <div className="movie-container">
             <div className="movie-card">
@@ -18,6 +20,13 @@ const MovieCard = ({ film }) => {
                     />
                     <div className="movie-details">
                         <p>{film.overview}</p>
+                        <button>
+                            {isFavorite ? (
+                                <SolidHeartIcon className="h-6 w-6 text-red-500" />
+                            ) : (
+                                <HeartIcon className="h-6 w-6 text-white" />
+                            )}
+                        </button>
                     </div>
                 </div>
             </div>
@@ -30,6 +39,23 @@ const PopularMovies = ({ auth, films }) => {
     const filmsResults = films?.results || [];
     const totalPages = films ? films.total_pages : 1;
     const currentPage = films ? films.page : 1;
+
+    const [favorites, setFavorites] = useState([]);
+
+    useEffect(() => {
+        Inertia.get(
+            "/api/favoritos",
+            {},
+            {
+                onSuccess: (page) => {
+                    const favIds = page.props.favorites.map(
+                        (fav) => fav.movie_id
+                    );
+                    setFavorites(favIds);
+                },
+            }
+        );
+    }, []);
 
     return (
         <AuthenticatedLayout
