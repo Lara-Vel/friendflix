@@ -1,35 +1,43 @@
 import { Link, Head } from "@inertiajs/react";
+import Carousel from "@/Components/Carousel";
 
 export default function Welcome({ auth, laravelVersion, phpVersion }) {
-    const handleImageError = () => {
-        document
-            .getElementById("screenshot-container")
-            ?.classList.add("!hidden");
-        document.getElementById("docs-card")?.classList.add("!row-span-1");
-        document
-            .getElementById("docs-card-content")
-            ?.classList.add("!flex-row");
-        document.getElementById("background")?.classList.add("!hidden");
-    };
+    // const handleImageError = () => {
+    //     document
+    //         .getElementById("screenshot-container")
+    //         ?.classList.add("!hidden");
+    //     document.getElementById("docs-card")?.classList.add("!row-span-1");
+    //     document
+    //         .getElementById("docs-card-content")
+    //         ?.classList.add("!flex-row");
+    //     document.getElementById("background")?.classList.add("!hidden");
+    // };
 
     return (
         <>
-            <h1>Bienvenido a Friendflix</h1>
             <>
-                <Link
-                    href={route("login")}
-                    className="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
-                >
-                    Iniciar sesión
-                </Link>
-                <Link
-                    href={route("register")}
-                    className="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
-                >
-                    Crea tu cuenta
-                </Link>
+                <div className="carousel-principal">
+                    <Carousel />
+                    <div className="auth-links">
+                        <Link
+                            as="button"
+                            href={route("login")}
+                            className="button-login"
+                        >
+                            Iniciar sesión
+                        </Link>
+                        <Link
+                            as="button"
+                            href={route("register")}
+                            className="button-register"
+                        >
+                            Crea tu cuenta
+                        </Link>
+                    </div>
+                </div>
             </>
         </>
+
         /*         <>
             <Head title="Welcome" />
             <div className="test">
@@ -376,3 +384,93 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
         </> */
     );
 }
+
+// return (
+//     <>
+//         <h1>Bienvenido a Friendflix</h1>
+//         <>
+//             <Link
+//                 href={route("login")}
+//                 className="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
+//             >
+//                 Iniciar sesión
+//             </Link>
+//             <Link
+//                 href={route("register")}
+//                 className="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
+//             >
+//                 Crea tu cuenta
+//             </Link>
+//         </>
+//     </>
+
+// <img src="/images/Principal-1.svg" alt="Imagen 1" />
+// <img src="/images/Principal-2.svg" alt="Imagen 2" />
+// <img src="/images/Principal-3.svg" alt="Imagen 3" />
+
+// <div className="carousel-images">
+//     <img
+//         src="/images/Principal-1.svg"
+//         alt="Imagen 1"
+//     />
+//     <img
+//         src="/images/Principal-2.svg"
+//         alt="Imagen 2"
+//     />
+//     <img
+//         src="/images/Principal-3.svg"
+//         alt="Imagen 3"
+//     />
+// </div>;
+
+// return (
+//     <>
+//         <div className="carousel-principal">
+//             <div className="carousel">
+//                 <div className="carousel-images">
+//                     <img src="/images/Principal-1.svg" alt="Imagen 1" />
+//                     <img src="/images/Principal-2.svg" alt="Imagen 2" />
+//                     <img src="/images/Principal-3.svg" alt="Imagen 3" />
+//                 </div>
+//                 <div className="carousel-controls">
+//                     <input
+//                         id="carousel-radio-1"
+//                         type="radio"
+//                         name="controls"
+//                         label="carousel-radio-1"
+//                         defaultChecked
+//                     />
+//                     <input
+//                         id="carousel-radio-2"
+//                         type="radio"
+//                         name="controls"
+//                         label="carousel-radio-2"
+//                     />
+//                     <input
+//                         id="carousel-radio-3"
+//                         type="radio"
+//                         name="controls"
+//                     />
+//                     <div className="dots">
+//                         <label htmlFor="carousel-radio-1"></label>
+//                         <label htmlFor="carousel-radio-2"></label>
+//                         <label htmlFor="carousel-radio-3"></label>
+//                     </div>
+//                 </div>
+//             </div>
+//             <h1>Bienvenido a Friendflix</h1>
+//             <>
+//                 <Link
+//                     href={route("login")}
+//                     className="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
+//                 >
+//                     Iniciar sesión
+//                 </Link>
+//                 <Link
+//                     href={route("register")}
+//                     className="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
+//                 >
+//                     Crea tu cuenta
+//                 </Link>
+//             </>
+//         </div>
