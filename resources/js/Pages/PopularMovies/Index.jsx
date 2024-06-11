@@ -1,7 +1,9 @@
 import { Link } from "@inertiajs/react";
+import { Inertia } from "@inertiajs/inertia";
 import { useState, useEffect } from "react";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import { HeartIcon as SolidHeartIcon } from "@heroicons/react/24/outline";
+import { CiHeart } from "react-icons/ci";
+import { FaHeart } from "react-icons/fa";
 
 const MovieCard = ({ film, isFavorite }) => {
     return (
@@ -21,11 +23,7 @@ const MovieCard = ({ film, isFavorite }) => {
                     <div className="movie-details">
                         <p>{film.overview}</p>
                         <button>
-                            {isFavorite ? (
-                                <SolidHeartIcon className="h-6 w-6 text-red-500" />
-                            ) : (
-                                <HeartIcon className="h-6 w-6 text-white" />
-                            )}
+                            {isFavorite ? <CiHeart /> : <FaHeart />}
                         </button>
                     </div>
                 </div>
