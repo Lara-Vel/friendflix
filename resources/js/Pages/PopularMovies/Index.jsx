@@ -1,11 +1,9 @@
-import { Link } from "@inertiajs/react";
-import { Inertia } from "@inertiajs/inertia";
-import { useState, useEffect } from "react";
+import { Link, router } from "@inertiajs/react";
+import { useState } from "react";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { CiHeart } from "react-icons/ci";
 import { FaHeart } from "react-icons/fa";
 
-// Componente para renderizar cada tarjeta de película
 const MovieCard = ({ film, isFavorite, onAddFavorite }) => {
     return (
         <div className="movie-container">
@@ -45,16 +43,14 @@ const PopularMovies = ({ auth, films, favourites }) => {
     }, 1000);
 
     const onAddFavorite = (film) => {
-        Inertia.post(
-            "/favouritesToggle",
+        router.post(
+            route("favourites.toggle"),
             { movie_id: film.id, filmData: film },
             {
                 onSuccess: (page) => {
                     console.log("Favorite toggled successfully");
 
                     setFavorites(page.props.favorites);
-
-                    Inertia.reload();
 
                     const favoritosLocalStorage =
                         localStorage.getItem("favorites");
@@ -96,29 +92,27 @@ const PopularMovies = ({ auth, films, favourites }) => {
                 </h2>
             }
         >
-            <div className="movies-grid">
-                {filmsResults.map((film) => (
-                    <>
-                        <MovieCard
-                            key={`popular-${film.id}`}
-                            film={film}
-                            isFavorite={checkIfFavorite(film.id)}
-                            onAddFavorite={onAddFavorite}
-                        />
-                        <button
-                            className="favorite-button"
-                            onClick={() => onAddFavorite(film)}
-                            style={{
-                                color: film.isFavorite ? "red" : "gray",
-                                zIndex: 1000,
-                                fontSize: 24,
-                            }}
-                        >
-                            {film.isFavorite ? <FaHeart /> : <CiHeart />}
-                        </button>
-                    </>
-                ))}
-            </div>
+            {filmsResults.map((film) => (
+                <div className="movies-grid" key={film.id}>
+                    <MovieCard
+                        key={film.id}
+                        film={film}
+                        isFavorite={checkIfFavorite(film.id)}
+                        onAddFavorite={onAddFavorite}
+                    />
+                    <button
+                        className="favorite-button"
+                        onClick={() => onAddFavorite(film)}
+                        style={{
+                            color: film.isFavorite ? "red" : "gray",
+                            zIndex: 1000,
+                            fontSize: 24,
+                        }}
+                    >
+                        {film.isFavorite ? <FaHeart /> : <CiHeart />}
+                    </button>
+                </div>
+            ))}
             {/* <div className="container">
                 <h2>Tus favoritos:</h2>
                 <ul>
@@ -132,7 +126,7 @@ const PopularMovies = ({ auth, films, favourites }) => {
             <div className="pagination">
                 {currentPage > 1 && (
                     <>
-                        {!Inertia.resolveComponent ? (
+                        {!router.resolveComponent ? (
                             <a href={`/peliculas?page=${currentPage - 1}`}>
                                 &laquo; Previous
                             </a>
@@ -145,7 +139,7 @@ const PopularMovies = ({ auth, films, favourites }) => {
                 )}
                 {currentPage < totalPages && (
                     <>
-                        {!Inertia.resolveComponent ? (
+                        {!router.resolveComponent ? (
                             <a href={`/peliculas?page=${currentPage + 1}`}>
                                 Next &raquo;
                             </a>

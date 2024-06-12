@@ -1,7 +1,8 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, Link } from "@inertiajs/react";
 
-export default function Dashboard({ auth }) {
+export default function Dashboard({ auth, groupedFavourites }) {
+    console.log("groupedFavourites: ", groupedFavourites);
     return (
         <AuthenticatedLayout
             user={auth.user}
@@ -21,6 +22,26 @@ export default function Dashboard({ auth }) {
                         </div>
                     </div>
                 </div>
+
+                {groupedFavourites &&
+                    groupedFavourites.map((favourite, index) => {
+                        return (
+                            <div key={index}>
+                                {favourite.user}
+
+                                <div>
+                                    {favourite.movies &&
+                                        favourite.movies.map((movie, index) => {
+                                            return (
+                                                <span key={index}>
+                                                    {movie.title}
+                                                </span>
+                                            );
+                                        })}
+                                </div>
+                            </div>
+                        );
+                    })}
             </div>
         </AuthenticatedLayout>
     );

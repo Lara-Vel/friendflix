@@ -15,7 +15,7 @@ class FavouriteController extends Controller
     {
         $favourites = Favourite::with('user')->latest()->get();
 
-        return Inertia::render('Favourites/Index', [
+        return Inertia::render('MyFavorites/Index', [
             'favourites' => FavouriteResource::collection($favourites),
         ]);
     }

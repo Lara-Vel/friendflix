@@ -28,7 +28,7 @@ use App\Http\Controllers\FavouriteController;
 Route::post('/favouritesToggle', [App\Http\Controllers\FavouriteController::class, 'toggle'])
     ->name('favourites.toggle');
 
-Route::get('/favourites', [App\Http\Controllers\FavouriteController::class, 'getFavoritesFromUser'])
+Route::get('/favourites', [App\Http\Controllers\FavouriteController::class, 'index'])
     ->name('favourites.index');
 
 
