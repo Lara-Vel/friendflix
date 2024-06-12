@@ -50,5 +50,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Movie::class);
     }
+    public function favourites(): HasMany
+    {
+        return $this->hasMany(Favourite::class);
+    }
 
 }
