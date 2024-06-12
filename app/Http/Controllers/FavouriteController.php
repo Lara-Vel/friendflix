@@ -19,30 +19,29 @@ class FavouriteController extends Controller
             'favourites' => FavouriteResource::collection($favourites),
         ]);
     }
-    public function toggle(Request $request, $movie_id)
+    public function toggle(Request $request)
     {
         $user = $request->user();
+        $movie_id = $request->movie_id;
         $favourite = Favourite::where('user_id', $user->id)->where('movie_id', $movie_id)->first();
 
         if ($favourite) {
-
             $favourite->delete();
             return back()->with('status', 'Favorito eliminado');
-        } else {
-
-            $validated = $request->validate([
-                'original_title' => 'required|string|max:255',
-                'overview' => 'nullable|string',
-                'poster_path' => 'nullable|string',
-                'backdrop_path' => 'nullable|string',
-            ]);
-
-            $user->favourites()->create(array_merge($validated, ['movie_id' => $movie_id]));
-
-            return back()->with('status', 'Favorito agregado');
         }
-    }
 
+        $data = $request->filmData;
+
+        Favourite::create([
+            'user_id' => $user->id,
+            'movie_id' => $movie_id,
+            'original_title' => $data["original_title"],
+            'overview' => $data["overview"],
+            'poster_path' => $data["poster_path"],
+            'backdrop_path' => $data["backdrop_path"]
+        ]);
+
+    }
 
     public function store(Request $request)
     {

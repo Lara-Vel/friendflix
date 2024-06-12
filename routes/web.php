@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\MovieDBController;
 use App\Http\Controllers\MovieController;
-use App\Http\Controllers\FavoritesController;
+use App\Http\Controllers\FavouriteController;
 
 // Route::get('/peliculas-series', function () {
 //     return Inertia::render('Movies/Index');
@@ -36,11 +36,20 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/peliculas', [MovieDBController::class, 'index'])->name('popularmovies/index')->middleware('auth');
-
-Route::get('/favoritos', function () {
-    return Inertia::render('Favourites/Index');
-})->name('favourites.index');
+Route::get('/favorites/index', [MovieDBController::class, 'myFavorites'])->name('favorites/index')->middleware('auth');
 
 
-Route::get('/test', [MovieDBController::class, 'getMovie']);
+
+// Route::get('/favoritos', function () {
+//     return Inertia::render('Favourites/Index');
+// })->name('favourites.index');
+
+
+// Route::get('/test', [MovieDBController::class, 'getMovie']);
+
 require __DIR__ . '/auth.php';
+require __DIR__ . '/api.php';
+
+// Route::get("/favourites/{user}", [FavouriteController::class, 'getFavourites'])->name('favourites.index');
+// Route::get("/addFavourite/{user}/{movie}", [FavouriteController::class, 'addFavourite'])->name('favourites.add');
+// Route::get("/delFavourite/{user}/{movie}", [FavouriteController::class, 'delFavourite'])->name('favourites.del');

@@ -13,7 +13,7 @@ return new class extends Migration {
         Schema::create('favourites', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('movie_id')->constrained()->onDelete('cascade');
+            $table->integer('movie_id');
             $table->string('original_title', 250)->nullable();
             $table->text('overview')->nullable(true);
             $table->string('poster_path')->nullable(true);
