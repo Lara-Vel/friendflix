@@ -48,12 +48,22 @@ class MovieDBController extends Controller
         ]);
     }
 
+    // public function myFavorites(Request $request)
+    // {
+    //     $user = Auth::user();
+    //     $favourites = Favourite::where('user_id', $user->id)->get();
+
+    //     return Inertia::render('favorites/Index', [
+    //         'favourites' => $favourites,
+    //     ]);
+    // }
+
     public function myFavorites(Request $request)
     {
         $user = Auth::user();
         $favourites = Favourite::where('user_id', $user->id)->get();
 
-        return Inertia::render('favorites/Index', [
+        return Inertia::render('MyFavorites/Index', [
             'favourites' => $favourites,
         ]);
     }

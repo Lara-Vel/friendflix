@@ -37,14 +37,13 @@ Route::middleware('auth')->group(function () {
 Route::get('/peliculas', [MovieDBController::class, 'index'])->name('popularmovies/index')->middleware('auth');
 Route::get('/favorites/index', [MovieDBController::class, 'myFavorites'])->name('favorites/index')->middleware('auth');
 
-
+Route::delete('/favourites/{favourite}', [FavouriteController::class, 'destroy'])
+    ->name('favourites.destroy')->middleware('auth');
 
 // Route::get('/favoritos', function () {
 //     return Inertia::render('Favourites/Index');
 // })->name('favourites.index');
 
-
-// Route::get('/test', [MovieDBController::class, 'getMovie']);
 
 require __DIR__ . '/auth.php';
 require __DIR__ . '/api.php';

@@ -20,7 +20,7 @@ return new class extends Migration {
             $table->string('backdrop_path')->nullable(true);
             $table->timestamps();
 
-            $table->unique(["user_id", "movie_id"]);
+            // $table->unique(["user_id", "movie_id"]);
         });
     }
 

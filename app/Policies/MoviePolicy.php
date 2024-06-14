@@ -3,6 +3,7 @@
 namespace App\Policies;
 
 use App\Models\Movie;
+use App\Models\Favourite;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
