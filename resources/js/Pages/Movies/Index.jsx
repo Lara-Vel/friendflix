@@ -2,8 +2,9 @@ import MovieForm from "@/Components/MovieForm.jsx";
 import MovieItem from "@/Components/MovieItem.jsx";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head } from "@inertiajs/react";
+import SearchMovies from "../SearchMovies/Index";
 
-export default function Index({ auth, movies }) {
+export default function Index({ auth, movies, favourites }) {
     return (
         <AuthenticatedLayout
             user={auth.user}
@@ -37,6 +38,11 @@ export default function Index({ auth, movies }) {
                                 movie={movie}
                             />
                         ))}
+                        {console.log(
+                            "Valor de favourites en el componente padre:",
+                            favourites
+                        )}
+                        <SearchMovies favourites={favourites} />
                     </div>
                 </div>
             </div>

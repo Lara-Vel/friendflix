@@ -63,7 +63,7 @@ class FavouriteController extends Controller
 
                 'user_id' => $user->id,
                 'movie_id' => $movie_id,
-                'original_title' => $data['original_title'],
+                'title' => $data['title'],
                 'overview' => $data['overview'],
                 'poster_path' => $data['poster_path'],
                 'backdrop_path' => $data['backdrop_path']
@@ -101,7 +101,7 @@ class FavouriteController extends Controller
     //     $favourite = new Favourite();
     //     $favourite->user_id = $user->id;
     //     $favourite->movie_id = $movie_id;
-    //     $favourite->original_title = $data['original_title'];
+    //     $favourite->original_title = $data[''];
     //     $favourite->overview = $data['overview'];
     //     $favourite->poster_path = $data['poster_path'];
     //     $favourite->backdrop_path = $data['backdrop_path'];
@@ -117,7 +117,7 @@ class FavouriteController extends Controller
     {
         $validated = $request->validate([
             'movie_id' => ['required'],
-            'original_title' => ['required'],
+            'title' => ['required'],
             'overview' => ['nullable|string'],
             'poster_path' => ['nullable|string'],
             'backdrop_path' => ['nullable|string'],
@@ -138,7 +138,7 @@ class FavouriteController extends Controller
     public function update(Request $request, Favourite $favourite)
     {
         $validated = $request->validate([
-            'original_title' => ['nullable', 'string', 'max:250'],
+            'title' => ['nullable', 'string', 'max:250'],
             'overview' => ['nullable', 'string'],
             'poster_path' => ['nullable', 'string'],
             'backdrop_path' => ['nullable', 'string'],
@@ -164,7 +164,7 @@ class FavouriteController extends Controller
     public function find(Request $request)
     {
         $query = $request->query('q');
-        $favourites = Favourite::where('original_title', 'like', "%{$query}%")
+        $favourites = Favourite::where('title', 'like', "%{$query}%")
             ->with('user')
             ->get();
 

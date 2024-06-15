@@ -28,6 +28,7 @@ const MovieCard = ({ film, isFavorite, onAddFavorite, processing }) => {
             <button
                 className="favorite-button"
                 onClick={() => onAddFavorite(film)}
+                disabled={processing}
                 style={{
                     color: isFavorite ? "red" : "gray",
                     zIndex: 1000,

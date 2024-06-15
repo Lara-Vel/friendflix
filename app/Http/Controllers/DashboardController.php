@@ -25,7 +25,7 @@ class DashboardController
             foreach ($movies as $movie) {
                 $userMovies[] = [
                     'id' => $movie->movie_id,
-                    'title' => $movie->original_title,
+                    'title' => $movie->title,
                     'description' => $movie->overview,
                 ];
             }

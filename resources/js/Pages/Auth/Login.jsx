@@ -29,18 +29,18 @@ export default function Login({ status, canResetPassword }) {
     return (
         <GuestLayout>
             <Head title="login" />
-            <div className="form">
-                <div className="image-form">
+            <div className="container-login-form">
+                <div className="image-login-form">
                     <img
                         src="/images/Logo-Friendflix.webp"
                         alt="Logo Friendflix"
                     />
                 </div>
-                <div className="title-form">
+                <div className="title-login-form">
                     {status && <div className="status-message">{status}</div>}
 
                     <form onSubmit={submit} className="login-form">
-                        <h2 className="title">Iniciar sesión</h2>
+                        <h2 className="title-login">Iniciar sesión</h2>
                         <div>
                             <InputLabel htmlFor="email" value="email" />
 
@@ -49,7 +49,7 @@ export default function Login({ status, canResetPassword }) {
                                 type="email"
                                 name="email"
                                 value={data.email}
-                                // className="mt-1 block w-full"
+                                required
                                 autoComplete="username"
                                 isFocused={true}
                                 onChange={(e) =>
@@ -71,7 +71,7 @@ export default function Login({ status, canResetPassword }) {
                                 type="password"
                                 name="password"
                                 value={data.password}
-                                // className="mt-1 block w-full"
+                                required
                                 autoComplete="current-password"
                                 onChange={(e) =>
                                     setData("password", e.target.value)
@@ -84,7 +84,7 @@ export default function Login({ status, canResetPassword }) {
                             />
                         </div>
 
-                        <div className="block mt-4">
+                        <div className="remember-login-form">
                             <label className="flex items-center">
                                 <Checkbox
                                     name="remember"
@@ -99,18 +99,27 @@ export default function Login({ status, canResetPassword }) {
                             </label>
                         </div>
 
-                        <div className="flex items-center justify-end mt-4">
+                        <div className="button-login-form">
                             {canResetPassword && (
                                 <Link
                                     href={route("password.request")}
                                     className="underline text-sm text-white-600 hover:text-white-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white-500"
                                 >
-                                    "¿Olvidó la contraseña?"
+                                    "¿Olvidaste la contraseña?"
                                 </Link>
                             )}
+                            <p className="link-login">
+                                ¿No tienes una cuenta?&nbsp;
+                                <Link
+                                    href={route("register")}
+                                    className="underline text-sm text-gray-600 hover:text-gray-900"
+                                >
+                                    Regístrate ahora
+                                </Link>
+                            </p>
 
                             <PrimaryButton
-                                className="ms-4 button-login"
+                                className="button-login"
                                 disabled={processing}
                             >
                                 Acceder
