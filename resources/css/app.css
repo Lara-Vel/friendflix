@@ -204,7 +204,7 @@ svg {
 
 /* COMPONENTE LOGIN */
 
-.form {
+.container-login-form {
     height: 100vh;
     display: flex;
     justify-content: space-between;
@@ -212,21 +212,20 @@ svg {
     font-family: Poppins-Bold, sans-serif;
 }
 
-.title-form {
+.title-login-form {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     width: 50%;
     padding: 2rem;
-    font-family: var(--main-font-regular);
     background-color: #fff;
 }
 
 .login-form {
     display: flex;
     flex-direction: column;
-    gap: 2.5rem;
+    gap: 1.5rem;
     width: 33.8rem;
 }
 
@@ -246,7 +245,6 @@ svg {
 }
 
 .login-form input {
-    min-width: 5rem;
     font-size: 1.6rem;
     padding: 1rem;
     border-radius: 2rem;
@@ -264,103 +262,326 @@ svg {
     color: #cfcaca;
 }
 
-.title {
-    font-size: 2.4rem;
-    margin-bottom: 2rem;
+.remember-login-form input {
+    min-width: 1rem;
 }
 
-.image-form {
-    width: 50%;
+.remember-form span {
+    color: #093266;
+}
+
+.link-login {
+    color: #093266;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.link-login a {
+    color: #f37136;
+    text-decoration: none;
+}
+.link-login a:hover {
+    color: #f37136;
+}
+
+.button-login-form {
+    display: flex;
+    align-items: center;
+    flex-direction: column-reverse;
+    gap: 2rem;
+}
+
+.button-login-form .button {
+    padding: 0.8rem 14rem;
+}
+.button-login-form .underline {
+    font-size: 1.2rem;
+    text-decoration: none;
+}
+
+.image-login-form {
+    width: 55%;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #fff1ef;
+    background-color: #c3e2dc;
 }
 
-.image-form img {
+.image-login-form img {
     object-fit: cover;
     width: 100%;
-    height: 100%;
+    height: 80%;
     background-position: center;
 }
 
-@media screen and (min-width: 375px) and (max-width: 992px) {
-    .form {
-        flex-direction: column-reverse;
+@media screen and (min-width: 320px) and (max-width: 992px) {
+    .container-login-form {
+        flex-direction: column;
         align-items: center;
+        background-color: #c3e2dc;
     }
 
-    .title-form {
-        width: 95%;
-        padding: 2rem 0;
+    .title-login-form {
+        height: 68vh;
+        width: 80%;
+        border-radius: 3rem;
+        background-color: #fff;
+        margin-bottom: 3rem;
     }
 
     .login-form {
-        width: 33.8rem;
-        gap: 1rem;
+        width: 25.8rem;
+        gap: 0.6rem;
         margin-top: 1rem;
     }
-
-    .image-form {
-        width: 100%;
-        height: 32rem;
+    .login-form h2 {
+        font-size: 2rem;
+    }
+    .login-form label {
+        font-size: 1rem;
     }
 
-    .image-form img {
+    .image-login-form {
+        width: 100%;
+        height: 20rem;
+        margin-top: 2rem;
+    }
+
+    .image-login-form img {
         object-fit: contain;
         width: 100%;
         height: 100%;
         background-position: center;
+        background-color: #c3e2dc;
     }
 
-    .title {
+    .title-login {
         font-size: 2rem;
-    }
-
-    .login-form input {
-        min-width: 3rem;
-        font-size: 1.6rem;
-        padding: 0.7rem;
     }
 }
 
-@media screen and (min-width: 320px) and (max-width: 375px) {
-    .form {
-        flex-direction: column-reverse;
-        align-items: center;
-    }
-
-    .title-form {
-        width: 95%;
-        padding: 2rem 0;
-    }
-
+@media screen and (min-width: 426px) and (max-width: 991px) {
     .login-form {
-        width: 29rem;
-        gap: 1rem;
+        width: 31.8rem;
+        gap: 0.6rem;
         margin-top: 1rem;
     }
+    .button-login-form .button {
+        padding: 0.8rem 12.7rem;
+    }
+}
 
-    .image-form {
+@media screen and (min-width: 375px) and (max-width: 426px) {
+    .login-form {
+        width: 25.8rem;
+        gap: 0.6rem;
+        margin-top: 1rem;
+    }
+    .button-login-form .button {
+        padding: 0.8rem 9.7rem;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 374px) {
+    .login-form {
+        width: 20.8rem;
+        gap: 0.6rem;
+        margin-top: 1rem;
+    }
+    .button-login-form .button {
+        padding: 0.6rem 7.5rem;
+    }
+}
+
+/* COMPONENTE REGISTER */
+
+.container-register-form {
+    height: 100vh;
+    display: flex;
+    justify-content: space-between;
+    color: #093266;
+    font-family: Poppins-Bold, sans-serif;
+}
+
+.title-register-form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 50%;
+    padding: 2rem;
+    background-color: #fff;
+}
+
+.register-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 33.8rem;
+}
+
+.register-form h2 {
+    text-align: center;
+    font-weight: 600;
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+}
+
+.register-form label {
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 1.3rem;
+    letter-spacing: 0.05rem;
+    color: #093266;
+    margin-bottom: 1rem;
+}
+
+.register-form input {
+    font-size: 1.6rem;
+    padding: 1rem;
+    border-radius: 2rem;
+    border-color: #c3e2dc;
+    background-color: #fff !important;
+}
+
+.register-form input:focus {
+    box-shadow: 0 0 10px #c3e2dc;
+    border-color: #c3e2dc;
+    outline: #c3e2dc;
+}
+
+.register-form input::placeholder {
+    color: #cfcaca;
+}
+
+.link-register {
+    color: #093266;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.link-register a {
+    color: #f37136;
+    text-decoration: none;
+}
+.link-register a:hover {
+    color: #f37136;
+}
+
+.button-register-form {
+    display: flex;
+    align-items: center;
+    flex-direction: column-reverse;
+    gap: 2rem;
+    margin-top: 2.8rem;
+}
+
+.button-register-form .button {
+    padding: 0.8rem 11.3rem;
+    white-space: nowrap;
+}
+.button-register-form .underline {
+    font-size: 1.2rem;
+    text-decoration: none;
+}
+.image-register-form {
+    width: 55%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #c3e2dc;
+}
+
+.image-register-form img {
+    object-fit: cover;
+    width: 100%;
+    height: 80%;
+    background-position: center;
+}
+
+@media screen and (min-width: 320px) and (max-width: 992px) {
+    .container-register-form {
+        flex-direction: column;
+        align-items: center;
+        background-color: #c3e2dc;
+    }
+    .title-register-form {
+        height: 65vh;
+        width: 80%;
+        border-radius: 3rem;
+        background-color: #fff;
+        margin-bottom: 3rem;
+    }
+    .register-form {
+        width: 25.8rem;
+        gap: 0.1rem;
+        margin-top: 1rem;
+    }
+    .register-form h2 {
+        font-size: 2rem;
+    }
+    .register-form label {
+        font-size: 1rem;
+    }
+    .register-form input {
+        padding: 0.8rem;
+    }
+    .image-register-form {
         width: 100%;
-        height: 32rem;
+        height: 20rem;
+        margin-top: 2rem;
     }
 
-    .image-form img {
+    .image-register-form img {
         object-fit: contain;
         width: 100%;
         height: 100%;
         background-position: center;
+        background-color: #c3e2dc;
     }
-
-    .title {
+    .title-register {
         font-size: 2rem;
     }
+}
 
-    .login-form input {
-        min-width: 3rem;
-        font-size: 1.6rem;
+@media screen and (min-width: 426px) and (max-width: 991px) {
+    .register-form {
+        width: 31.8rem;
+    }
+    .button-register-form {
+        gap: 1rem;
+    }
+    .button-register-form .button {
+        padding: 0.6rem 10.3rem;
+    }
+}
+
+@media screen and (min-width: 375px) and (max-width: 426px) {
+    .register-form {
+        width: 25.8rem;
+    }
+    .button-register-form {
+        gap: 1rem;
+    }
+    .button-register-form .button {
+        padding: 0.6rem 7.3rem;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 374px) {
+    .register-form {
+        width: 20.8rem;
+        margin-top: 1rem;
+    }
+    .register-form input {
         padding: 0.7rem;
+    }
+    .button-register-form {
+        gap: 1rem;
+    }
+    .button-register-form .button {
+        padding: 0.6rem 5.1rem;
+        font-size: 1.5rem;
     }
 }
 

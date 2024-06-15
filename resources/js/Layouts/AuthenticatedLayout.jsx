@@ -47,10 +47,18 @@ export default function Authenticated({ user, header, children }) {
                                     Películas
                                 </NavLink>
                                 <NavLink
-                                    href={route("favorites/index")}
-                                    active={route().current("favorites/index")}
+                                    href={route("favourites.index")}
+                                    active={route().current("favourites.index")}
                                 >
                                     Mis favoritos
+                                </NavLink>
+                                <NavLink
+                                    href={route("searchmovies.index")}
+                                    active={route().current(
+                                        "searchmovies.index"
+                                    )}
+                                >
+                                    Buscar
                                 </NavLink>
                             </div>
                         </div>

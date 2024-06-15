@@ -10,7 +10,7 @@ class Favourite extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'movie_id', 'original_title', 'overview', 'poster_path', 'backdrop_path'];
+    protected $fillable = ['user_id', 'movie_id', 'title', 'overview', 'poster_path', 'backdrop_path'];
 
     public function user(): BelongsTo
     {

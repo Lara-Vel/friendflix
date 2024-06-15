@@ -14,13 +14,13 @@ return new class extends Migration {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->integer('movie_id');
-            $table->string('original_title', 250)->nullable();
+            $table->string('title', 250)->nullable();
             $table->text('overview')->nullable(true);
             $table->string('poster_path')->nullable(true);
             $table->string('backdrop_path')->nullable(true);
             $table->timestamps();
 
-            $table->unique(["user_id", "movie_id"]);
+            // $table->unique(["user_id", "movie_id"]);
         });
     }
 

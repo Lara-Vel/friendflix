@@ -9,26 +9,10 @@ use App\Http\Controllers\MovieController;
 use App\Http\Controllers\FavouriteController;
 
 
-// Route::middleware(['api', 'auth'])->group(function () {
-//     Route::apiResources(['favoritos' => FavouriteController::class], ['only' => ['index', 'store', 'show', 'destroy']])->names([
-//         'index' => 'api.favourite.index',
-//         'store' => 'api.favourite.store',
-//         'show' => 'api.favourite.show',
-//         'update' => 'api.favourite.update',
-//         'destroy' => 'api.favourite.destroy'
-//     ]);
-//     Route::get('/favoritos/buscar', [FavouriteController::class, 'find'])->name('api.favourite.find');
-//     Route::post('/favoritos/{movieId}/toggle', [FavouriteController::class, 'toggle']);
-//     Route::post('/favoritos/{movie_id}/remove', [FavouriteController::class, 'destroy']);
-
-// });
-
-
-
 Route::post('/favouritesToggle', [App\Http\Controllers\FavouriteController::class, 'toggle'])
     ->name('favourites.toggle');
 
-Route::get('/favourites', [App\Http\Controllers\FavouriteController::class, 'getFavoritesFromUser'])
+Route::get('/mis-favoritos', [App\Http\Controllers\FavouriteController::class, 'index'])
     ->name('favourites.index');
 
 

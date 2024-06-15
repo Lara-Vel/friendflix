@@ -1,11 +1,9 @@
-import { Link } from "@inertiajs/react";
-import { Inertia } from "@inertiajs/inertia";
 import { useState, useEffect } from "react";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import { CiHeart } from "react-icons/ci";
 import { FaHeart } from "react-icons/fa";
+import { router } from "@inertiajs/react";
 
-const MovieCard = ({ film, isFavorite, onAddFavorite }) => {
+const MovieCard = ({ film }) => {
     return (
         <div className="movie-container">
             <div className="movie-card">
@@ -30,55 +28,33 @@ const MovieCard = ({ film, isFavorite, onAddFavorite }) => {
     );
 };
 
-const PopularMovies = ({ auth, films, favourites }) => {
-    const filmsResults = films?.results || [];
-    const totalPages = films ? films.total_pages : 1;
-    const currentPage = films ? films.page : 1;
-
-    const [favorites, setFavorites] = useState([]);
-    const [isFavorite, setIsFavorite] = useState(false);
+const MyFavorites = ({ auth, favourites, processing }) => {
+    const [favorites, setFavorites] = useState(favourites || []);
     const [errorMessage, setErrorMessage] = useState("");
 
-    setTimeout(() => {
-        setFavorites(favourites);
-        const userFilms = localStorage.getItem("favorites");
-        if (JSON.parse(userFilms).length > 0) {
-            setFavorites(JSON.parse(userFilms));
-        } else {
-            setErrorMessage("No hay favoritos");
-        }
-    }, 1000);
+    useEffect(() => {
+        setFavorites(favourites || []);
+    }, [favourites]);
 
-    const onAddFavorite = (film) => {
-        const favoritosLocalStorage = localStorage.getItem("favorites");
-
-        if (JSON.parse(favoritosLocalStorage).length > 0) {
-            const favoritos = JSON.parse(favoritosLocalStorage);
-            const filtered = favoritos.filter(
-                (favorite) => favorite.movie_id !== film.movie_id
-            );
-            setFavorites(filtered);
-            localStorage.setItem("favorites", JSON.stringify(filtered));
-        }
-
-        Inertia.post(
-            "/favouritesToggle",
+    const onRemoveFavorite = (film) => {
+        router.post(
+            route("favourites.toggle"),
             { movie_id: film.movie_id, filmData: film },
             {
                 onSuccess: (page) => {
-                    console.log("Favorite toggled successfully");
-
-                    setFavorites(page.props.favorites);
-
-                    Inertia.reload();
+                    if (page.props.favorites) {
+                        setFavorites(page.props.favorites);
+                    } else {
+                        setFavorites([]);
+                    }
                 },
                 onError: (error) => {
-                    console.error("Error toggling favorite:", error);
+                    console.error("Error removing favorite:", error);
+                    setErrorMessage("Error al eliminar el favorito.");
                 },
             }
         );
     };
-
     return (
         <AuthenticatedLayout
             user={auth.user}
@@ -91,7 +67,11 @@ const PopularMovies = ({ auth, films, favourites }) => {
             {errorMessage && (
                 <div className="alert alert-danger">{errorMessage}</div>
             )}
-            {favorites.length > 0 && (
+            {favorites.length === 0 ? (
+                <div className="alert alert-info">
+                    No hay películas favoritas
+                </div>
+            ) : (
                 <div
                     className="container"
                     style={{
@@ -102,23 +82,21 @@ const PopularMovies = ({ auth, films, favourites }) => {
                     }}
                 >
                     {favorites.map((film) => (
-                        <>
-                            <MovieCard
-                                key={`favourite-${film.id}`}
-                                film={film}
-                            />
+                        <div key={film.movie_id || film.id}>
+                            <MovieCard film={film} />
                             <button
                                 className="favorite-button"
-                                onClick={() => onAddFavorite(film)}
+                                onClick={() => onRemoveFavorite(film)}
+                                disabled={processing}
                                 style={{
-                                    color: true ? "red" : "gray",
+                                    color: "red",
                                     zIndex: 1000,
                                     fontSize: 24,
                                 }}
                             >
-                                {true ? <FaHeart /> : <CiHeart />}
+                                {processing ? "Borrando..." : <FaHeart />}
                             </button>
-                        </>
+                        </div>
                     ))}
                 </div>
             )}
@@ -126,4 +104,4 @@ const PopularMovies = ({ auth, films, favourites }) => {
     );
 };
 
-export default PopularMovies;
+export default MyFavorites;
