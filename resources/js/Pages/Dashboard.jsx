@@ -6,42 +6,109 @@ export default function Dashboard({ auth, groupedFavourites }) {
     return (
         <AuthenticatedLayout
             user={auth.user}
-            header={
-                <h2 className="font-semibold text-xl text-gray-800 leading-tight">
-                    Inicio
-                </h2>
-            }
+            // header={
+            //     <h2 className="font-semibold text-xl text-gray-800 leading-tight">
+            //         Inicio
+            //     </h2>
+            // }
         >
             <Head title="Dashboard" />
 
-            <div className="py-12">
-                <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                    <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                        <div className="p-6 text-gray-900">
-                            Bienvenido a Friendflix
-                        </div>
+            <div className="home-container py-12">
+                <div className="home-container-image bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                    <img
+                        src="images/Home-Friendflix.gif"
+                        alt="Bienvenido a Friendflix, descrubre, comparte y decide - Ilustración de chico comiendo palomitas mientras ve la tele al aire libre con nubes y globos aerostáticos."
+                        loop
+                    />
+                </div>
+                <h2 className="home-container-text">
+                    {" "}
+                    <span className="home-container-firsttext font-semibold text-xl text-gray-800 leading-tight">
+                        ¿Cómo
+                    </span>{" "}
+                    <span className="home-container-secondtext font-semibold text-xl text-gray-800 leading-tight">
+                        funciona?
+                    </span>{" "}
+                </h2>
+                <div className="home-container-icons bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                    <div className="icon-container">
+                        <img
+                            src="/images/Icon-1.webp"
+                            alt="Personaliza tu perfil-Icono de corazón"
+                        />
+                        <h3>PERSONALIZA TU PERFIL</h3>
+                        <p>
+                            Actualiza tu perfil con tus películas y series
+                            favoritas. ¡Deja que tus amigos vean lo que te
+                            encanta!
+                        </p>
+                    </div>
+                    <div className="icon-container">
+                        <img
+                            src="/images/Icon-2.webp"
+                            alt="Curiosea las recomendaciones de tus amigos-Icono de gafas 3D"
+                        />
+                        <h3>CURIOSEA LAS RECOMENDACIONES DE TUS AMIGOS</h3>
+                        <p>
+                            Explora las recomendaciones de tus amigos y descubre
+                            qué les gusta. ¡La mejor recomendación siempre viene
+                            de quienes te conocen bien!
+                        </p>
+                    </div>
+                    <div className="icon-container">
+                        <img
+                            src="/images/Icon-3.webp"
+                            alt="Decide que ver hoy-Icono de cartel de movie night"
+                        />
+                        <h3>DECIDE QUÉ VER HOY</h3>
+                        <p>
+                            ¿No te decides? Echa un vistazo a nuestras
+                            sugerencias de películas y series del momento y deja
+                            de perder tiempo buscando.
+                        </p>
                     </div>
                 </div>
 
-                {groupedFavourites &&
-                    groupedFavourites.map((favourite, index) => {
-                        return (
-                            <div key={index}>
-                                {favourite.user}
-
-                                <div>
+                <h2 className="home-container-text">
+                    {" "}
+                    <span className="home-container-firsttext font-semibold text-xl text-gray-800 leading-tight">
+                        Recomendaciones de
+                    </span>{" "}
+                    <span className="home-container-secondtext font-semibold text-xl text-gray-800 leading-tight">
+                        amigos
+                    </span>{" "}
+                </h2>
+                <div className="container-friends-card">
+                    {groupedFavourites &&
+                        groupedFavourites.map((favourite, index) => {
+                            return (
+                                <div key={index} className="friends-card">
                                     {favourite.movies &&
-                                        favourite.movies.map((movie, index) => {
-                                            return (
-                                                <span key={index}>
-                                                    {movie.title}
-                                                </span>
-                                            );
-                                        })}
+                                        favourite.movies.length > 0 && (
+                                            <img
+                                                src={favourite.movies[0].image}
+                                                alt={favourite.movies[0].title}
+                                            />
+                                        )}
+
+                                    <div className="friends-card-text">
+                                        <h3>{favourite.user}</h3>
+                                        {favourite.movies &&
+                                            favourite.movies.map(
+                                                (movie, index) => {
+                                                    return (
+                                                        <p key={index}>
+                                                            {movie.title}
+                                                        </p>
+                                                    );
+                                                }
+                                            )}
+                                    </div>
                                 </div>
-                            </div>
-                        );
-                    })}
+                            );
+                        })}
+                </div>
             </div>
         </AuthenticatedLayout>
     );

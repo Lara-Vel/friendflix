@@ -3,24 +3,66 @@
 @tailwind utilities;
 
 @font-face {
-    font-family: "Poppins-Medium";
+    font-family: "Poppins-Regular";
     font-style: normal;
-    font-weight: normal;
-    src: url("/fonts/Poppins-Medium.ttf") format("ttf");
+    font-weight: 400;
+    src: url("/fonts/Poppins-Regular.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Poppins-SemiBold";
+    font-style: normal;
+    font-weight: 600;
+    src: url("/fonts/Poppins-SemiBold.ttf") format("truetype");
 }
 
 @font-face {
     font-family: "Poppins-Bold";
     font-style: normal;
-    font-weight: 600;
-    src: url("/fonts/Poppins-Bold.ttf") format("ttf");
+    font-weight: 700;
+    src: url("/fonts/Poppins-Bold.ttf") format("truetype");
 }
 
 @font-face {
-    font-family: "Poppins-ExtraLigth";
+    font-family: "Poppins-ExtraLight";
     font-style: normal;
-    font-weight: 200;
-    src: url("/fonts/Poppins-ExtraLight") format("ttf");
+    font-weight: 100;
+    src: url("/fonts/Poppins-ExtraLight.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Raleway-Regular";
+    font-style: normal;
+    font-weight: 400;
+    src: url("/fonts/Raleway-Regular.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Raleway-SemiBold";
+    font-style: normal;
+    font-weight: 600;
+    src: url("/fonts/Raleway-SemiBold.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Raleway-Bold";
+    font-style: normal;
+    font-weight: 700;
+    src: url("/fonts/Raleway-Bold.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Raleway-ExtraLight";
+    font-style: normal;
+    font-weight: 100;
+    src: url("/fonts/Raleway-ExtraLight.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "PlayfairDisplay-Bold";
+    font-style: normal;
+    font-weight: 600;
+    src: url("/fonts/PlayfairDisplay-Bold.ttf") format("truetype");
 }
 
 * {
@@ -39,7 +81,7 @@ html {
 
 body {
     min-height: 100dvh;
-    font-family: Poppins-Medium, sans-serif;
+    font-family: Poppins-Regular, sans-serif;
 }
 input,
 button,
@@ -134,10 +176,9 @@ svg {
     color: white;
     font-size: 1.6rem;
     border-radius: 2rem;
-    font-weight: 700;
     border: none;
     transition: all 0.2s;
-    font-family: Poppins-Medium, sans-serif;
+    font-family: Poppins-SemiBold, sans-serif;
 }
 
 .button-login:hover {
@@ -161,10 +202,9 @@ svg {
     color: white;
     font-size: 1.6rem;
     border-radius: 2rem;
-    font-weight: 700;
     border: none;
     transition: all 0.2s;
-    font-family: Poppins, sans-serif;
+    font-family: Poppins-SemiBold, sans-serif;
 }
 
 .button-register:hover {
@@ -209,7 +249,7 @@ svg {
     display: flex;
     justify-content: space-between;
     color: #093266;
-    font-family: Poppins-Bold, sans-serif;
+    font-family: Poppins-SemiBold, sans-serif;
 }
 
 .title-login-form {
@@ -246,10 +286,11 @@ svg {
 
 .login-form input {
     font-size: 1.6rem;
-    padding: 1rem;
+    padding: 0.7rem;
     border-radius: 2rem;
     border-color: #c3e2dc;
-    background-color: #fff !important;
+    background-color: #fff;
+    font-family: Poppins-Regular, sans-serif;
 }
 
 .login-form input:focus {
@@ -274,6 +315,7 @@ svg {
     color: #093266;
     font-size: 1.2rem;
     text-align: center;
+    font-family: Poppins-Regular, sans-serif;
 }
 
 .link-login a {
@@ -292,11 +334,12 @@ svg {
 }
 
 .button-login-form .button {
-    padding: 0.8rem 14rem;
+    padding: 0.8rem 13.5rem;
 }
 .button-login-form .underline {
     font-size: 1.2rem;
     text-decoration: none;
+    font-family: Poppins-Regular, sans-serif;
 }
 
 .image-login-form {
@@ -314,7 +357,7 @@ svg {
     background-position: center;
 }
 
-@media screen and (min-width: 320px) and (max-width: 992px) {
+@media screen and (max-width: 992px) {
     .container-login-form {
         flex-direction: column;
         align-items: center;
@@ -382,7 +425,7 @@ svg {
     }
 }
 
-@media screen and (min-width: 320px) and (max-width: 374px) {
+@media screen and (max-width: 375px) {
     .login-form {
         width: 20.8rem;
         gap: 0.6rem;
@@ -400,7 +443,7 @@ svg {
     display: flex;
     justify-content: space-between;
     color: #093266;
-    font-family: Poppins-Bold, sans-serif;
+    font-family: Poppins-SemiBold, sans-serif;
 }
 
 .title-register-form {
@@ -438,10 +481,11 @@ svg {
 
 .register-form input {
     font-size: 1.6rem;
-    padding: 1rem;
+    padding: 0.7rem;
     border-radius: 2rem;
     border-color: #c3e2dc;
-    background-color: #fff !important;
+    background-color: #fff;
+    font-family: Poppins-Regular, sans-serif;
 }
 
 .register-form input:focus {
@@ -458,6 +502,7 @@ svg {
     color: #093266;
     font-size: 1.2rem;
     text-align: center;
+    font-family: Poppins-Regular, sans-serif;
 }
 
 .link-register a {
@@ -477,7 +522,7 @@ svg {
 }
 
 .button-register-form .button {
-    padding: 0.8rem 11.3rem;
+    padding: 0.8rem 10.9rem;
     white-space: nowrap;
 }
 .button-register-form .underline {
@@ -499,7 +544,7 @@ svg {
     background-position: center;
 }
 
-@media screen and (min-width: 320px) and (max-width: 992px) {
+@media screen and (max-width: 992px) {
     .container-register-form {
         flex-direction: column;
         align-items: center;
@@ -524,7 +569,7 @@ svg {
         font-size: 1rem;
     }
     .register-form input {
-        padding: 0.8rem;
+        padding: 0.6rem;
     }
     .image-register-form {
         width: 100%;
@@ -552,7 +597,7 @@ svg {
         gap: 1rem;
     }
     .button-register-form .button {
-        padding: 0.6rem 10.3rem;
+        padding: 0.6rem 9.8rem;
     }
 }
 
@@ -568,24 +613,427 @@ svg {
     }
 }
 
-@media screen and (min-width: 320px) and (max-width: 374px) {
+@media screen and (max-width: 375px) {
     .register-form {
         width: 20.8rem;
         margin-top: 1rem;
     }
     .register-form input {
-        padding: 0.7rem;
+        padding: 0.5rem;
     }
     .button-register-form {
         gap: 1rem;
     }
     .button-register-form .button {
-        padding: 0.6rem 5.1rem;
+        padding: 0.7rem 4.7rem;
         font-size: 1.5rem;
+    }
+    .link-register {
+        white-space: nowrap;
     }
 }
 
-/* COMPONENTE PELÍCULAS */
+/* DASHBOARD/INICIO */
+
+.bg-gray-100 {
+    background-color: #fff;
+}
+
+.home-container {
+    width: 100%;
+    padding: 0;
+}
+.home-container-image {
+    padding: 0;
+}
+
+.home-container-image img {
+    object-fit: cover;
+}
+
+.home-container-text {
+    text-align: center;
+    padding: 10rem 0rem 3rem 0rem;
+}
+.home-container-firsttext {
+    font-family: Raleway-ExtraLight, sans-serif;
+    margin-right: 1rem;
+    font-size: 4rem;
+    color: #093266;
+}
+.home-container-secondtext {
+    font-family: PlayfairDisplay-Bold, sans-serif;
+    font-weight: 600;
+    font-size: 4rem;
+    color: #093266;
+}
+
+.home-container-icons {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.icon-container {
+    width: 28.33%;
+    padding: 5rem 2rem;
+    text-align: center;
+}
+
+.icon-container h3 {
+    font-family: Raleway-SemiBold, sans-serif;
+    font-size: 2rem;
+    color: #093266;
+}
+
+.icon-container p {
+    font-family: Raleway-Regular, sans-serif;
+    font-size: 1.6rem;
+    color: #093266;
+}
+
+.icon-container img {
+    width: 100%;
+    max-width: 100%;
+}
+
+@media screen and (min-width: 576px) and (max-width: 768px) {
+    .home-container-firsttext {
+        font-size: 3rem;
+    }
+    .home-container-secondtext {
+        font-size: 3rem;
+    }
+    .home-container-icons {
+        flex-direction: column;
+    }
+    .icon-container {
+        width: 44%;
+        padding: 2rem 0rem;
+    }
+    .icon-container h3 {
+        font-size: 1.7rem;
+    }
+    .icon-container p {
+        font-size: 1.3rem;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .home-container-icons {
+        flex-direction: column;
+    }
+    .icon-container {
+        width: 65%;
+        padding: 2rem 0rem;
+    }
+    .icon-container h3 {
+        font-size: 1.6rem;
+    }
+    .icon-container p {
+        font-size: 1.3rem;
+    }
+
+    .home-container-firsttext {
+        font-size: 3rem;
+    }
+    .home-container-secondtext {
+        font-size: 3rem;
+    }
+    .home-container-image img {
+        height: 100vh;
+        background-image: url(images/Home-Friendflix.svg);
+        background-size: cover;
+        background-position: center;
+        position: relative;
+    }
+}
+
+/* ALERTAS */
+.status-message {
+    background-color: #38a169;
+    padding: 0.5rem;
+}
+
+/* COMPONENTE NAVLINK */
+
+.main-nav {
+    background-color: #c3e2dc;
+    border-bottom: 1px solid #f37136;
+    padding: 0.5rem 0;
+}
+
+.nav-container {
+    height: 100%;
+}
+
+.nav-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4rem;
+}
+
+.logo-container {
+    order: 1;
+    width: 13rem;
+}
+
+.nav-links {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0.25rem 0.5rem;
+    gap: 7rem;
+    font-family: Raleway-Bold, sans-serif;
+    white-space: nowrap;
+}
+
+.nav-link {
+    order: 1;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-bottom: 2px solid transparent;
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #f37136;
+    gap: 8rem;
+}
+
+.nav-link.active {
+    border-color: #f37136;
+    color: #f37136;
+}
+
+.nav-link:hover {
+    border-color: #f37136;
+}
+
+.inline-flex button {
+    background-color: #c3e2dc;
+    color: #f37136;
+    text-transform: uppercase;
+    font-family: Raleway-Bold, sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+.inline-flex button:hover {
+    color: #f37136;
+}
+
+.rounded-md a {
+    font-size: 1.2rem;
+}
+.rounded-md a:hover {
+    color: #f37136;
+    background-color: #fff;
+}
+.rounded-md button {
+    font-size: 1.2rem;
+}
+.rounded-md button:hover {
+    color: #f37136;
+    background-color: #fff;
+}
+.logo-container-2 img {
+    display: none;
+}
+
+@media screen and (min-width: 877px) and (max-width: 1069px) {
+    .nav-links {
+        gap: 4rem;
+        font-size: 1rem;
+    }
+    .inline-flex button {
+        font-size: 1rem;
+    }
+    .rounded-md a {
+        font-size: 1rem;
+    }
+    .rounded-md button {
+        font-size: 1rem;
+    }
+}
+
+@media screen and (min-width: 639px) and (max-width: 876px) {
+    .logo-container {
+        width: 10rem;
+    }
+    .nav-content {
+        gap: 1rem;
+    }
+    .nav-links {
+        gap: 1rem;
+        font-size: 0.9rem;
+    }
+    .inline-flex button {
+        font-size: 0.9rem;
+    }
+    .rounded-md a {
+        font-size: 0.9rem;
+    }
+    .rounded-md button {
+        font-size: 0.9rem;
+    }
+}
+@media screen and (min-width: 320px) and (max-width: 639px) {
+    .nav-content {
+        display: flex;
+        justify-content: space-between;
+    }
+    .nav-container {
+        padding: 0.5rem 2rem;
+    }
+    .nav-links {
+        display: none;
+    }
+    .logo-container-2 img {
+        width: 6rem;
+        display: block;
+    }
+    .button-mobile,
+    button:active {
+        color: #f37136;
+    }
+    .block a {
+        color: #093266;
+        font-size: 1.4rem;
+        font-weight: 600;
+    }
+    .block a:hover,
+    a:active {
+        color: #f37136;
+    }
+    .px-4 div {
+        color: #093266;
+        font-size: 1.4rem;
+        font-weight: 600;
+    }
+    .mt-3 button {
+        color: #093266;
+        font-size: 1.4rem;
+        font-weight: 600;
+    }
+    .mt-3 button:hover,
+    button:active {
+        color: #f37136;
+    }
+}
+
+/* COMPONENTE CARD DE AMIGOS */
+
+.container-friends-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 100vh;
+    padding: 8rem 2rem;
+    flex-wrap: wrap;
+    gap: 6rem;
+}
+
+.friends-card {
+    display: flex;
+    align-items: center;
+    width: 75vw;
+    max-width: 40%;
+    padding: 2rem 1rem 2rem 1rem;
+    border-radius: 30px;
+    border: 0.4rem solid #c3e2dc;
+    color: #093266;
+}
+
+.friends-card img {
+    max-width: 24rem;
+    width: 35vw;
+    height: 26rem;
+    object-fit: cover;
+    margin-left: -6rem;
+    margin-right: 3rem;
+    border-radius: inherit;
+    box-shadow: 0 6rem 4rem rgb(0 0 0 / 8%);
+}
+
+.friends-card-text h3 {
+    font-size: 2.6rem;
+    font-weight: 400;
+    margin-top: 0;
+    margin-right: 3rem;
+    margin-bottom: 1rem;
+    font-family: Raleway-Bold, sans-serif;
+}
+
+.friends-card p {
+    font-size: 1.6rem;
+    font-weight: 400;
+    margin-bottom: 2rem;
+    opacity: 0.5;
+    font-family: Raleway-Regular, sans-serif;
+    color: #093266;
+}
+
+@media screen and (max-width: 1024px) {
+    .friends-card img {
+        max-width: 20rem;
+        height: 22rem;
+    }
+}
+@media screen and (max-width: 889px) {
+    .friends-card {
+        max-width: 63rem;
+    }
+    .container-friends-card {
+        flex-direction: row;
+        padding-top: 10rem;
+        gap: 6rem;
+    }
+}
+
+@media (width <= 600px) {
+    .container-friends-card {
+        flex-direction: row;
+        gap: 14rem;
+        padding-top: 18rem;
+    }
+    .friends-card {
+        padding-left: 5rem;
+        padding-right: 5rem;
+        padding-bottom: 6rem;
+        width: 100%;
+        text-align: center;
+        flex-direction: column;
+    }
+
+    .friends-card-text h3 {
+        margin-right: 0;
+        font-size: 2.3rem;
+    }
+
+    .friends-card img {
+        margin: -10rem 0 3rem 0;
+        width: 100%;
+        max-width: 100rem;
+        height: 25rem;
+    }
+
+    .friends-card-text p {
+        max-width: 36rem;
+        font-size: 1.6rem;
+    }
+}
+
+@media (width <= 440px) {
+    .friends-card img {
+        height: 45vw;
+        width: 45vw;
+        border-radius: 50%;
+        margin: -14rem 0 3rem 0;
+    }
+}
+
+/* COMPONENTE CARD PELÍCULAS */
 
 .movies-grid {
     display: flex;
