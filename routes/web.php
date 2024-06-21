@@ -33,13 +33,10 @@ Route::middleware('auth')->group(function () {
 Route::get('/peliculas', [MovieDBController::class, 'index'])->name('popularmovies/index')->middleware('auth');
 Route::get('/favorites/index', [MovieDBController::class, 'myFavorites'])->name('favorites/index')->middleware('auth');
 
-// Route::delete('/favourites/{favourite}', [FavouriteController::class, 'destroy'])
-//     ->name('favourites.destroy')->middleware('auth');
 
-Route::get('/buscar-peliculas', [App\Http\Controllers\FavouriteController::class, 'toggle'])
-    ->name('searchmovies.index')->middleware('auth');
-;
+Route::get('/buscar-peliculas', [App\Http\Controllers\FavouriteController::class, 'search'])->name('searchmovies.search')->middleware('auth');
 
+Route::get('/seriestv', [MovieDBController::class, 'index'])->name('populartvseries/index')->middleware('auth');
 
 
 require __DIR__ . '/auth.php';

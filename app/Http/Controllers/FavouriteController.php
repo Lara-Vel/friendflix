@@ -16,15 +16,6 @@ class FavouriteController extends Controller
 {
     use AuthorizesRequests, ValidatesRequests;
 
-    // public function index()
-    // {
-    //     $favourites = Favourite::with('user')->latest()->get();
-
-    //     return Inertia::render('MyFavorites/Index', [
-    //         'favourites' => FavouriteResource::collection($favourites),
-    //     ]);
-    // }
-
 
     public function index()
     {
@@ -72,6 +63,68 @@ class FavouriteController extends Controller
             return back()->with('status', '¡Favorito guardado!');
         }
     }
+
+    public function search()
+    {
+        //Busco las película favoritas de este usuario
+        //Creo un componente con el botón de buscar y lo paso
+
+
+        info("FavouriteController@buscar");
+        $user = Auth::user();
+        info($user);
+        $favourites = Favourite::where("user_id", $user->id)->get();
+        info($favourites);
+
+
+        return Inertia::render('SearchMovies/Index', ["favourites" => FavouriteResource::collection($favourites)]);
+    }
+
+    public function toggleSeries(Request $request)
+    {
+
+        $validated = $request->validate([
+            'tv_series_id' => 'required|integer',
+            'serieData' => 'required|array'
+        ]);
+
+        $user = $request->user();
+        $serie_id = $validated['tv_series_id'];
+        $data = $validated['serieData'];
+
+        // Buscar si el favorito ya existe
+        $favourite = Favourite::where('user_id', $user->id)->where('serie_id', $serie_id)->first();
+
+        if ($favourite) {
+            // Eliminar el favorito existente
+            $favourite->delete();
+            return back()->with('status', 'Favorito eliminado');
+        } else {
+            // Crear un nuevo favorito
+            $favourite = Favourite::create([
+
+                'user_id' => $user->id,
+                'serie_id' => $serie_id,
+                'title' => $data['title'],
+                'overview' => $data['overview'],
+                'poster_path' => $data['poster_path'],
+                'backdrop_path' => $data['backdrop_path']
+
+            ]);
+            return back()->with('status', '¡Favorito guardado!');
+        }
+    }
+
+    public function searchMovies()
+    {
+        $user = Auth::user();
+        $favourites = Favourite::where('user_id', $user->id)->latest()->get();
+
+        return Inertia::render('SearchMovies/Index', [
+            'favourites' => FavouriteResource::collection($favourites),
+        ]);
+    }
+
 
 
     // public function toggle(Request $request)
@@ -135,42 +188,44 @@ class FavouriteController extends Controller
         ]);
     }
 
-    public function update(Request $request, Favourite $favourite)
-    {
-        $validated = $request->validate([
-            'title' => ['nullable', 'string', 'max:250'],
-            'overview' => ['nullable', 'string'],
-            'poster_path' => ['nullable', 'string'],
-            'backdrop_path' => ['nullable', 'string'],
-        ]);
+    // public function update(Request $request, Favourite $favourite)
+    // {
+    //     $validated = $request->validate([
+    //         'title' => ['nullable', 'string', 'max:250'],
+    //         'overview' => ['nullable', 'string'],
+    //         'poster_path' => ['nullable', 'string'],
+    //         'backdrop_path' => ['nullable', 'string'],
+    //     ]);
 
-        $favourite->update($validated);
+    //     $favourite->update($validated);
 
-        return back()->with('status', 'Favorito actualizado');
-    }
+    //     return back()->with('status', 'Favorito actualizado');
+    // }
 
-    public function destroy(Favourite $favourite)
-    {
-        \Log::info("Borrando el favorito con ID: {$favourite->id}");
+    // public function destroy(Favourite $favourite)
+    // {
+    //     \Log::info("Borrando el favorito con ID: {$favourite->id}");
 
-        $this->authorize('delete', $favourite);
+    //     $this->authorize('delete', $favourite);
 
-        $favourite->delete();
+    //     $favourite->delete();
 
-        return back()->with('status', 'Favorito borrado');
+    //     return back()->with('status', 'Favorito borrado');
 
-    }
+    // }
 
-    public function find(Request $request)
-    {
-        $query = $request->query('q');
-        $favourites = Favourite::where('title', 'like', "%{$query}%")
-            ->with('user')
-            ->get();
+    // public function find(Request $request)
+    // {
+    //     $query = $request->query('q');
+    //     $favourites = Favourite::where('title', 'like', "%{$query}%")
+    //         ->with('user')
+    //         ->get();
 
-        return Inertia::render('Favourites/SearchResults', [
-            'favourites' => FavouriteResource::collection($favourites),
-        ]);
-    }
+    //     return Inertia::render('Favourites/SearchResults', [
+    //         'favourites' => FavouriteResource::collection($favourites),
+    //     ]);
+    // }
+
+
 
 }

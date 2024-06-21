@@ -131,7 +131,7 @@ svg {
 .react-carousel-card {
     display: flex;
     flex-direction: column;
-    width: 40%;
+    width: 35%;
 }
 
 .react-carousel {
@@ -343,7 +343,7 @@ svg {
 }
 
 .image-login-form {
-    width: 55%;
+    width: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -353,7 +353,6 @@ svg {
 .image-login-form img {
     object-fit: cover;
     width: 100%;
-    height: 80%;
     background-position: center;
 }
 
@@ -530,7 +529,7 @@ svg {
     text-decoration: none;
 }
 .image-register-form {
-    width: 55%;
+    width: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -540,7 +539,6 @@ svg {
 .image-register-form img {
     object-fit: cover;
     width: 100%;
-    height: 80%;
     background-position: center;
 }
 
@@ -697,6 +695,14 @@ svg {
     max-width: 100%;
 }
 
+@media screen and (min-width: 1640px) {
+    .home-container-image {
+        display: flex;
+        justify-content: center;
+        background-color: #c3e2dc;
+    }
+}
+
 @media screen and (min-width: 576px) and (max-width: 768px) {
     .home-container-firsttext {
         font-size: 3rem;
@@ -752,7 +758,11 @@ svg {
 /* ALERTAS */
 .status-message {
     background-color: #38a169;
-    padding: 0.5rem;
+    padding: 1rem;
+}
+.bg-green-500 {
+    font-size: 1.5rem;
+    font-family: Poppins-Regular, sans-serif;
 }
 
 /* COMPONENTE NAVLINK */
@@ -771,7 +781,6 @@ svg {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 4rem;
 }
 
 .logo-container {
@@ -795,20 +804,21 @@ svg {
     justify-content: space-around;
     align-items: center;
     border-bottom: 2px solid transparent;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     font-weight: 700;
     text-transform: uppercase;
     color: #f37136;
     gap: 8rem;
 }
 
-.nav-link.active {
+.nav-links a:active {
     border-color: #f37136;
     color: #f37136;
 }
 
-.nav-link:hover {
+.nav-links a:hover {
     border-color: #f37136;
+    color: #f37136;
 }
 
 .inline-flex button {
@@ -817,21 +827,24 @@ svg {
     text-transform: uppercase;
     font-family: Raleway-Bold, sans-serif;
     font-weight: 700;
-    font-size: 0.9rem;
+    font-size: 1.5rem;
+    padding: 0;
+    margin: 0;
+    margin-left: 4rem;
 }
 .inline-flex button:hover {
     color: #f37136;
 }
 
 .rounded-md a {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
 }
 .rounded-md a:hover {
     color: #f37136;
     background-color: #fff;
 }
 .rounded-md button {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
 }
 .rounded-md button:hover {
     color: #f37136;
@@ -848,6 +861,7 @@ svg {
     }
     .inline-flex button {
         font-size: 1rem;
+        margin-left: 2rem;
     }
     .rounded-md a {
         font-size: 1rem;
@@ -861,15 +875,13 @@ svg {
     .logo-container {
         width: 10rem;
     }
-    .nav-content {
-        gap: 1rem;
-    }
     .nav-links {
         gap: 1rem;
         font-size: 0.9rem;
     }
     .inline-flex button {
         font-size: 0.9rem;
+        margin-left: 0.1rem;
     }
     .rounded-md a {
         font-size: 0.9rem;
@@ -929,7 +941,7 @@ svg {
     align-items: center;
     justify-content: space-around;
     height: 100vh;
-    padding: 8rem 2rem;
+    padding: 8rem 8rem;
     flex-wrap: wrap;
     gap: 6rem;
 }
@@ -937,18 +949,17 @@ svg {
 .friends-card {
     display: flex;
     align-items: center;
-    width: 75vw;
-    max-width: 40%;
+    width: 54rem;
     padding: 2rem 1rem 2rem 1rem;
-    border-radius: 30px;
+    border-radius: 3rem;
     border: 0.4rem solid #c3e2dc;
     color: #093266;
 }
 
 .friends-card img {
-    max-width: 24rem;
+    max-width: 22rem;
     width: 35vw;
-    height: 26rem;
+    height: 24rem;
     object-fit: cover;
     margin-left: -6rem;
     margin-right: 3rem;
@@ -963,15 +974,31 @@ svg {
     margin-right: 3rem;
     margin-bottom: 1rem;
     font-family: Raleway-Bold, sans-serif;
+    white-space: nowrap;
 }
 
-.friends-card p {
+.friends-card-text p {
     font-size: 1.6rem;
     font-weight: 400;
     margin-bottom: 2rem;
-    opacity: 0.5;
+    opacity: 0.7;
     font-family: Raleway-Regular, sans-serif;
     color: #093266;
+    white-space: nowrap;
+    margin-right: 2rem;
+}
+
+.friends-card-movies {
+    max-height: 20rem;
+    overflow: scroll;
+}
+
+.friends-card-movies::-webkit-scrollbar {
+    width: 0.5rem;
+}
+.friends-card-movies::-webkit-scrollbar-thumb {
+    background-color: #c3e2dc;
+    border-radius: 0.5rem;
 }
 
 @media screen and (max-width: 1024px) {
@@ -982,7 +1009,7 @@ svg {
 }
 @media screen and (max-width: 889px) {
     .friends-card {
-        max-width: 63rem;
+        max-width: 48rem;
     }
     .container-friends-card {
         flex-direction: row;
@@ -995,7 +1022,7 @@ svg {
     .container-friends-card {
         flex-direction: row;
         gap: 14rem;
-        padding-top: 18rem;
+        padding: 18rem 2.5rem 0rem 2.5rem;
     }
     .friends-card {
         padding-left: 5rem;
@@ -1020,7 +1047,7 @@ svg {
 
     .friends-card-text p {
         max-width: 36rem;
-        font-size: 1.6rem;
+        font-size: 1.5rem;
     }
 }
 
@@ -1038,23 +1065,22 @@ svg {
 .movies-grid {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
-    justify-content: space-between;
-    padding: 20px;
+    gap: 4rem;
+    justify-content: center;
+    padding: 8rem 5rem;
 }
 
 .movie-container {
-    width: calc(22% - 18px);
-    margin-bottom: 20px;
+    width: 30rem;
+    margin-bottom: 2rem;
 }
 
 .movie-card {
-    border: 1px solid #ddd;
-    border-radius: 25px;
+    border-radius: 3rem;
     overflow: hidden;
     position: relative;
     width: 100%;
-    height: 400px;
+    height: 40rem;
     cursor: pointer;
     background-color: #000;
     image-rendering: auto;
@@ -1068,7 +1094,7 @@ svg {
     height: 100%;
     opacity: 0;
     transition: opacity 0.3s ease;
-    pointer-events: none;
+    pointer-events: auto;
 }
 
 .movie-card:hover .overlay {
@@ -1098,11 +1124,13 @@ svg {
     box-sizing: border-box;
     opacity: 0;
     transition: opacity 0.3s ease;
-    overflow: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    overflow-y: auto;
+    max-height: 40rem;
+    padding-top: 2rem;
 }
 
 .movie-card:hover .movie-details {
@@ -1112,8 +1140,349 @@ svg {
 .movie-details p {
     margin: 5px 0;
     text-align: left;
+    font-size: 1.2rem;
+    white-space: normal;
+    text-align: justify;
+    overflow-wrap: break-word;
 }
 
-.movie-card h3 {
+.movie-card-title {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 1rem;
+    font-family: Raleway-SemiBold, sans-serif;
+    font-size: 2rem;
+    color: #093266;
+}
+
+.movie-card-title h3 {
     margin: 10px 0;
+    text-align: center;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    padding: 1rem 3rem 6rem 3rem;
+    gap: 6rem;
+}
+
+.button-pagination {
+    padding: 0.9rem 8rem;
+    background: #f37136;
+    color: white;
+    font-size: 1.6rem;
+    border-radius: 2rem;
+    border: none;
+    transition: all 0.2s;
+    font-family: Poppins-SemiBold, sans-serif;
+}
+
+.button-pagination:hover {
+    transform: translateY(-0.2rem);
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+    background: #fde3d7;
+    color: #f37136;
+    transition: 0.5s;
+}
+
+.button-pagination:active {
+    transform: translateY(-0.1rem);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+    background: #fde3d7;
+    color: #f37136;
+}
+
+@media screen and (min-width: 320px) and (max-width: 768px) {
+    .pagination {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        align-content: center;
+        flex-wrap: wrap;
+    }
+}
+
+/* COMPONENTE BUSCAR */
+
+.search-add-content {
+    padding: 5rem 0;
+    max-width: 60rem;
+    margin: 0 auto;
+}
+
+.search-add-content .search-input-wrapper input {
+    width: 100%;
+    font-size: 1.6rem;
+    padding: 0.7rem;
+    border-radius: 2rem;
+    border-color: #c3e2dc;
+    background-color: #fff;
+    font-family: Poppins-Regular, sans-serif;
+    color: #093266;
+}
+
+.search-input-wrapper input:focus {
+    box-shadow: 0 0 10px #c3e2dc;
+    border-color: #c3e2dc;
+    outline: #c3e2dc;
+}
+
+.search-input-wrapper input::placeholder {
+    color: #093266;
+    opacity: 0.7;
+    padding-left: 5rem;
+}
+
+.search-results {
+    padding: 0;
+    margin: 0;
+    margin-top: 2rem;
+}
+
+.search-results li {
+    list-style: none;
+}
+
+.search-result-card {
+    display: flex;
+    margin-bottom: 2rem;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.search-result-card .search-poster-wrapper img,
+.filler-poster {
+    border-radius: 2rem;
+    margin-right: 1.5rem;
+    display: block;
+    width: 19rem;
+    height: 27.3rem;
+}
+
+.search-result-card .info {
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: row-reverse;
+    align-items: center;
+    gap: 4rem;
+    font-family: Raleway-SemiBold, sans-serif;
+}
+
+.search-result-card .info .title {
+    font-size: 2rem;
+    font-family: Raleway-SemiBold, sans-serif;
+    color: #093266;
+}
+
+.search-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-icon {
+    position: absolute;
+    margin: 0 1rem 0 2rem;
+}
+
+.search-icon input[type="text"] {
+    padding-left: 100px;
+    padding-right: 100px;
+}
+
+@media screen and (min-width: 425px) and (max-width: 659px) {
+    .search-add-content {
+        padding: 5rem 0;
+        max-width: 40rem;
+        margin: 0 auto;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 425px) {
+    .search-add-content {
+        padding: 5rem 0;
+        max-width: 25rem;
+        margin: 0 auto;
+    }
+}
+
+/* MI PERFIL */
+
+.container-text-profile {
+    text-align: center;
+    padding: 4rem 0rem 3rem 0rem;
+}
+.container-firsttext-profile {
+    font-family: Raleway-ExtraLight, sans-serif;
+    margin-right: 1rem;
+    font-size: 4rem;
+    color: #093266;
+}
+.container-secondtext-profile {
+    font-family: PlayfairDisplay-Bold, sans-serif;
+    font-weight: 600;
+    font-size: 4rem;
+    color: #093266;
+}
+.container-text-info {
+    font-family: Raleway-Regular, sans-serif;
+    color: #093266;
+    font-size: 1.6rem;
+    line-height: 2rem;
+}
+
+.continer-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-form {
+    font-family: Poppins-Regular, sans-serif;
+    color: #093266;
+    font-size: 1.6;
+}
+
+.profile-form-text label {
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 1.3rem;
+    letter-spacing: 0.05rem;
+    color: #093266;
+    margin-bottom: 1rem;
+}
+
+.profile-form-text input {
+    width: 100%;
+    font-size: 1.6rem;
+    padding: 0.7rem;
+    border-radius: 2rem;
+    border-color: #c3e2dc;
+    background-color: #fff;
+    font-family: Poppins-Regular, sans-serif;
+    color: #093266;
+}
+
+.profile-form-text input:focus {
+    box-shadow: 0 0 10px #c3e2dc;
+    border-color: #c3e2dc;
+    outline: #c3e2dc;
+}
+
+.profile-form-text input::placeholder {
+    color: #cfcaca;
+}
+
+.button-profile {
+    padding: 0.8rem 14rem;
+    background: #f37136;
+    color: white;
+    font-size: 1.6rem;
+    border-radius: 2rem;
+    border: none;
+    transition: all 0.2s;
+    font-family: Poppins-SemiBold, sans-serif;
+}
+
+.button-profile:hover {
+    transform: translateY(-0.2rem);
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+    background: #fde3d7;
+    color: #f37136;
+    transition: 0.5s;
+}
+
+.button-profile:active {
+    transform: translateY(-0.1rem);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+    background: #fde3d7;
+    color: #f37136;
+}
+
+.update-password h2 {
+    font-family: Raleway-Bold, sans-serif;
+    color: #093266;
+    font-size: 2rem;
+}
+
+.update-password p {
+    font-family: Raleway-Regular, sans-serif;
+    color: #093266;
+    font-size: 1.6rem;
+    margin: 2rem 0 2rem 0;
+    line-height: 2rem;
+}
+
+.update-password-text label {
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 1.3rem;
+    letter-spacing: 0.05rem;
+    color: #093266;
+    margin-bottom: 1rem;
+}
+
+.update-password-text input {
+    width: 100%;
+    font-size: 1.6rem;
+    padding: 0.7rem;
+    border-radius: 2rem;
+    border-color: #c3e2dc;
+    background-color: #fff;
+    font-family: Poppins-Regular, sans-serif;
+    color: #093266;
+}
+
+.update-password-text input:focus {
+    box-shadow: 0 0 10px #c3e2dc;
+    border-color: #c3e2dc;
+    outline: #c3e2dc;
+}
+
+.update-password-text input::placeholder {
+    color: #cfcaca;
+}
+
+.delete-user h2 {
+    font-family: Raleway-Bold, sans-serif;
+    color: #093266;
+    font-size: 2rem;
+}
+
+.delete-user p {
+    font-family: Raleway-Regular, sans-serif;
+    color: #093266;
+    font-size: 1.6rem;
+    margin: 2rem 0 2rem 0;
+    line-height: 2rem;
+}
+
+.button-delete {
+    padding: 1.5rem 10.4rem;
+    background: #red;
+    color: white;
+    font-size: 1.6rem;
+    border-radius: 2rem;
+    border: none;
+    transition: all 0.2s;
+    font-family: Poppins-SemiBold, sans-serif;
+    text-transform: none;
+    white-space: nowrap;
+}
+
+.button-delete:hover {
+    transform: translateY(-0.2rem);
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+    background: #fde3d7;
+    color: #fff;
+    transition: 0.5s;
+}
+
+.button-delete:active {
+    transform: translateY(-0.1rem);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+    background: #fff;
+    color: #f37136;
 }

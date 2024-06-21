@@ -5,7 +5,7 @@ import InputLabel from "@/Components/InputLabel";
 import Modal from "@/Components/Modal";
 import SecondaryButton from "@/Components/SecondaryButton";
 import TextInput from "@/Components/TextInput";
-import { useForm } from "@inertiajs/react";
+import { useForm, Link } from "@inertiajs/react";
 
 export default function DeleteUserForm({ className = "" }) {
     const [confirmingUserDeletion, setConfirmingUserDeletion] = useState(false);
@@ -45,7 +45,7 @@ export default function DeleteUserForm({ className = "" }) {
 
     return (
         <section className={`space-y-6 ${className}`}>
-            <header>
+            <header className="delete-user">
                 <h2 className="text-lg font-medium text-gray-900">
                     Eliminar cuenta
                 </h2>
@@ -57,21 +57,24 @@ export default function DeleteUserForm({ className = "" }) {
                 </p>
             </header>
 
-            <DangerButton onClick={confirmUserDeletion}>
+            <DangerButton
+                className="button-delete"
+                onClick={confirmUserDeletion}
+            >
                 Eliminar cuenta
             </DangerButton>
 
             <Modal show={confirmingUserDeletion} onClose={closeModal}>
                 <form onSubmit={deleteUser} className="p-6">
                     <h2 className="text-lg font-medium text-gray-900">
-                        Are you sure you want to delete your account?
+                        ¿Está seguro de que desea eliminar su cuenta?
                     </h2>
 
                     <p className="mt-1 text-sm text-gray-600">
-                        Once your account is deleted, all of its resources and
-                        data will be permanently deleted. Please enter your
-                        password to confirm you would like to permanently delete
-                        your account.
+                        Una vez eliminada su cuenta, todos sus recursos y datos
+                        se borrarán permanentemente. Introduzca su contraseña
+                        para confirmar que desea eliminar definitivamente su
+                        cuenta.
                     </p>
 
                     <div className="mt-6">
@@ -103,11 +106,11 @@ export default function DeleteUserForm({ className = "" }) {
 
                     <div className="mt-6 flex justify-end">
                         <SecondaryButton onClick={closeModal}>
-                            Cancel
+                            Cancelar
                         </SecondaryButton>
 
                         <DangerButton className="ms-3" disabled={processing}>
-                            Delete Account
+                            Eliminar cuenta
                         </DangerButton>
                     </div>
                 </form>

@@ -1,29 +1,23 @@
-import { router } from "@inertiajs/react";
+import { router, Head } from "@inertiajs/react";
 import axios from "axios";
+import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { useState, useEffect } from "react";
 import { FaHeart } from "react-icons/fa";
+import { CiSearch } from "react-icons/ci";
 
-export const SearchMovies = ({ favourites }) => {
-    console.log("Valor inicial de favourites:", favourites);
+export const SearchMovies = ({ favourites, auth }) => {
     const [query, setQuery] = useState("");
     const [results, setResults] = useState([]);
     const [favorites, setFavorites] = useState([]);
     const [processing, setProcessing] = useState(false);
-    console.log("Estado inicial de favorites:", favorites);
 
     useEffect(() => {
-        console.log("useEffect - favourites:", favourites);
         if (favourites) {
             setFavorites(favourites);
-            localStorage.setItem("favorites", JSON.stringify(favourites));
         }
     }, [favourites]);
 
     const onAddFavorite = (film) => {
-        console.log(
-            "onAddFavorite - antes de actualizar, favorites:",
-            favorites
-        );
         setProcessing(true);
         router.post(
             route("favourites.toggle"),
@@ -31,15 +25,6 @@ export const SearchMovies = ({ favourites }) => {
             {
                 onSuccess: (page) => {
                     const updatedFavorites = page.props.favourites;
-                    console.log(
-                        "onAddFavorite - después de actualizar, updatedFavorites:",
-                        updatedFavorites
-                    );
-                    setFavorites(updatedFavorites);
-                    localStorage.setItem(
-                        "favorites",
-                        JSON.stringify(updatedFavorites)
-                    );
                     console.log("Favorite toggled successfully");
                 },
                 onError: (error) => {
@@ -79,83 +64,105 @@ export const SearchMovies = ({ favourites }) => {
     };
 
     const isFavorite = (movieId) => {
-        console.log("isFavorite - favorites:", favorites);
         return favorites.some((favorite) => favorite.movie_id === movieId);
     };
 
     return (
-        <div className="add-page">
-            <div className="container">
-                <div className="add-content">
-                    <div className="input-wrapper">
-                        <input
-                            type="text"
-                            placeholder="Busca una película"
-                            value={query}
-                            onChange={onChange}
-                        />
+        <AuthenticatedLayout user={auth.user}>
+            <Head title="Buscar películas- Friendflix">
+                <meta
+                    name="description"
+                    content="Encuentra las películas preferidas en nuestro buscador Friendflix."
+                />
+            </Head>
+            <h2 className="home-container-text">
+                {" "}
+                <span className="home-container-firsttext font-semibold text-xl text-gray-800 leading-tight">
+                    Encuentra tu película
+                </span>{" "}
+                <span className="home-container-secondtext font-semibold text-xl text-gray-800 leading-tight">
+                    preferida
+                </span>{" "}
+            </h2>
+            <div className="search-page">
+                <div className="search-container">
+                    <div className="search-add-content">
+                        <div className="search-input-wrapper">
+                            {!query && (
+                                <CiSearch
+                                    style={{
+                                        color: "#093266",
+                                        zIndex: 1000,
+                                        fontSize: 24,
+                                    }}
+                                    className="search-icon"
+                                />
+                            )}
+                            <input
+                                type="text"
+                                placeholder="Busca una película"
+                                value={query}
+                                onChange={onChange}
+                                className={query ? "input-filled" : ""}
+                            />
+                        </div>
+
+                        {results.length > 0 && (
+                            <ul className="search-results">
+                                {results.map((film) => (
+                                    <li key={film.id}>
+                                        <div className="search-result-card">
+                                            <div className="search-poster-wrapper">
+                                                {film.poster_path ? (
+                                                    <img
+                                                        src={`https://image.tmdb.org/t/p/w200${film.poster_path}`}
+                                                        alt={`${film.title} Poster`}
+                                                    />
+                                                ) : (
+                                                    <div className="filler-poster" />
+                                                )}
+                                            </div>
+
+                                            <div className="info">
+                                                <div className="header">
+                                                    <h3 className="title">
+                                                        {film.title}
+                                                    </h3>
+                                                </div>
+
+                                                <div className="controls">
+                                                    <button
+                                                        className="btn"
+                                                        onClick={() =>
+                                                            onAddFavorite(film)
+                                                        }
+                                                        disabled={processing}
+                                                        style={{
+                                                            fontSize: 24,
+                                                            color: isFavorite(
+                                                                film.id
+                                                            )
+                                                                ? "red"
+                                                                : "gray",
+                                                        }}
+                                                    >
+                                                        {processing ? (
+                                                            "Guardando cambios..."
+                                                        ) : (
+                                                            <FaHeart />
+                                                        )}
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                ))}
+                            </ul>
+                        )}
                     </div>
-
-                    {results.length > 0 && (
-                        <ul className="results">
-                            {results.map((film) => (
-                                <li key={film.id}>
-                                    <div className="result-card">
-                                        <div className="poster-wrapper">
-                                            {film.poster_path ? (
-                                                <img
-                                                    src={`https://image.tmdb.org/t/p/w200${film.poster_path}`}
-                                                    alt={`${film.title} Poster`}
-                                                />
-                                            ) : (
-                                                <div className="filler-poster" />
-                                            )}
-                                        </div>
-
-                                        <div className="info">
-                                            <div className="header">
-                                                <h3 className="title">
-                                                    {film.title}
-                                                </h3>
-                                            </div>
-
-                                            <div className="controls">
-                                                <button
-                                                    className="btn"
-                                                    onClick={() =>
-                                                        onAddFavorite(film)
-                                                    }
-                                                    disabled={processing}
-                                                    style={{
-                                                        color: isFavorite(
-                                                            film.id
-                                                        )
-                                                            ? "red"
-                                                            : "gray",
-                                                    }}
-                                                >
-                                                    {processing ? (
-                                                        "Guardando..."
-                                                    ) : isFavorite(film.id) ? (
-                                                        <FaHeart />
-                                                    ) : (
-                                                        <FaHeart
-                                                            style={{
-                                                                color: "gray",
-                                                            }}
-                                                        />
-                                                    )}
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                            ))}
-                        </ul>
-                    )}
                 </div>
             </div>
-        </div>
+        </AuthenticatedLayout>
     );
 };
 

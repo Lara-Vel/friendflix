@@ -41,4 +41,25 @@ class MovieDBController extends Controller
         ]);
     }
 
+    public function popularTvSeries(Request $request)
+    {
+        $page = $request->input('page', 1);
+        $response = Http::get('https://api.themoviedb.org/3/tv/popular', [
+            'api_key' => env('TMDB_API_KEY'),
+            'language' => 'es-US',
+            'page' => $page,
+        ]);
+
+        $user = Auth::user();
+        $favourites = Favourite::where('user_id', $user->id)->get();
+
+        $series = $response->json();
+
+        return Inertia::render('PopularTvSeries/Index', [
+            'series' => $series,
+            'favourites' => $favourites,
+        ]);
+    }
+
+
 }

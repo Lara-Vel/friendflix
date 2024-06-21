@@ -15,5 +15,8 @@ Route::post('/favouritesToggle', [App\Http\Controllers\FavouriteController::clas
 Route::get('/favourites', [App\Http\Controllers\FavouriteController::class, 'index'])
     ->name('favourites.index');
 
+Route::post('/favouritesSeriesToggle', [App\Http\Controllers\FavouriteController::class, 'toggleSeries'])
+    ->name('favourites.series.toggle');
+
 
 require __DIR__ . '/auth.php';

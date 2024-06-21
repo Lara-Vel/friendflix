@@ -4,18 +4,16 @@ import { Head, Link } from "@inertiajs/react";
 export default function Dashboard({ auth, groupedFavourites }) {
     console.log("groupedFavourites: ", groupedFavourites);
     return (
-        <AuthenticatedLayout
-            user={auth.user}
-            // header={
-            //     <h2 className="font-semibold text-xl text-gray-800 leading-tight">
-            //         Inicio
-            //     </h2>
-            // }
-        >
-            <Head title="Dashboard" />
+        <AuthenticatedLayout user={auth.user}>
+            <Head title="Friendflix">
+                <meta
+                    name="description"
+                    content="Descubre las películas y series que ven tus amigos"
+                />
+            </Head>
 
             <div className="home-container py-12">
-                <div className="home-container-image bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div className="home-container-image bg-white overflow-hidden shadow-sm">
                     <img
                         src="images/Home-Friendflix.gif"
                         alt="Bienvenido a Friendflix, descrubre, comparte y decide - Ilustración de chico comiendo palomitas mientras ve la tele al aire libre con nubes y globos aerostáticos."
@@ -31,7 +29,7 @@ export default function Dashboard({ auth, groupedFavourites }) {
                         funciona?
                     </span>{" "}
                 </h2>
-                <div className="home-container-icons bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div className="home-container-icons bg-white overflow-hidden shadow-sm">
                     <div className="icon-container">
                         <img
                             src="/images/Icon-1.webp"
@@ -39,9 +37,8 @@ export default function Dashboard({ auth, groupedFavourites }) {
                         />
                         <h3>PERSONALIZA TU PERFIL</h3>
                         <p>
-                            Actualiza tu perfil con tus películas y series
-                            favoritas. ¡Deja que tus amigos vean lo que te
-                            encanta!
+                            Actualiza tu perfil con tus películas favoritas.
+                            ¡Deja que tus amigos vean lo que te encanta!
                         </p>
                     </div>
                     <div className="icon-container">
@@ -64,13 +61,13 @@ export default function Dashboard({ auth, groupedFavourites }) {
                         <h3>DECIDE QUÉ VER HOY</h3>
                         <p>
                             ¿No te decides? Echa un vistazo a nuestras
-                            sugerencias de películas y series del momento y deja
-                            de perder tiempo buscando.
+                            sugerencias de películas del momento y deja de
+                            perder tiempo buscando.
                         </p>
                     </div>
                 </div>
 
-                <h2 className="home-container-text">
+                <h2 className="home-container-text" id="amigos">
                     {" "}
                     <span className="home-container-firsttext font-semibold text-xl text-gray-800 leading-tight">
                         Recomendaciones de
@@ -94,16 +91,18 @@ export default function Dashboard({ auth, groupedFavourites }) {
 
                                     <div className="friends-card-text">
                                         <h3>{favourite.user}</h3>
-                                        {favourite.movies &&
-                                            favourite.movies.map(
-                                                (movie, index) => {
-                                                    return (
-                                                        <p key={index}>
-                                                            {movie.title}
-                                                        </p>
-                                                    );
-                                                }
-                                            )}
+                                        <div className="friends-card-movies">
+                                            {favourite.movies &&
+                                                favourite.movies.map(
+                                                    (movie, index) => {
+                                                        return (
+                                                            <p key={index}>
+                                                                {movie.title}
+                                                            </p>
+                                                        );
+                                                    }
+                                                )}
+                                        </div>
                                     </div>
                                 </div>
                             );

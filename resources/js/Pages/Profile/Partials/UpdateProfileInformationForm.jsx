@@ -27,18 +27,23 @@ export default function UpdateProfileInformation({
     return (
         <section className={className}>
             <header>
-                <h2 className="text-lg font-medium text-gray-900">
-                    Información de perfil
+                <h2 className="container-text-profile text-lg font-medium text-gray-900">
+                    <span className="container-firsttext-profile font-semibold text-xl text-gray-800 leading-tight">
+                        Información de
+                    </span>{" "}
+                    <span className="container-secondtext-profile font-semibold text-xl text-gray-800 leading-tight">
+                        perfil
+                    </span>{" "}
                 </h2>
 
-                <p className="mt-1 text-sm text-gray-600">
+                <p className="container-text-info mt-1 text-sm text-gray-600">
                     Actualice la información de perfil y la dirección de correo
                     electrónico de su cuenta.
                 </p>
             </header>
 
-            <form onSubmit={submit} className="mt-6 space-y-6">
-                <div>
+            <form onSubmit={submit} className="profile-form mt-6 space-y-6">
+                <div className="profile-form-text">
                     <InputLabel htmlFor="name" value="Nombre" />
 
                     <TextInput
@@ -54,7 +59,7 @@ export default function UpdateProfileInformation({
                     <InputError className="mt-2" message={errors.name} />
                 </div>
 
-                <div>
+                <div className="profile-form-text">
                     <InputLabel htmlFor="email" value="Correo electrónico" />
 
                     <TextInput
@@ -94,7 +99,7 @@ export default function UpdateProfileInformation({
                     </div>
                 )}
 
-                <div className="flex items-center gap-4">
+                <div className="button-profile">
                     <PrimaryButton disabled={processing}>Guardar</PrimaryButton>
 
                     <Transition
@@ -104,7 +109,7 @@ export default function UpdateProfileInformation({
                         leave="transition ease-in-out"
                         leaveTo="opacity-0"
                     >
-                        <p className="text-sm text-gray-600">Saved.</p>
+                        <p className="text-xl text-white-600">Guardando.</p>
                     </Transition>
                 </div>
             </form>

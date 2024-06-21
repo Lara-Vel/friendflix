@@ -1,9 +1,9 @@
+import { router, Head } from "@inertiajs/react";
 import { useState, useEffect } from "react";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { FaHeart } from "react-icons/fa";
-import { router } from "@inertiajs/react";
 
-const MovieCard = ({ film }) => {
+const MovieCard = ({ film, processing, onRemoveFavorite }) => {
     return (
         <div className="movie-container">
             <div className="movie-card">
@@ -23,12 +23,26 @@ const MovieCard = ({ film }) => {
                     </div>
                 </div>
             </div>
-            <h3 className="title">{film.title}</h3>
+            <div className="movie-card-title">
+                <h3 className="title">{film.title}</h3>
+                <button
+                    className="favorite-button"
+                    onClick={() => onRemoveFavorite(film)}
+                    disabled={processing}
+                    style={{
+                        color: "red",
+                        zIndex: 1000,
+                        fontSize: 24,
+                    }}
+                >
+                    {processing ? "Borrando..." : <FaHeart />}
+                </button>
+            </div>
         </div>
     );
 };
 
-const MyFavorites = ({ auth, favourites, processing }) => {
+const MyFavorites = ({ auth, favourites }) => {
     const [favorites, setFavorites] = useState(favourites || []);
     const [errorMessage, setErrorMessage] = useState("");
 
@@ -56,14 +70,22 @@ const MyFavorites = ({ auth, favourites, processing }) => {
         );
     };
     return (
-        <AuthenticatedLayout
-            user={auth.user}
-            header={
-                <h2 className="font-semibold text-xl text-gray-800 leading-tight">
-                    Películas
-                </h2>
-            }
-        >
+        <AuthenticatedLayout user={auth.user}>
+            <Head title="Mis películas favoritas - Friendflix">
+                <meta
+                    name="description"
+                    content="Mis películas favoritas para compartir en Friendflix."
+                />
+            </Head>
+            <h2 className="home-container-text">
+                {" "}
+                <span className="home-container-firsttext font-semibold text-xl text-gray-800 leading-tight">
+                    Mis películas
+                </span>{" "}
+                <span className="home-container-secondtext font-semibold text-xl text-gray-800 leading-tight">
+                    favoritas
+                </span>{" "}
+            </h2>
             {errorMessage && (
                 <div className="alert alert-danger">{errorMessage}</div>
             )}
@@ -72,31 +94,13 @@ const MyFavorites = ({ auth, favourites, processing }) => {
                     No hay películas favoritas
                 </div>
             ) : (
-                <div
-                    className="container"
-                    style={{
-                        display: "flex",
-                        justifyContent: "space-evenly",
-                        rowGap: "gap",
-                        gap: 1,
-                    }}
-                >
+                <div className="movies-grid">
                     {favorites.map((film) => (
-                        <div key={film.movie_id || film.id}>
-                            <MovieCard film={film} />
-                            <button
-                                className="favorite-button"
-                                onClick={() => onRemoveFavorite(film)}
-                                disabled={processing}
-                                style={{
-                                    color: "red",
-                                    zIndex: 1000,
-                                    fontSize: 24,
-                                }}
-                            >
-                                {processing ? "Borrando..." : <FaHeart />}
-                            </button>
-                        </div>
+                        <MovieCard
+                            key={film.movie_id || film.id}
+                            film={film}
+                            onRemoveFavorite={onRemoveFavorite}
+                        />
                     ))}
                 </div>
             )}

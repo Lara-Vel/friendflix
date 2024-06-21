@@ -1,4 +1,4 @@
-import { Link, router } from "@inertiajs/react";
+import { Link, router, Head } from "@inertiajs/react";
 import { useState, useEffect } from "react";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { CiHeart } from "react-icons/ci";
@@ -24,25 +24,28 @@ const MovieCard = ({ film, isFavorite, onAddFavorite, processing }) => {
                     </div>
                 </div>
             </div>
-            <h3 className="title">{film.title}</h3>
-            <button
-                className="favorite-button"
-                onClick={() => onAddFavorite(film)}
-                disabled={processing}
-                style={{
-                    color: isFavorite ? "red" : "gray",
-                    zIndex: 1000,
-                    fontSize: 24,
-                }}
-            >
-                {processing ? (
-                    "Guardando..."
-                ) : isFavorite ? (
-                    <FaHeart />
-                ) : (
-                    <CiHeart />
-                )}
-            </button>
+            <div className="movie-card-title">
+                <h3 className="title">{film.title}</h3>
+                <p>{film.vote}</p>
+                <button
+                    className="favorite-button"
+                    onClick={() => onAddFavorite(film)}
+                    disabled={processing}
+                    style={{
+                        color: isFavorite ? "red" : "gray",
+                        zIndex: 1000,
+                        fontSize: 24,
+                    }}
+                >
+                    {processing ? (
+                        "Guardando..."
+                    ) : isFavorite ? (
+                        <FaHeart />
+                    ) : (
+                        <CiHeart />
+                    )}
+                </button>
+            </div>
         </div>
     );
 };
@@ -56,7 +59,6 @@ const PopularMovies = ({ auth, films, favourites }) => {
 
     useEffect(() => {
         setFavorites(favourites);
-        localStorage.setItem("favorites", JSON.stringify(favourites));
     }, [favourites]);
 
     const onAddFavorite = (film) => {
@@ -68,11 +70,6 @@ const PopularMovies = ({ auth, films, favourites }) => {
                     const updatedFavorites = page.props.favourites;
 
                     setFavorites(updatedFavorites);
-                    localStorage.setItem(
-                        "favorites",
-                        JSON.stringify(updatedFavorites)
-                    );
-
                     console.log("Favorite toggled successfully");
                 },
                 onError: (error) => {
@@ -87,14 +84,27 @@ const PopularMovies = ({ auth, films, favourites }) => {
     };
 
     return (
-        <AuthenticatedLayout
-            user={auth.user}
-            header={
-                <h2 className="font-semibold text-xl text-gray-800 leading-tight">
-                    Películas
-                </h2>
-            }
-        >
+        <AuthenticatedLayout user={auth.user}>
+            <Head title="Películas populares - Friendflix">
+                <meta
+                    name="description"
+                    content="Explora las películas más populares y en tendencia en Friendflix."
+                />
+            </Head>
+            <h2 className="home-container-text">
+                <div className="home-container-firsttext font-semibold text-xl text-gray-800 leading-tight">
+                    ¿No te decides?
+                </div>
+                <div className="home-container-firsttext font-semibold text-xl text-gray-800 leading-tight">
+                    Descubre{" "}
+                    <span className="home-container-secondtext font-semibold text-xl text-gray-800 leading-tight">
+                        nuestras
+                    </span>{" "}
+                    <span className="home-container-firsttext font-semibold text-xl text-gray-800 leading-tight">
+                        recomendaciones
+                    </span>
+                </div>
+            </h2>
             <div className="movies-grid">
                 {filmsResults.map((film) => (
                     <MovieCard
@@ -109,12 +119,18 @@ const PopularMovies = ({ auth, films, favourites }) => {
                 {currentPage > 1 && (
                     <>
                         {!router.resolveComponent ? (
-                            <a href={`/peliculas?page=${currentPage - 1}`}>
-                                &laquo; Previous
+                            <a
+                                aria-label="Button previous"
+                                href={`/peliculas?page=${currentPage - 1}`}
+                            >
+                                &laquo; Anterior
                             </a>
                         ) : (
-                            <Link href={`/peliculas?page=${currentPage - 1}`}>
-                                &laquo; Previous
+                            <Link
+                                href={`/peliculas?page=${currentPage - 1}`}
+                                className="button-pagination"
+                            >
+                                &laquo; Anterior
                             </Link>
                         )}
                     </>
@@ -122,12 +138,18 @@ const PopularMovies = ({ auth, films, favourites }) => {
                 {currentPage < totalPages && (
                     <>
                         {!router.resolveComponent ? (
-                            <a href={`/peliculas?page=${currentPage + 1}`}>
-                                Next &raquo;
+                            <a
+                                aria-label="Button next"
+                                href={`/peliculas?page=${currentPage + 1}`}
+                            >
+                                Siguiente &raquo;
                             </a>
                         ) : (
-                            <Link href={`/peliculas?page=${currentPage + 1}`}>
-                                Next &raquo;
+                            <Link
+                                href={`/peliculas?page=${currentPage + 1}`}
+                                className="button-pagination"
+                            >
+                                Siguiente &raquo;
                             </Link>
                         )}
                     </>

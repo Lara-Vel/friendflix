@@ -46,7 +46,7 @@ export default function UpdatePasswordForm({ className = "" }) {
 
     return (
         <section className={className}>
-            <header>
+            <header className="update-password">
                 <h2 className="text-lg font-medium text-gray-900">
                     Actualizar contraseña
                 </h2>
@@ -57,8 +57,11 @@ export default function UpdatePasswordForm({ className = "" }) {
                 </p>
             </header>
 
-            <form onSubmit={updatePassword} className="mt-6 space-y-6">
-                <div>
+            <form
+                onSubmit={updatePassword}
+                className="update-password-form mt-6 space-y-6"
+            >
+                <div className="update-password-text">
                     <InputLabel
                         htmlFor="current_password"
                         value="Contraseña actual"
@@ -82,7 +85,7 @@ export default function UpdatePasswordForm({ className = "" }) {
                     />
                 </div>
 
-                <div>
+                <div className="update-password-text">
                     <InputLabel htmlFor="password" value="Nueva contraseña" />
 
                     <TextInput
@@ -98,7 +101,7 @@ export default function UpdatePasswordForm({ className = "" }) {
                     <InputError message={errors.password} className="mt-2" />
                 </div>
 
-                <div>
+                <div className="update-password-text">
                     <InputLabel
                         htmlFor="password_confirmation"
                         value="Confirme contraseña"
@@ -121,7 +124,7 @@ export default function UpdatePasswordForm({ className = "" }) {
                     />
                 </div>
 
-                <div className="flex items-center gap-4">
+                <div className="button-profile flex items-center gap-4">
                     <PrimaryButton disabled={processing}>Guardar</PrimaryButton>
 
                     <Transition
@@ -131,7 +134,7 @@ export default function UpdatePasswordForm({ className = "" }) {
                         leave="transition ease-in-out"
                         leaveTo="opacity-0"
                     >
-                        <p className="text-sm text-gray-600">Guardado.</p>
+                        <p className="text-xl text-white-600">Guardando.</p>
                     </Transition>
                 </div>
             </form>

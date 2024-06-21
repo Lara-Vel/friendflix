@@ -14,7 +14,7 @@ export default function Index({ auth, movies, favourites }) {
                 </h2>
             }
         >
-            <Head title="Friendflix">
+            <Head title="Inicio - Friendflix">
                 <meta
                     name="description"
                     content="Descubre las películas y series que ven tus amigos"
@@ -42,7 +42,6 @@ export default function Index({ auth, movies, favourites }) {
                             "Valor de favourites en el componente padre:",
                             favourites
                         )}
-                        <SearchMovies favourites={favourites} />
                     </div>
                 </div>
             </div>

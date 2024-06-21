@@ -100,14 +100,6 @@ export default function Login({ status, canResetPassword }) {
                         </div>
 
                         <div className="button-login-form">
-                            {canResetPassword && (
-                                <Link
-                                    href={route("password.request")}
-                                    className="underline text-sm text-white-600 hover:text-white-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white-500"
-                                >
-                                    "¿Olvidaste la contraseña?"
-                                </Link>
-                            )}
                             <p className="link-login">
                                 ¿No tienes una cuenta?&nbsp;
                                 <Link

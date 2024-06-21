@@ -21,6 +21,7 @@ class FavouriteResource extends JsonResource
             'overview' => $this->resource->overview,
             'poster_path' => $this->resource->poster_path,
             'backdrop_path' => $this->resource->backdrop_path,
+            'vote' => $this->resource->vote_average,
             'createdAt' => $this->resource->created_at->diffForHumans(),
             'updatedAt' => $this->resource->updated_at->diffForHumans(),
             'user' => UserResource::make($this->whenLoaded('user')),
