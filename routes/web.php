@@ -6,10 +6,8 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\MovieDBController;
-use App\Http\Controllers\MovieController;
 use App\Http\Controllers\FavouriteController;
 
-Route::resource('movies', MovieController::class)->only('index', 'store', 'update', 'destroy')->middleware('auth');
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -31,12 +29,9 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/peliculas', [MovieDBController::class, 'index'])->name('popularmovies/index')->middleware('auth');
-Route::get('/favorites/index', [MovieDBController::class, 'myFavorites'])->name('favorites/index')->middleware('auth');
 
 
 Route::get('/buscar-peliculas', [App\Http\Controllers\FavouriteController::class, 'search'])->name('searchmovies.search')->middleware('auth');
-
-Route::get('/seriestv', [MovieDBController::class, 'index'])->name('populartvseries/index')->middleware('auth');
 
 
 require __DIR__ . '/auth.php';

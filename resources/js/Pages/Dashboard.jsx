@@ -1,14 +1,32 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import { Head, Link } from "@inertiajs/react";
+import UserFavouritesModal from "@/Components/UserFavouritesDetail";
+import { Head } from "@inertiajs/react";
+import { useState } from "react";
+import { FaEllipsisH } from "react-icons/fa";
 
 export default function Dashboard({ auth, groupedFavourites }) {
-    console.log("groupedFavourites: ", groupedFavourites);
+    const [selectedUser, setSelectedUser] = useState(null);
+    const [selectedMovies, setSelectedMovies] = useState([]);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const openModal = (user, movies) => {
+        setSelectedUser(user);
+        setSelectedMovies(movies);
+        setIsModalOpen(true);
+    };
+
+    const closeModal = () => {
+        setSelectedUser(null);
+        setSelectedMovies([]);
+        setIsModalOpen(false);
+    };
+
     return (
         <AuthenticatedLayout user={auth.user}>
-            <Head title="Friendflix">
+            <Head title="Inicio - Friendflix">
                 <meta
                     name="description"
-                    content="Descubre las películas y series que ven tus amigos"
+                    content="Descubre las películas que ven tus amigos en Friendflix. Explora sus recomendaciones y encuentra nuevas historias para disfrutar juntos."
                 />
             </Head>
 
@@ -77,38 +95,58 @@ export default function Dashboard({ auth, groupedFavourites }) {
                     </span>{" "}
                 </h2>
                 <div className="container-friends-card">
-                    {groupedFavourites &&
-                        groupedFavourites.map((favourite, index) => {
-                            return (
-                                <div key={index} className="friends-card">
-                                    {favourite.movies &&
-                                        favourite.movies.length > 0 && (
-                                            <img
-                                                src={favourite.movies[0].image}
-                                                alt={favourite.movies[0].title}
-                                            />
-                                        )}
-
-                                    <div className="friends-card-text">
-                                        <h3>{favourite.user}</h3>
-                                        <div className="friends-card-movies">
-                                            {favourite.movies &&
-                                                favourite.movies.map(
-                                                    (movie, index) => {
-                                                        return (
-                                                            <p key={index}>
-                                                                {movie.title}
-                                                            </p>
-                                                        );
-                                                    }
+                    {groupedFavourites && groupedFavourites.length > 0 ? (
+                        groupedFavourites.map((favourite, index) => (
+                            <div
+                                key={index}
+                                className="friends-card"
+                                onClick={() =>
+                                    openModal(favourite.user, favourite.movies)
+                                }
+                            >
+                                {favourite.movies &&
+                                favourite.movies.length > 0 ? (
+                                    <>
+                                        <img
+                                            src={favourite.movies[0].image}
+                                            alt={favourite.movies[0].title}
+                                        />
+                                        <div className="friends-card-text">
+                                            <h3>{favourite.user}</h3>
+                                            <div className="friends-card-movies">
+                                                {favourite.movies.map(
+                                                    (movie, index) => (
+                                                        <p key={index}>
+                                                            {movie.title}
+                                                        </p>
+                                                    )
                                                 )}
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                            );
-                        })}
+                                        <FaEllipsisH className="more-icon" />
+                                    </>
+                                ) : null}
+                            </div>
+                        ))
+                    ) : (
+                        <div className="alert-recommendations">
+                            <p className="alert-message-recommendations">
+                                No hay recomendaciones de películas de amigos.
+                            </p>
+                            <img
+                                src="/images/Friendflix-sad.webp"
+                                alt="Icono de Friendflix triste"
+                            />
+                        </div>
+                    )}
                 </div>
             </div>
+            <UserFavouritesModal
+                isOpen={isModalOpen}
+                onClose={closeModal}
+                user={selectedUser}
+                movies={selectedMovies}
+            />
         </AuthenticatedLayout>
     );
 }

@@ -15,7 +15,7 @@ class FavouriteResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            // 'id' => $this->resource->id,
+
             'movie_id' => $this->resource->movie_id,
             'title' => $this->resource->title,
             'overview' => $this->resource->overview,

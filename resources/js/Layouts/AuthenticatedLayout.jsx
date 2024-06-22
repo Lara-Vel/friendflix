@@ -2,6 +2,7 @@ import { useState } from "react";
 import ApplicationLogo from "@/Components/ApplicationLogo";
 import Dropdown from "@/Components/Dropdown";
 import NavLink from "@/Components/NavLink";
+import Footer from "@/Components/Footer";
 import ResponsiveNavLink from "@/Components/ResponsiveNavLink";
 import { Link, usePage } from "@inertiajs/react";
 
@@ -12,7 +13,7 @@ export default function Authenticated({ user, header, children }) {
     const { status } = usePage().props;
 
     return (
-        <div className="min-h-screen bg-gray-100">
+        <div className="flex flex-col  bg-gray-100">
             {status && <div className="bg-green-500 p-2">{status}</div>}
             <nav className="main-nav">
                 <div className="nav-container">
@@ -161,7 +162,7 @@ export default function Authenticated({ user, header, children }) {
                         " sm:hidden"
                     }
                 >
-                    <div className="pt-4 pb-1 border-t border-gray-200">
+                    <div className="responsive-nav-text pt-4 pb-1 border-t border-gray-200">
                         <ResponsiveNavLink
                             href={route("dashboard")}
                             active={route().current("dashboard")}
@@ -170,16 +171,28 @@ export default function Authenticated({ user, header, children }) {
                         </ResponsiveNavLink>
 
                         <ResponsiveNavLink
-                            href={route("movies.index")}
-                            active={route().current("movies.index")}
+                            active={route().current("dashboard")}
+                            href={route("dashboard") + "#amigos"}
                         >
-                            Recomendaciones
+                            Amigos
                         </ResponsiveNavLink>
                         <ResponsiveNavLink
-                            href={route("movies.index")}
-                            active={route().current("movies.index")}
+                            href={route("popularmovies/index")}
+                            active={route().current("popularmovies/index")}
                         >
                             Películas
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink
+                            href={route("favourites.index")}
+                            active={route().current("favourites.index")}
+                        >
+                            Mis favoritos
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink
+                            href={route("searchmovies.search")}
+                            active={route().current("searchmovies.index")}
+                        >
+                            Buscar
                         </ResponsiveNavLink>
                     </div>
 
@@ -217,7 +230,8 @@ export default function Authenticated({ user, header, children }) {
                 </header>
             )}
 
-            <main>{children}</main>
+            <main className="flex-grow">{children}</main>
+            <Footer />
         </div>
     );
 }

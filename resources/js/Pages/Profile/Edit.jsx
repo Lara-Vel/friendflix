@@ -10,7 +10,7 @@ export default function Edit({ auth, mustVerifyEmail, status }) {
             <Head title="Mi perfil - Friendflix">
                 <meta
                     name="description"
-                    content="Personaliza tus datos y contraseña en Friendflix."
+                    content="Personaliza tus datos y contraseña en Friendflix. Gestiona tu perfil y ajusta tus preferencias."
                 />
             </Head>
 

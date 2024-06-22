@@ -12,23 +12,37 @@ class MovieDBController extends Controller
 {
     public function index(Request $request)
     {
-        $page = $request->input('page', 1);
-        $response = Http::get('https://api.themoviedb.org/3/movie/popular', [
-            'api_key' => env('TMDB_API_KEY'),
-            'language' => 'es-US',
-            'page' => $page,
-        ]);
+        try {
 
-        $user = Auth::user();
-        $favourites = Favourite::where('user_id', $user->id)->get();
+            $page = $request->input('page', 1);
+            $response = Http::get('https://api.themoviedb.org/3/movie/popular', [
+                'api_key' => env('TMDB_API_KEY'),
+                'language' => 'es-US',
+                'page' => $page,
+            ]);
 
-        $films = $response->json();
+            if ($response->successful()) {
+                $films = $response->json();
+            } else {
 
-        return Inertia::render('PopularMovies/Index', [
-            'films' => $films,
-            'favourites' => $favourites,
-        ]);
+                throw new \Exception('Error al obtener las películas desde TMDb API');
+            }
+
+            $user = Auth::user();
+            $favourites = Favourite::where('user_id', $user->id)->get();
+
+
+            return Inertia::render('PopularMovies/Index', [
+                'films' => $films,
+                'favourites' => $favourites,
+            ]);
+        } catch (\Exception $e) {
+
+            return back()->withErrors(['message' => $e->getMessage()]);
+        }
     }
+
+
 
 
     public function myFavorites(Request $request)
@@ -41,25 +55,28 @@ class MovieDBController extends Controller
         ]);
     }
 
-    public function popularTvSeries(Request $request)
-    {
-        $page = $request->input('page', 1);
-        $response = Http::get('https://api.themoviedb.org/3/tv/popular', [
-            'api_key' => env('TMDB_API_KEY'),
-            'language' => 'es-US',
-            'page' => $page,
-        ]);
-
-        $user = Auth::user();
-        $favourites = Favourite::where('user_id', $user->id)->get();
-
-        $series = $response->json();
-
-        return Inertia::render('PopularTvSeries/Index', [
-            'series' => $series,
-            'favourites' => $favourites,
-        ]);
-    }
-
 
 }
+
+
+
+
+// public function index(Request $request)
+// {
+//     $page = $request->input('page', 1);
+//     $response = Http::get('https://api.themoviedb.org/3/movie/popular', [
+//         'api_key' => env('TMDB_API_KEY'),
+//         'language' => 'es-US',
+//         'page' => $page,
+//     ]);
+
+//     $user = Auth::user();
+//     $favourites = Favourite::where('user_id', $user->id)->get();
+
+//     $films = $response->json();
+
+//     return Inertia::render('PopularMovies/Index', [
+//         'films' => $films,
+//         'favourites' => $favourites,
+//     ]);
+// }

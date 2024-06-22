@@ -1,8 +1,9 @@
 import { Link, router, Head } from "@inertiajs/react";
 import { useState, useEffect } from "react";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
+import StarRating from "@/Components/StarRating";
 import { CiHeart } from "react-icons/ci";
-import { FaHeart } from "react-icons/fa";
+import { FaHeart, FaStar, FaStarHalfAlt } from "react-icons/fa";
 
 const MovieCard = ({ film, isFavorite, onAddFavorite, processing }) => {
     return (
@@ -25,26 +26,31 @@ const MovieCard = ({ film, isFavorite, onAddFavorite, processing }) => {
                 </div>
             </div>
             <div className="movie-card-title">
-                <h3 className="title">{film.title}</h3>
-                <p>{film.vote}</p>
-                <button
-                    className="favorite-button"
-                    onClick={() => onAddFavorite(film)}
-                    disabled={processing}
-                    style={{
-                        color: isFavorite ? "red" : "gray",
-                        zIndex: 1000,
-                        fontSize: 24,
-                    }}
-                >
-                    {processing ? (
-                        "Guardando..."
-                    ) : isFavorite ? (
-                        <FaHeart />
-                    ) : (
-                        <CiHeart />
-                    )}
-                </button>
+                <div className="movie-card-head">
+                    <h3 className="title">{film.title}</h3>
+
+                    <button
+                        className="favorite-button"
+                        onClick={() => onAddFavorite(film)}
+                        disabled={processing}
+                        style={{
+                            color: isFavorite ? "red" : "gray",
+                            zIndex: 1000,
+                            fontSize: 24,
+                        }}
+                    >
+                        {processing ? (
+                            "Guardando..."
+                        ) : isFavorite ? (
+                            <FaHeart />
+                        ) : (
+                            <CiHeart />
+                        )}
+                    </button>
+                </div>
+                <div className="star-rating">
+                    <StarRating rating={film.vote_average} />
+                </div>
             </div>
         </div>
     );
@@ -56,6 +62,7 @@ const PopularMovies = ({ auth, films, favourites }) => {
     const currentPage = films ? films.page : 1;
 
     const [favorites, setFavorites] = useState([]);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         setFavorites(favourites);
@@ -70,10 +77,12 @@ const PopularMovies = ({ auth, films, favourites }) => {
                     const updatedFavorites = page.props.favourites;
 
                     setFavorites(updatedFavorites);
-                    console.log("Favorite toggled successfully");
+                    setError(null);
                 },
-                onError: (error) => {
-                    console.error("Error toggling favorite:", error);
+                onError: () => {
+                    setError(
+                        "Error al actualizar los favoritos. Inténtalo de nuevo."
+                    );
                 },
             }
         );
@@ -88,7 +97,7 @@ const PopularMovies = ({ auth, films, favourites }) => {
             <Head title="Películas populares - Friendflix">
                 <meta
                     name="description"
-                    content="Explora las películas más populares y en tendencia en Friendflix."
+                    content="Explora las películas más populares y en tendencia en Friendflix. Encuentra tus favoritas y descubre nuevas."
                 />
             </Head>
             <h2 className="home-container-text">
@@ -110,6 +119,7 @@ const PopularMovies = ({ auth, films, favourites }) => {
                     <MovieCard
                         key={film.id}
                         film={film}
+                        vote_average={film.vote_average}
                         isFavorite={isFavorite(film.id)}
                         onAddFavorite={onAddFavorite}
                     />

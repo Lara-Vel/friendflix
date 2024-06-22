@@ -90,8 +90,14 @@ const MyFavorites = ({ auth, favourites }) => {
                 <div className="alert alert-danger">{errorMessage}</div>
             )}
             {favorites.length === 0 ? (
-                <div className="alert alert-info">
-                    No hay películas favoritas
+                <div className="alert-info">
+                    <p className="alert-message-info">
+                        No hay películas favoritas
+                    </p>
+                    <img
+                        src="/images/Friendflix-sad.webp"
+                        alt="Icono de Friendflix triste"
+                    />
                 </div>
             ) : (
                 <div className="movies-grid">

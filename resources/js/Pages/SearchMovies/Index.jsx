@@ -10,6 +10,7 @@ export const SearchMovies = ({ favourites, auth }) => {
     const [results, setResults] = useState([]);
     const [favorites, setFavorites] = useState([]);
     const [processing, setProcessing] = useState(false);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         if (favourites) {
@@ -18,19 +19,23 @@ export const SearchMovies = ({ favourites, auth }) => {
     }, [favourites]);
 
     const onAddFavorite = (film) => {
-        setProcessing(true);
+        setProcessing((prev) => ({ ...prev, [film.id]: true }));
         router.post(
             route("favourites.toggle"),
             { movie_id: film.id, filmData: film },
             {
                 onSuccess: (page) => {
                     const updatedFavorites = page.props.favourites;
-                    console.log("Favorite toggled successfully");
+                    setFavorites(updatedFavorites);
+                    setError(null);
                 },
-                onError: (error) => {
-                    console.error("Error toggling favorite:", error);
+                onError: () => {
+                    setError(
+                        "Error al actualizar las películas. Inténtalo de nuevo."
+                    );
                 },
-                onFinish: () => setProcessing(false),
+                onFinish: () =>
+                    setProcessing((prev) => ({ ...prev, [film.id]: false })),
             }
         );
     };
@@ -72,7 +77,7 @@ export const SearchMovies = ({ favourites, auth }) => {
             <Head title="Buscar películas- Friendflix">
                 <meta
                     name="description"
-                    content="Encuentra las películas preferidas en nuestro buscador Friendflix."
+                    content="Encuentra las películas preferidas en nuestro buscador Friendflix. Descubre las películas por título."
                 />
             </Head>
             <h2 className="home-container-text">
@@ -136,9 +141,13 @@ export const SearchMovies = ({ favourites, auth }) => {
                                                         onClick={() =>
                                                             onAddFavorite(film)
                                                         }
-                                                        disabled={processing}
+                                                        disabled={
+                                                            processing[
+                                                                film.id
+                                                            ] || false
+                                                        }
                                                         style={{
-                                                            fontSize: 24,
+                                                            fontSize: 20,
                                                             color: isFavorite(
                                                                 film.id
                                                             )
@@ -146,7 +155,7 @@ export const SearchMovies = ({ favourites, auth }) => {
                                                                 : "gray",
                                                         }}
                                                     >
-                                                        {processing ? (
+                                                        {processing[film.id] ? (
                                                             "Guardando cambios..."
                                                         ) : (
                                                             <FaHeart />
