@@ -993,8 +993,8 @@ svg {
 }
 
 .friends-card {
-    position: relative;
     display: flex;
+    flex-direction: column;
     align-items: center;
     width: 54rem;
     padding: 2rem 1rem 2rem 1rem;
@@ -1003,13 +1003,39 @@ svg {
     color: #093266;
     cursor: pointer;
 }
-.more-icon {
-    position: absolute;
-    top: 1.5rem;
-    right: 1.5rem;
-    font-size: 2.4rem;
-    color: #093266;
+
+.friends-card-content {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+.more-button {
+    padding: 0.9rem 3rem;
+    font-size: 1.6rem;
+    background: #f37136;
+    color: #fff;
+    border-radius: 2.4rem;
+    font-family: Poppins-SemiBold, sans-serif;
+    transition: all 0.2s;
     cursor: pointer;
+    border: none;
+}
+
+.more-button:hover {
+    transform: translateY(-0.2rem);
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+    background: #fde3d7;
+    color: #f37136;
+    transition: 0.5s;
+}
+
+.more-button:active {
+    transform: translateY(-0.1rem);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+    background: #fde3d7;
+    color: #f37136;
 }
 
 .friends-card img {
@@ -1019,7 +1045,7 @@ svg {
     object-fit: cover;
     margin-left: -6rem;
     margin-right: 3rem;
-    border-radius: inherit;
+    border-radius: 3rem;
     box-shadow: 0 6rem 4rem rgb(0 0 0 / 8%);
 }
 
@@ -1037,7 +1063,7 @@ svg {
     font-size: 1.6rem;
     font-weight: 400;
     margin-bottom: 2rem;
-    opacity: 0.7;
+    opacity: 0.8;
     font-family: Raleway-Regular, sans-serif;
     color: #093266;
     white-space: nowrap;
@@ -1089,6 +1115,10 @@ svg {
         flex-direction: column;
     }
 
+    .friends-card-content {
+        flex-direction: column;
+    }
+
     .friends-card-text h3 {
         margin-right: 0;
         font-size: 2.3rem;
@@ -1104,6 +1134,7 @@ svg {
     .friends-card-text p {
         max-width: 36rem;
         font-size: 1.5rem;
+        margin-right: 0;
     }
 }
 
@@ -1634,9 +1665,8 @@ svg {
     display: flex;
 }
 
-/* UserFavouritesDetail */
+/* COMPONENTE USERFAVOURITESDETAIL */
 
-/* NUEVO CSS DE POPUP */
 .detail-overlay {
     position: fixed;
     top: 0;
@@ -1725,7 +1755,6 @@ svg {
     line-height: 1.6;
     overflow-y: auto;
     max-height: 20rem;
-    opacity: 0.9;
     margin-bottom: 1rem;
 }
 

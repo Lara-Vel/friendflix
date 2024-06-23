@@ -94,7 +94,7 @@ const PopularMovies = ({ auth, films, favourites }) => {
 
     return (
         <AuthenticatedLayout user={auth.user}>
-            <Head title="Películas populares - Friendflix">
+            <Head title="Películas populares">
                 <meta
                     name="description"
                     content="Explora las películas más populares y en tendencia en Friendflix. Encuentra tus favoritas y descubre nuevas."

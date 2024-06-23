@@ -7,7 +7,7 @@ import { Head } from "@inertiajs/react";
 export default function Edit({ auth, mustVerifyEmail, status }) {
     return (
         <AuthenticatedLayout user={auth.user}>
-            <Head title="Mi perfil - Friendflix">
+            <Head title="Mi perfil">
                 <meta
                     name="description"
                     content="Personaliza tus datos y contraseña en Friendflix. Gestiona tu perfil y ajusta tus preferencias."

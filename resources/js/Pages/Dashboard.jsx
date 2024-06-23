@@ -2,7 +2,6 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import UserFavouritesModal from "@/Components/UserFavouritesDetail";
 import { Head } from "@inertiajs/react";
 import { useState } from "react";
-import { FaEllipsisH } from "react-icons/fa";
 
 export default function Dashboard({ auth, groupedFavourites }) {
     const [selectedUser, setSelectedUser] = useState(null);
@@ -23,7 +22,7 @@ export default function Dashboard({ auth, groupedFavourites }) {
 
     return (
         <AuthenticatedLayout user={auth.user}>
-            <Head title="Inicio - Friendflix">
+            <Head title="Inicio">
                 <meta
                     name="description"
                     content="Descubre las películas que ven tus amigos en Friendflix. Explora sus recomendaciones y encuentra nuevas historias para disfrutar juntos."
@@ -107,23 +106,35 @@ export default function Dashboard({ auth, groupedFavourites }) {
                                 {favourite.movies &&
                                 favourite.movies.length > 0 ? (
                                     <>
-                                        <img
-                                            src={favourite.movies[0].image}
-                                            alt={favourite.movies[0].title}
-                                        />
-                                        <div className="friends-card-text">
-                                            <h3>{favourite.user}</h3>
-                                            <div className="friends-card-movies">
-                                                {favourite.movies.map(
-                                                    (movie, index) => (
-                                                        <p key={index}>
-                                                            {movie.title}
-                                                        </p>
-                                                    )
-                                                )}
+                                        <div className="friends-card-content">
+                                            <img
+                                                src={favourite.movies[0].image}
+                                                alt={favourite.movies[0].title}
+                                            />
+                                            <div className="friends-card-text">
+                                                <h3>{favourite.user}</h3>
+                                                <div className="friends-card-movies">
+                                                    {favourite.movies.map(
+                                                        (movie, index) => (
+                                                            <p key={index}>
+                                                                {movie.title}
+                                                            </p>
+                                                        )
+                                                    )}
+                                                </div>
                                             </div>
                                         </div>
-                                        <FaEllipsisH className="more-icon" />
+                                        <button
+                                            className="more-button"
+                                            onClick={() =>
+                                                openModal(
+                                                    favourite.user,
+                                                    favourite.movies
+                                                )
+                                            }
+                                        >
+                                            Ver más
+                                        </button>
                                     </>
                                 ) : null}
                             </div>
