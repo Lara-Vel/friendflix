@@ -74,7 +74,7 @@ export const SearchMovies = ({ favourites, auth }) => {
 
     return (
         <AuthenticatedLayout user={auth.user}>
-            <Head title="Buscar películas- Friendflix">
+            <Head title="Buscar películas">
                 <meta
                     name="description"
                     content="Encuentra las películas preferidas en nuestro buscador Friendflix. Descubre las películas por título."

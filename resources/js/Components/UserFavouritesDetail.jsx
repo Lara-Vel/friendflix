@@ -28,7 +28,7 @@ export default function UserFavouritesDetail({
                                 <h3>{movie.title}</h3>
                                 <p>{movie.overview}</p>
                                 <span className="created-at">
-                                    {"Añadida hace " + movie.createdAt}
+                                    {"Añadida " + movie.createdAt}
                                 </span>
                             </div>
                         </div>

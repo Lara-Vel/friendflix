@@ -71,7 +71,7 @@ const MyFavorites = ({ auth, favourites }) => {
     };
     return (
         <AuthenticatedLayout user={auth.user}>
-            <Head title="Mis películas favoritas - Friendflix">
+            <Head title="Mis películas favoritas">
                 <meta
                     name="description"
                     content="Mis películas favoritas para compartir en Friendflix."
