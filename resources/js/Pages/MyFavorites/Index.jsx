@@ -4,6 +4,12 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { FaHeart } from "react-icons/fa";
 
 const MovieCard = ({ film, processing, onRemoveFavorite }) => {
+    const [showDetails, setShowDetails] = useState(false);
+
+    const handleShowDetails = () => {
+        setShowDetails(!showDetails);
+    };
+
     return (
         <div className="movie-container">
             <div className="movie-card">
@@ -18,8 +24,18 @@ const MovieCard = ({ film, processing, onRemoveFavorite }) => {
                         alt={`${film.title} backdrop`}
                         className="backdrop-image"
                     />
-                    <div className="movie-details">
+                    <div
+                        className={`movie-details ${
+                            showDetails ? "expanded" : ""
+                        }`}
+                    >
                         <p>{film.overview}</p>
+                        <button
+                            className="cta-secondary"
+                            onClick={handleShowDetails}
+                        >
+                            {showDetails ? "Ver menos" : "Ver más detalles"}
+                        </button>
                     </div>
                 </div>
             </div>

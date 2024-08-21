@@ -3,9 +3,15 @@ import { useState, useEffect } from "react";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import StarRating from "@/Components/StarRating";
 import { CiHeart } from "react-icons/ci";
-import { FaHeart, FaStar, FaStarHalfAlt } from "react-icons/fa";
+import { FaHeart } from "react-icons/fa";
 
 const MovieCard = ({ film, isFavorite, onAddFavorite, processing }) => {
+    const [showDetails, setShowDetails] = useState(false);
+
+    const handleShowDetails = () => {
+        setShowDetails(!showDetails);
+    };
+
     return (
         <div className="movie-container">
             <div className="movie-card">
@@ -20,8 +26,18 @@ const MovieCard = ({ film, isFavorite, onAddFavorite, processing }) => {
                         alt={`${film.title} backdrop`}
                         className="backdrop-image"
                     />
-                    <div className="movie-details">
+                    <div
+                        className={`movie-details ${
+                            showDetails ? "expanded" : ""
+                        }`}
+                    >
                         <p>{film.overview}</p>
+                        <button
+                            className="cta-secondary"
+                            onClick={handleShowDetails}
+                        >
+                            {showDetails ? "Ver menos" : "Ver más detalles"}
+                        </button>
                     </div>
                 </div>
             </div>

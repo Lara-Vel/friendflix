@@ -4,6 +4,7 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { useState, useEffect } from "react";
 import { FaHeart } from "react-icons/fa";
 import { CiSearch } from "react-icons/ci";
+import Loader from "@/Components/Loader";
 
 export const SearchMovies = ({ favourites, auth }) => {
     const [query, setQuery] = useState("");
@@ -11,6 +12,7 @@ export const SearchMovies = ({ favourites, auth }) => {
     const [favorites, setFavorites] = useState([]);
     const [processing, setProcessing] = useState(false);
     const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         if (favourites) {
@@ -44,6 +46,8 @@ export const SearchMovies = ({ favourites, auth }) => {
         e.preventDefault();
         setQuery(e.target.value);
 
+        setLoading(true);
+
         axios
             .get(`https://api.themoviedb.org/3/search/movie`, {
                 params: {
@@ -65,6 +69,9 @@ export const SearchMovies = ({ favourites, auth }) => {
             .catch((error) => {
                 console.error("Error al realizar la petición:", error);
                 setResults([]);
+            })
+            .finally(() => {
+                setLoading(false);
             });
     };
 
@@ -111,6 +118,7 @@ export const SearchMovies = ({ favourites, auth }) => {
                                 className={query ? "input-filled" : ""}
                             />
                         </div>
+                        {loading && <Loader />}
 
                         {results.length > 0 && (
                             <ul className="search-results">
@@ -163,6 +171,9 @@ export const SearchMovies = ({ favourites, auth }) => {
                                                     </button>
                                                 </div>
                                             </div>
+                                            <p className="search-overview">
+                                                {film.overview}
+                                            </p>
                                         </div>
                                     </li>
                                 ))}
