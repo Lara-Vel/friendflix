@@ -42,7 +42,10 @@ export default function Dashboard({ auth, groupedFavourites }) {
                     <span className="home-container-firsttext font-semibold text-xl text-gray-800 leading-tight">
                         ¿Cómo
                     </span>{" "}
-                    <span className="home-container-secondtext font-semibold text-xl text-gray-800 leading-tight">
+                    <span
+                        className="home-container-secondtext font-semibold text-xl text-gray-800 leading-tight"
+                        id="iniciar"
+                    >
                         funciona?
                     </span>{" "}
                 </h2>

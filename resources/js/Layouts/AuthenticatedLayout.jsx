@@ -20,11 +20,12 @@ export default function Authenticated({ user, header, children }) {
                     <div className="nav-content">
                         <div className="nav-links">
                             <NavLink
+                                id="nav-starts"
                                 className="nav-link"
-                                href={route("dashboard")}
+                                href={route("dashboard") + "#iniciar"}
                                 active={route().current("dashboard")}
                             >
-                                Inicio
+                                Iniciar
                             </NavLink>
                             <NavLink
                                 className="nav-link"
@@ -164,10 +165,11 @@ export default function Authenticated({ user, header, children }) {
                 >
                     <div className="responsive-nav-text pt-4 pb-1 border-t border-gray-200">
                         <ResponsiveNavLink
-                            href={route("dashboard")}
+                            id="nav-responsive-starts"
+                            href={route("dashboard") + "#iniciar"}
                             active={route().current("dashboard")}
                         >
-                            Inicio
+                            Iniciar
                         </ResponsiveNavLink>
 
                         <ResponsiveNavLink

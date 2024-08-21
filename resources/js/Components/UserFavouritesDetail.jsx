@@ -9,8 +9,11 @@ export default function UserFavouritesDetail({
     if (!isOpen) return null;
 
     return (
-        <div className="detail-overlay">
-            <div className="detail-content">
+        <div className="detail-overlay" onClick={onClose}>
+            <div
+                className="detail-content"
+                onClick={(e) => e.stopPropagation()}
+            >
                 <button className="close-button" onClick={onClose}>
                     <FaTimes />
                 </button>
