@@ -1,0 +1,76 @@
+:root {
+    --brand: #f37136;
+}
+
+.loader {
+    --size: 5rem;
+    --loader-color: var(--brand);
+
+    width: var(--size);
+    height: var(--size);
+    display: inline-block;
+    position: relative;
+    box-sizing: border-box;
+    border-radius: 50%;
+    color: var(--loader-color);
+    border: 3px solid;
+    border-color: color-mix(in srgb, currentColor 22%, transparent) color-mix(in srgb, currentColor 22%, transparent) transparent;
+    animation: rotation 1s linear infinite;
+}
+
+.loader::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    width: calc(var(--size) / 2);
+    height: calc(var(--size) / 2);
+    box-sizing: border-box;
+    border-radius: 50%;
+    border: 3px solid;
+    border-color: transparent currentColor currentColor;
+    transform-origin: center center;
+    animation: rotationBack .5s linear infinite;
+}
+
+
+@keyframes rotation {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes rotationBack {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(-360deg);
+    }
+}
+
+.loader-overlay {
+    position: fixed;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    background: rgba(255, 255, 255, .7);
+    backdrop-filter: blur(2px);
+    z-index: 9999;
+    pointer-events: all;
+    cursor: progress;
+    touch-action: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .loader,
+    .loader::after {
+        animation: none;
+    }
+}

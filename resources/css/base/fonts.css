@@ -1,0 +1,69 @@
+@font-face {
+    font-family: "Poppins-Regular";
+    font-style: normal;
+    font-weight: 400;
+    src: url("/fonts/Poppins-Regular.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Poppins-Medium";
+    font-style: normal;
+    font-weight: 500;
+    src: url("/fonts/Poppins-Medium.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Poppins-SemiBold";
+    font-style: normal;
+    font-weight: 600;
+    src: url("/fonts/Poppins-SemiBold.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Poppins-Bold";
+    font-style: normal;
+    font-weight: 700;
+    src: url("/fonts/Poppins-Bold.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Poppins-ExtraLight";
+    font-style: normal;
+    font-weight: 100;
+    src: url("/fonts/Poppins-ExtraLight.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Raleway-Regular";
+    font-style: normal;
+    font-weight: 400;
+    src: url("/fonts/Raleway-Regular.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Raleway-SemiBold";
+    font-style: normal;
+    font-weight: 600;
+    src: url("/fonts/Raleway-SemiBold.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Raleway-Bold";
+    font-style: normal;
+    font-weight: 700;
+    src: url("/fonts/Raleway-Bold.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Raleway-ExtraLight";
+    font-style: normal;
+    font-weight: 100;
+    src: url("/fonts/Raleway-ExtraLight.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "PlayfairDisplay-Bold";
+    font-style: normal;
+    font-weight: 600;
+    src: url("/fonts/PlayfairDisplay-Bold.ttf") format("truetype");
+}

@@ -47,20 +47,15 @@ export default function UpdatePasswordForm({ className = "" }) {
     return (
         <section className={className}>
             <header className="update-password">
-                <h2 className="text-lg font-medium text-gray-900">
-                    Actualizar contraseña
-                </h2>
+                <h2>Actualizar contraseña</h2>
 
-                <p className="mt-1 text-sm text-gray-600">
-                    Asegúrese de que su cuenta utiliza una contraseña larga y
+                <p>
+                    Asegúrate de que tu cuenta utiliza una contraseña larga y
                     aleatoria para que sea segura.
                 </p>
             </header>
 
-            <form
-                onSubmit={updatePassword}
-                className="update-password-form mt-6 space-y-6"
-            >
+            <form onSubmit={updatePassword} className="update-password-form">
                 <div className="update-password-text">
                     <InputLabel
                         htmlFor="current_password"
@@ -124,8 +119,14 @@ export default function UpdatePasswordForm({ className = "" }) {
                     />
                 </div>
 
-                <div className="button-profile flex items-center gap-4">
-                    <PrimaryButton disabled={processing}>Guardar</PrimaryButton>
+                {/* <div className="button-profile flex items-center gap-4"> */}
+                <div className="button-profile">
+                    <PrimaryButton
+                        className="button-profile button-update"
+                        disabled={processing}
+                    >
+                        <span>Guardar</span>
+                    </PrimaryButton>
 
                     <Transition
                         show={recentlySuccessful}
@@ -137,6 +138,23 @@ export default function UpdatePasswordForm({ className = "" }) {
                         <p className="text-xl text-white-600">Guardando.</p>
                     </Transition>
                 </div>
+                <input
+                    type="text"
+                    name="username"
+                    autoComplete="username"
+                    defaultValue=""
+                    tabIndex={-1}
+                    aria-hidden="true"
+                    className="sr-only"
+                    style={{
+                        position: "absolute",
+                        left: "-9999px",
+                        width: 1,
+                        height: 1,
+                        opacity: 0,
+                    }}
+                    readOnly
+                />
             </form>
         </section>
     );

@@ -1,0 +1,145 @@
+/* DASHBOARD/INICIO */
+
+.home-container {
+    width: 100%;
+    padding: 0;
+    height: auto;
+
+}
+
+.home-container-image {
+    width: 100%;
+    height: 90vh;
+    background-image: url("/images/Home-Friendflix.gif");
+    background-size: contain;
+    background-color: #c3e2dc;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+
+.home-container-text {
+    text-align: center;
+    padding: 8rem 0rem 8rem 0rem;
+    background-color: #FAFAFA;
+}
+
+.home-container-firsttext-welcome {
+    font-family: Raleway-ExtraLight, sans-serif;
+    margin-right: 1rem;
+    font-size: 4rem;
+    color: #052348;
+}
+
+.home-container-secondtext-welcome {
+    font-family: PlayfairDisplay-Bold, sans-serif;
+    font-weight: 600;
+    font-size: 4rem;
+    color: #052348;
+}
+
+.home-container-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #FAFAFA;
+    gap: 10rem;
+    padding-bottom: 10rem;
+}
+
+.icon-container {
+    width: 37.9rem;
+    height: 32.9rem;
+    align-items: flex-start;
+    padding: 2rem;
+    border-radius: 2rem;
+    background-color: #fff;
+    box-shadow: 0px 22px 32px rgba(0, 0, 0, 0.09);
+    padding: 5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center
+}
+
+.icon-container h3 {
+    font-family: Raleway-Bold, sans-serif;
+    font-size: 2.4rem;
+    color: #052348;
+    margin-bottom: 0.5rem;
+}
+
+.icon-container p {
+    font-family: Raleway-Regular, sans-serif;
+    font-size: 1.8rem;
+    color: #9597A1;
+}
+
+.icon-container img {
+    width: 10rem;
+}
+
+@media (max-width: 1380px) {
+
+    .home-container-image {
+        height: 90vh;
+        overflow: hidden;
+        background-size: cover;
+    }
+
+    .home-container-icons {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .home-container-text {
+        padding: 10rem 0rem 10rem 0rem;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .home-container-image {
+        height: 100vh;
+        background-image: url("/images/Home-Friendflix.svg");
+        background-size: cover;
+        background-position: center;
+        position: relative;
+    }
+
+    .home-container-firsttext-welcome {
+        margin-right: 1rem;
+        font-size: 3.2rem;
+    }
+
+    .home-container-secondtext-welcome {
+        font-weight: 600;
+        font-size: 3.2rem;
+    }
+
+    .home-container-icons {
+        padding: 0 2rem 8rem 2rem;
+    }
+
+    .icon-container {
+        box-sizing: border-box;
+        width: min(100%, 31.9rem);
+        padding: 4rem 1.6rem;
+    }
+
+    .icon-container h3 {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .icon-container p {
+
+        font-size: 1.6rem;
+        color: #9597A1;
+    }
+
+    .icon-container img {
+        width: 9rem;
+    }
+
+}

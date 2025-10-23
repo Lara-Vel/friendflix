@@ -1,14 +1,16 @@
 export default function PrimaryButton({
     className = "",
-    disabled,
+    disabled = false,
+    type = "button",
     children,
     ...props
 }) {
     return (
         <button
             {...props}
-            className={`button ${disabled && "opacity-25"} ` + className}
+            className={`button ${disabled ? "is-disabled" : ""} ${className}`.trim()}
             disabled={disabled}
+            type={type}
         >
             {children}
         </button>

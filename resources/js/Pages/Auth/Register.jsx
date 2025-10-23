@@ -5,6 +5,8 @@ import InputLabel from "@/Components/InputLabel";
 import PrimaryButton from "@/Components/PrimaryButton";
 import TextInput from "@/Components/TextInput";
 import { Head, Link, useForm } from "@inertiajs/react";
+import ArrowLeft from "@/assets/icons/arrow-left.svg?react";
+import Loader from "@/Components/Loader";
 
 export default function Register() {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -28,18 +30,46 @@ export default function Register() {
 
     return (
         <GuestLayout>
-            <Head title="Register" />
+            <Head title="Registro de usuario" />
+
+            <Loader show={processing} overlay label="Iniciando sesión…" />
+
             <div className="container-register-form">
+                <Link
+                    href="/"
+                    className="button button-back"
+                    aria-label="Volver"
+                >
+                    <ArrowLeft className="arrow-left" />
+                </Link>
                 <div className="image-register-form">
-                    <img
-                        src="/images/Logo-Friendflix.webp"
-                        alt="Logo Friendflix"
-                    />
+                    <picture>
+                        <source
+                            media="(max-width: 576px)"
+                            srcSet="/images/welcome-Mobile.webp"
+                        />
+                        <source
+                            media="(min-width: 577px) and (max-width: 992px)"
+                            srcSet="/images/welcome-Tablet.webp"
+                        />
+                        <img
+                            src="/images/welcome-Desktop.webp"
+                            alt="Welcome Friendflix"
+                        />
+                    </picture>
                 </div>
                 <div className="title-register-form">
                     <form onSubmit={submit} className="register-form">
-                        <h2 className="title-register">Registro de usuario</h2>
-
+                        <div className="title-register-header">
+                            <img
+                                src="/images/icon-Friendflix.webp"
+                                alt="Icon Popcorn Friendflix"
+                                className="icon-register"
+                            />
+                            <h2 className="title-register">
+                                Registro de usuario
+                            </h2>
+                        </div>
                         <div>
                             <InputLabel htmlFor="name" value="Nombre" />
 
@@ -47,14 +77,12 @@ export default function Register() {
                                 id="name"
                                 name="name"
                                 value={data.name}
-                                className="mt-1 block w-full"
                                 required
                                 autoComplete="name"
                                 isFocused={true}
                                 onChange={(e) =>
                                     setData("name", e.target.value)
                                 }
-                                required
                             />
 
                             <InputError
@@ -63,7 +91,7 @@ export default function Register() {
                             />
                         </div>
 
-                        <div className="mt-4">
+                        <div>
                             <InputLabel htmlFor="email" value="Email" />
 
                             <TextInput
@@ -71,13 +99,11 @@ export default function Register() {
                                 type="email"
                                 name="email"
                                 value={data.email}
-                                className="mt-1 block w-full"
                                 required
                                 autoComplete="username"
                                 onChange={(e) =>
                                     setData("email", e.target.value)
                                 }
-                                required
                             />
 
                             <InputError
@@ -86,7 +112,7 @@ export default function Register() {
                             />
                         </div>
 
-                        <div className="mt-4">
+                        <div>
                             <InputLabel htmlFor="password" value="Contraseña" />
 
                             <TextInput
@@ -94,13 +120,11 @@ export default function Register() {
                                 type="password"
                                 name="password"
                                 value={data.password}
-                                className="mt-1 block w-full"
                                 required
                                 autoComplete="new-password"
                                 onChange={(e) =>
                                     setData("password", e.target.value)
                                 }
-                                required
                             />
 
                             <InputError
@@ -109,7 +133,7 @@ export default function Register() {
                             />
                         </div>
 
-                        <div className="mt-4">
+                        <div>
                             <InputLabel
                                 htmlFor="password_confirmation"
                                 value="Confirmar contraseña"
@@ -120,7 +144,6 @@ export default function Register() {
                                 type="password"
                                 name="password_confirmation"
                                 value={data.password_confirmation}
-                                className="mt-1 block w-full"
                                 required
                                 autoComplete="new-password"
                                 onChange={(e) =>
@@ -129,7 +152,6 @@ export default function Register() {
                                         e.target.value
                                     )
                                 }
-                                required
                             />
 
                             <InputError
@@ -143,17 +165,17 @@ export default function Register() {
                                 ¿Ya tienes una cuenta?&nbsp;
                                 <Link
                                     href={route("login")}
-                                    className="underline text-sm text-gray-600 hover:text-gray-900"
                                 >
                                     Inicia sesión
                                 </Link>
                             </p>
 
                             <PrimaryButton
+                                type="submit"
                                 className="button-register"
                                 disabled={processing}
                             >
-                                Crea tu cuenta
+                                <span>Crea tu cuenta</span>
                             </PrimaryButton>
                         </div>
                     </form>

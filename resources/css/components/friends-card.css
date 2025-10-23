@@ -1,0 +1,265 @@
+/* COMPONENTE CARD DE AMIGOS */
+
+.home-container-firsttext-friends {
+    font-family: Raleway-ExtraLight, sans-serif;
+    margin-right: 1rem;
+    font-size: 4rem;
+    color: #052348;
+}
+
+.home-container-secondtext-friends {
+    font-family: PlayfairDisplay-Bold, sans-serif;
+    font-weight: 600;
+    font-size: 4rem;
+    color: #052348;
+}
+
+.home-container-text-friends {
+    text-align: center;
+    padding: 8rem 0rem 8rem 0rem;
+    background-color: #fff;
+    color: #052348;
+}
+
+.container-friends-card {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(42rem, 1fr));
+    gap: 4rem;
+    justify-items: center;
+    padding: 0 4rem 10rem;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 1600px;
+    margin-inline: auto;
+}
+
+.friends-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 42rem;
+    padding: 2.4rem 2.4rem 1.6rem 2.4rem;
+    border-radius: 2.6rem;
+    box-shadow: 0px 4px 34px rgba(0, 0, 0, 0.09);
+    color: #052348;
+    cursor: pointer;
+    border: none;
+}
+
+.friends-card-content {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+.friends-card img {
+    width: 7.2rem;
+    height: 7.2rem;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+    box-shadow: 0 1rem 3rem rgb(0 0 0 / 18%);
+}
+
+.friends-card-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+}
+
+.friends-card-text h3 {
+    font-size: 2.6rem;
+    color: #052348;
+    letter-spacing: 0.04rem;
+    font-family: Poppins-SemiBold, sans-serif;
+}
+
+.friends-card-updated {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 0.4rem;
+}
+
+.friends-time {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 1.4rem;
+    color: #9597a1;
+    font-family: Poppins-Regular, sans-serif;
+    align-self: flex-end;
+}
+
+.clock-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.friends-favourites-badge {
+    display: flex;
+    align-items: center;
+}
+
+.movie-icon {
+    width: 1.8rem;
+    height: 1.8rem;
+    color: #052348;
+    margin-right: 1.5rem;
+}
+
+.favourites-badge {
+    color: #052348;
+    padding: 0.4rem 1.2rem;
+    border-radius: 1rem;
+    font-size: 1.6rem;
+    border: 1px solid #e2dee9;
+    font-family: Poppins-Regular, sans-serif;
+    white-space: nowrap;
+}
+
+.card-divider {
+    border-top: 0.05rem solid #e2dee9;
+    margin: 2rem -2.4rem 0;
+    padding-top: 1.6rem;
+    padding-left: 2.4rem;
+    padding-right: 2.4rem;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.more-button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0;
+    font-size: 1.6rem;
+    color: #f37136;
+    font-family: Poppins-Medium, sans-serif;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: left;
+    gap: 0.8rem;
+}
+
+.more-button:active {
+    transform: translateY(-0.1rem);
+}
+
+.more-button-span,
+.chevron-right-icon {
+    transition: transform 0.2s;
+}
+
+.chevron-right-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    margin-left: 0.6rem;
+}
+
+.more-button:hover .more-button-span,
+.more-button:hover .chevron-right-icon {
+    transform: translateX(4px);
+}
+
+@media (max-width: 600px) {
+    .home-container-firsttext-friends {
+        margin-right: 1rem;
+        font-size: 3.2rem;
+    }
+
+    .home-container-secondtext-friends {
+        font-weight: 600;
+        font-size: 3.2rem;
+    }
+
+    .home-container-text-friends {
+        padding: 10rem 0rem 6rem 0rem;
+    }
+
+    .friends-time {
+        position: absolute;
+        top: -10px;
+        right: -20%;
+        transform: translateX(-50%);
+        margin-top: 0.5rem;
+        font-size: 1.2rem;
+    }
+
+    .container-friends-card {
+        grid-template-columns: 1fr;
+        padding: 4rem 1.6rem 10rem;
+    }
+
+    .friends-card {
+        width: 30rem;
+        padding: 2rem;
+        border-radius: 2rem;
+
+        box-sizing: border-box;
+        width: min(100%, 30rem);
+    }
+
+    .friends-card-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 0.5rem;
+    }
+
+    .friends-card img {
+        width: 10rem;
+        height: 10rem;
+        margin-top: 2.5rem;
+    }
+
+    .friends-card-text {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .friends-card-text h3 {
+        font-size: 2rem;
+        margin: 0;
+    }
+
+    .friends-card-updated {
+        margin-top: 0rem;
+        margin-bottom: 1rem;
+    }
+
+    .friends-favourites-badge {
+        justify-content: center;
+        margin-top: 1rem;
+    }
+
+    .card-divider {
+        margin: 2rem -2rem 0;
+        padding-top: 1.6rem;
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+
+    .more-button {
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .container-friends-card>* {
+        min-width: 0;
+        max-width: 100%;
+    }
+
+    .home-container-text-friends {
+        padding-inline: 1.6rem;
+        overflow-wrap: anywhere;
+    }
+
+
+}

@@ -27,28 +27,27 @@ export default function UpdateProfileInformation({
     return (
         <section className={className}>
             <header>
-                <h2 className="container-text-profile text-lg font-medium text-gray-900">
-                    <span className="container-firsttext-profile font-semibold text-xl text-gray-800 leading-tight">
+                <h2 className="container-text-profile">
+                    <span className="container-firsttext-profile">
                         Información de
                     </span>{" "}
-                    <span className="container-secondtext-profile font-semibold text-xl text-gray-800 leading-tight">
+                    <span className="container-secondtext-profile">
                         perfil
                     </span>{" "}
                 </h2>
 
-                <p className="container-text-info mt-1 text-sm text-gray-600">
-                    Actualice la información de perfil y la dirección de correo
-                    electrónico de su cuenta.
+                <p className="container-text-info">
+                    Actualiza la información de perfil y la dirección de correo
+                    electrónico de tu cuenta.
                 </p>
             </header>
 
-            <form onSubmit={submit} className="profile-form mt-6 space-y-6">
+            <form onSubmit={submit} className="profile-form">
                 <div className="profile-form-text">
                     <InputLabel htmlFor="name" value="Nombre" />
 
                     <TextInput
                         id="name"
-                        className="mt-1 block w-full"
                         value={data.name}
                         onChange={(e) => setData("name", e.target.value)}
                         required
@@ -65,7 +64,6 @@ export default function UpdateProfileInformation({
                     <TextInput
                         id="email"
                         type="email"
-                        className="mt-1 block w-full"
                         value={data.email}
                         onChange={(e) => setData("email", e.target.value)}
                         required
@@ -85,7 +83,7 @@ export default function UpdateProfileInformation({
                                 as="button"
                                 className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                             >
-                                Haga clic aquí para volver a enviar el correo
+                                Haz clic aquí para volver a enviar el correo
                                 electrónico de verificación.
                             </Link>
                         </p>
@@ -100,7 +98,7 @@ export default function UpdateProfileInformation({
                 )}
 
                 <div className="button-profile">
-                    <PrimaryButton disabled={processing}>Guardar</PrimaryButton>
+                    <PrimaryButton className="button-profile button-save" disabled={processing}><span>Guardar</span></PrimaryButton>
 
                     <Transition
                         show={recentlySuccessful}
@@ -109,7 +107,7 @@ export default function UpdateProfileInformation({
                         leave="transition ease-in-out"
                         leaveTo="opacity-0"
                     >
-                        <p className="text-xl text-white-600">Guardando.</p>
+                        <p className="text-xl text-green-600">Guardando.</p>
                     </Transition>
                 </div>
             </form>

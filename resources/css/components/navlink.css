@@ -1,0 +1,340 @@
+/* COMPONENTE NAVLINK */
+
+.app-root {
+    display: flex;
+    flex-direction: column;
+    /* opcional pero útil si quieres que <main> crezca: */
+    /* min-height: 100vh; */
+}
+
+.flex-grow {
+    flex: 1;
+}
+
+body.menu-open {
+    overflow: hidden;
+}
+
+.main-nav {
+    background-color: #c3e2dc;
+    border-bottom: 0.1rem solid #f37136;
+    padding: 0.5rem 0;
+    display: flex;
+    justify-content: center;
+}
+
+.nav-container {
+    height: 100%;
+}
+
+.nav-content {
+    display: flex;
+    align-items: center;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    padding: 0.25rem 0.5rem;
+    gap: 4rem;
+    font-family: Raleway-Bold, sans-serif;
+    white-space: nowrap;
+}
+
+.logo-container {
+    flex-grow: 0;
+    width: 12rem;
+}
+
+.nav-link {
+    font-family: Raleway-Bold, sans-serif;
+    font-size: 1.3rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    color: #f37136;
+}
+
+.nav-links a:active {
+    color: #f37136;
+}
+
+.nav-links a:hover {
+    color: #f37136;
+}
+
+.online-user button {
+    display: flex;
+    color: #f37136;
+    text-transform: uppercase;
+    font-family: Raleway-Bold, sans-serif;
+    font-size: 1.3rem;
+    letter-spacing: 0.1rem;
+    margin-left: 3.5rem;
+    gap: 0.5rem;
+}
+
+.online-user button:hover {
+    color: #f37136;
+}
+
+.logo-container-2 img {
+    display: none;
+}
+
+.mobile-toggle {
+    display: none;
+}
+
+.app-header {
+    background-color: #ffffff;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 1px rgba(0, 0, 0, 0.06);
+}
+
+.app-header-inner {
+    max-width: 80rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+@media (max-width: 992px) {
+    .main-nav {
+        flex-direction: column;
+    }
+
+    .nav-container {
+        padding: 0.5rem 2rem;
+        border-bottom: none;
+        position: relative;
+        /* z-index: 1001; */
+        z-index: 9999;
+    }
+
+    body.menu-open .nav-container {
+        border-bottom: 0.1rem solid #f37136;
+        position: relative;
+    }
+
+    .nav-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+
+    .mobile-toggle {
+        display: flex;
+        align-items: center;
+        margin-inline-end: 0.8rem;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .hide-desktop {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background-color: #c3e2dc;
+        /* z-index: 1000; */
+        z-index: 9998;
+        padding-top: 11rem;
+        overflow-y: auto;
+        font-family: Raleway-SemiBold, sans-serif;
+        letter-spacing: 0.1rem;
+    }
+
+    .hide-desktop.is-open {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .user-dropdown-wrap {
+        display: none;
+    }
+
+    .logo-container-2 img {
+        width: 5rem;
+        display: block;
+    }
+
+    .online-user {
+        display: none;
+    }
+
+    .logo-container {
+        display: none;
+    }
+
+    .responsive-nav-text {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .responsive-nav-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        padding: 1.5rem 1rem;
+        padding-left: 0.75rem;
+        border-left: 4px solid transparent;
+        font-size: 1.8rem;
+        font-weight: 500;
+        transition: background-color 0.15s ease-in-out, color 0.15s ease-in-out;
+        outline: none;
+        text-transform: uppercase;
+        color: #052348;
+    }
+
+    .responsive-nav-link.active {
+        color: #052348;
+    }
+
+    .responsive-nav-link:hover,
+    .responsive-nav-link:focus {
+        color: #f37136;
+    }
+
+    .responsive-nav-link.active:hover,
+    .responsive-nav-link.active:focus {
+        color: #f37136;
+    }
+
+    .resp-user {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .resp-user-inner {
+        display: none;
+        /* display: flex;
+        padding: 1.5rem 1rem;
+        padding-left: 0.75rem;
+        color: #052348;
+        font-size: 1.8rem;
+        text-transform: uppercase; */
+    }
+
+    .resp-user-name {
+        display: none;
+    }
+
+    .resp-user-name:hover,
+    .resp-user-name:active {
+        color: #f37136;
+    }
+
+    .resp-user-email {
+        display: none;
+    }
+
+    .resp-user-email:hover,
+    .resp-user-email:active {
+        color: #f37136;
+    }
+
+    .resp-user-actions {}
+
+    .resp-user-actions:hover,
+    .resp-user-actions:active {
+        color: #f37136;
+    }
+
+    .resp-user-actions>*+* {
+        margin-top: 0.25rem;
+    }
+
+    .mobile-toggle button {
+        color: #052348;
+    }
+
+    .mobile-toggle button:hover {
+        opacity: .9;
+    }
+
+    .mobile-toggle button:active {
+        transform: scale(.98);
+    }
+
+}
+
+@media (min-width: 993px) {
+    .hide-desktop {
+        display: none;
+    }
+
+    .app-header-inner {
+        padding-left: 3.2rem;
+        padding-right: 3.2rem;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 992px) {
+    .online-user button {
+        font-size: 1.4rem;
+        margin-left: 2rem;
+    }
+
+    #nav-starts {
+        padding: 0.4rem !important;
+    }
+
+    .app-header-inner {
+        padding-left: 2.4rem;
+        padding-right: 2.4rem;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .online-user button {
+        font-size: 0.9rem;
+        margin-left: 0.1rem;
+    }
+
+    #nav-starts {
+        padding: 0.4rem !important;
+    }
+
+    .responsive-nav-text {
+        text-transform: uppercase;
+    }
+
+    .nav-content {
+        display: flex;
+        justify-content: space-between;
+    }
+
+}
+
+#nav-starts {
+    padding: 0.8rem;
+    border-radius: 1rem;
+    border-width: 0.1rem;
+    border: 0.2rem solid #f37136;
+    gap: 0.3rem;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+#nav-starts:hover {
+    background-color: #f37136;
+    color: #ffffff;
+    border-color: #f37136;
+}
+
+#nav-responsive-starts {
+    color: #052348;
+}
+
+#nav-responsive-starts:hover {
+    color: #f37136;
+}

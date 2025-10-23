@@ -5,13 +5,15 @@ export default function UserFavouritesDetail({
     onClose,
     user,
     movies,
+    avatar,
 }) {
     if (!isOpen) return null;
 
     return (
         <div className="detail-overlay" onClick={onClose}>
-            <div
+            <div    
                 className="detail-content"
+                style={{ "--avatar-url": `url(${avatar || "/storage/avatars/default.webp"})` }}
                 onClick={(e) => e.stopPropagation()}
             >
                 <button className="close-button" onClick={onClose}>

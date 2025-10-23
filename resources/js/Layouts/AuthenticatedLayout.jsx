@@ -1,20 +1,47 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ApplicationLogo from "@/Components/ApplicationLogo";
 import Dropdown from "@/Components/Dropdown";
 import NavLink from "@/Components/NavLink";
 import Footer from "@/Components/Footer";
+import Toast from "@/Components/Toast";
 import ResponsiveNavLink from "@/Components/ResponsiveNavLink";
 import { Link, usePage } from "@inertiajs/react";
+import ChevronDownIcon from "@/assets/icons/chevron-down.svg?react";
 
 export default function Authenticated({ user, header, children }) {
     const [showingNavigationDropdown, setShowingNavigationDropdown] =
         useState(false);
 
-    const { status } = usePage().props;
+    const { status, error, url} = usePage().props;
+
+const toastMsg = error ?? status;
+const toastType = error ? "error" : "success";
+
+const [toastVersion, setToastVersion] = useState(0);
+useEffect(() => {
+    if (toastMsg) setToastVersion((v) => v + 1);
+}, [toastMsg, url]);
+
+const toastKey = `${url}-${toastVersion}`;
+    useEffect(() => {
+        const handleResize = () => {
+            if (window.innerWidth >= 993) {
+                setShowingNavigationDropdown(false);
+            }
+        };
+        window.addEventListener("resize", handleResize);
+        handleResize();
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
+
+    useEffect(() => {
+        document.body.classList.toggle("menu-open", showingNavigationDropdown);
+        return () => document.body.classList.remove("menu-open");
+    }, [showingNavigationDropdown]);
 
     return (
-        <div className="flex flex-col  bg-gray-100">
-            {status && <div className="bg-green-500 p-2">{status}</div>}
+        <div className="app-root">
+            {toastMsg && <Toast key={toastKey} type={toastType} message={toastMsg} />}
             <nav className="main-nav">
                 <div className="nav-container">
                     <div className="nav-content">
@@ -46,45 +73,34 @@ export default function Authenticated({ user, header, children }) {
                                     <ApplicationLogo />
                                 </Link>
                             </div>
-                            <NavLink
-                                className="nav-link"
-                                href={route("favourites.index")}
-                                active={route().current("favourites.index")}
-                            >
-                                Mis favoritos
-                            </NavLink>
-                            <NavLink
-                                className="nav-link"
-                                href={route("searchmovies.search")}
-                                active={route().current("searchmovies.index")}
-                            >
-                                Buscar
-                            </NavLink>
+                            <div className="nav-links">
+                                <NavLink
+                                    className="nav-link"
+                                    href={route("favourites.index")}
+                                    active={route().current("favourites.index")}
+                                >
+                                    Mis favoritos
+                                </NavLink>
+                                <NavLink
+                                    className="nav-link"
+                                    href={route("searchmovies.search")}
+                                    active={route().current(
+                                        "searchmovies.index"
+                                    )}
+                                >
+                                    Buscar
+                                </NavLink>
+                            </div>
                         </div>
 
-                        <div className="hidden sm:flex sm:items-center">
-                            <div className="ms-3 relative">
+                        <div className="user-dropdown-wrap">
+                            <div>
                                 <Dropdown>
                                     <Dropdown.Trigger>
-                                        <span className="inline-flex ">
-                                            <button
-                                                type="button"
-                                                className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150"
-                                            >
+                                        <span className="online-user">
+                                            <button type="button">
                                                 {user.name}
-
-                                                <svg
-                                                    className="ms-2 -me-0.5 h-4 w-4"
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    viewBox="0 0 20 20"
-                                                    fill="currentColor"
-                                                >
-                                                    <path
-                                                        fillRule="evenodd"
-                                                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                                        clipRule="evenodd"
-                                                    />
-                                                </svg>
+                                                <ChevronDownIcon className="chevron-down-icon" />
                                             </button>
                                         </span>
                                     </Dropdown.Trigger>
@@ -114,17 +130,18 @@ export default function Authenticated({ user, header, children }) {
                                 />
                             </Link>
                         </div>
-                        <div className="-me-2 flex items-center sm:hidden">
+                        <div className="mobile-toggle">
                             <button
                                 onClick={() =>
                                     setShowingNavigationDropdown(
                                         (previousState) => !previousState
                                     )
                                 }
-                                className="button-mobile inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out"
+                                aria-expanded={showingNavigationDropdown}
+                                aria-controls="mobileMenu"
                             >
                                 <svg
-                                    className="h-6 w-6"
+                                    className="h-8 w-8"
                                     stroke="currentColor"
                                     fill="none"
                                     viewBox="0 0 24 24"
@@ -156,14 +173,13 @@ export default function Authenticated({ user, header, children }) {
                         </div>
                     </div>
                 </div>
-
                 <div
-                    className={
-                        (showingNavigationDropdown ? "block" : "hidden") +
-                        " sm:hidden"
-                    }
+                    id="mobileMenu"
+                    className={`hide-desktop ${
+                        showingNavigationDropdown ? "is-open" : ""
+                    }`}
                 >
-                    <div className="responsive-nav-text pt-4 pb-1 border-t border-gray-200">
+                    <div className="responsive-nav-text">
                         <ResponsiveNavLink
                             id="nav-responsive-starts"
                             href={route("dashboard") + "#iniciar"}
@@ -198,17 +214,13 @@ export default function Authenticated({ user, header, children }) {
                         </ResponsiveNavLink>
                     </div>
 
-                    <div className="pt-4 pb-1 border-t border-gray-200">
-                        <div className="px-4">
-                            <div className="font-medium text-base text-gray-800">
-                                {user.name}
-                            </div>
-                            <div className="font-medium text-sm text-gray-500">
-                                {user.email}
-                            </div>
+                    <div className="resp-user">
+                        <div className="resp-user-inner">
+                            <div className="resp-user-name">{user.name}</div>
+                            <div className="resp-user-email">{user.email}</div>
                         </div>
 
-                        <div className="mt-3 space-y-1">
+                        <div className="resp-user-actions">
                             <ResponsiveNavLink href={route("profile.edit")}>
                                 Mi perfil
                             </ResponsiveNavLink>
@@ -225,10 +237,8 @@ export default function Authenticated({ user, header, children }) {
             </nav>
 
             {header && (
-                <header className="bg-white shadow">
-                    <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {header}
-                    </div>
+                <header className="app-header">
+                    <div className="app-header-inner">{header}</div>
                 </header>
             )}
 

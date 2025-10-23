@@ -1,0 +1,131 @@
+/* FOOTER */
+
+.footer {
+    margin-top: auto;
+    background-color: #c3e2dc;
+}
+
+.footer-container {
+    padding: 2% 6%;
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    font-size: 1.4rem;
+}
+
+.footer-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    width: 100%;
+}
+
+.footer-logo {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex: 1;
+}
+
+.footer-nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 4rem;
+    font-family: Poppins-Regular, sans-serif;
+    color: #052348;
+    flex: 2;
+}
+
+.footer-nav a {
+    position: relative;
+    text-decoration: none;
+    color: #052348;
+    transition: color 0.3s ease;
+}
+
+.footer-nav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -0.4rem;
+    width: 0;
+    height: 0.19rem;
+    border-radius: 1rem;
+    background-color: #052348;
+    transition: width 0.3s ease;
+}
+
+.footer-nav a:hover::after {
+    width: 100%;
+}
+
+.footer-link {
+    display: flex;
+    justify-content: flex-end;
+    gap: 3.5rem;
+    flex: 1;
+    color: #052348;
+}
+
+.footer-link a {
+    width: 3rem;
+    height: 3rem;
+    display: inline-grid;
+    place-items: center;
+
+    border-radius: 5rem;
+    transition: box-shadow 0.3s ease;
+}
+
+.footer-link a:hover {
+    box-shadow: 0 0 0 4px #05234865;
+}
+
+.footer-link svg {
+    width: 3rem;
+    height: 3rem;
+    overflow: visible;
+}
+
+.footer-text {
+    text-align: center;
+    font-family: Poppins-Regular, sans-serif;
+    font-size: 1.2rem;
+    color: #052348;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(5, 35, 72, 0.15);
+}
+
+
+.footer-logo img {
+    max-width: 10rem;
+}
+
+@media screen and (max-width: 768px) {
+    .footer-container {
+        font-size: 1.2rem;
+    }
+
+    .footer-top {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-logo,
+    .footer-nav,
+    .footer-link {
+        justify-content: center;
+        flex: unset;
+    }
+
+    .footer-text {
+        font-size: 1rem;
+    }
+}

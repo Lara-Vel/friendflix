@@ -1,0 +1,86 @@
+/* PElÍCULAS FAVORITAS */
+
+.container-text-favourites {
+    text-align: center;
+    padding: 5rem 0rem 3rem 0rem;
+}
+
+.container-text-favourites-firsttext {
+    font-family: Raleway-ExtraLight, sans-serif;
+    margin-right: 1rem;
+    font-size: 4rem;
+    color: #052348;
+}
+
+.container-text-favourites-secondtext {
+    font-family: PlayfairDisplay-Bold, sans-serif;
+    font-weight: 600;
+    font-size: 4rem;
+    color: #052348;
+}
+
+.movies-grid-favourites {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2.4rem;
+    justify-content: center;
+    padding: 2rem 3rem 5rem 3rem;
+}
+
+.movie-card-title-favourites {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: Raleway-SemiBold,
+        sans-serif;
+    font-size: 1.6rem;
+    color: #052348;
+    height: 4rem;
+    margin-top: 1rem;
+}
+
+.favourite-button.favourite-button--topright {
+    position: absolute;
+    top: 0.8rem;
+    right: 0.8rem;
+    width: 3.6rem;
+    height: 3.6rem;
+    border: 0;
+    border-radius: 25rem;
+    background: #ffffff11;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, .15);
+    cursor: pointer;
+    transition: transform .15s ease, box-shadow .15s ease;
+    z-index: 3;
+}
+
+.favourite-button.favourite-button--topright:hover {
+    transform: scale(1.06);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, .2);
+}
+
+button .heart-icon {
+    width: 2.2rem;
+    height: 2.2rem;
+    display: block;
+}
+
+button .heart-icon,
+button .heart-icon * {
+    fill: currentColor !important;
+    stroke: currentColor !important;
+    stroke-width: inherit;
+}
+
+@media (max-width: 767px) {
+    h2.container-text-favourites {
+        padding-inline: 1.6rem;
+        max-width: 100%;
+        overflow-wrap: anywhere;
+    }
+
+}

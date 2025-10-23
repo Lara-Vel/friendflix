@@ -1,0 +1,35 @@
+/* COMPONENTE STARRATING */
+
+/* .star-rating {
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+} */
+
+.star-rating {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    /* sigue centrado bajo el título */
+    gap: 0.4rem;
+    /* reduce separación interna si la hay */
+    font-size: 1.4rem;
+    /* baja un poco la nota para jerarquía */
+    margin-top: 0.2rem;
+}
+
+.star-icon.filled {
+    color: #f8d12d;
+}
+
+.star-icon.half {
+    color: #f8d12d;
+}
+
+.star-icon.empty {
+    color: #f8d12d;
+}
+
+.stars {
+    display: flex;
+}

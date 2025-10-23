@@ -1,0 +1,215 @@
+/* Fondo celeste y centrado vertical */
+.ffx-404 {
+    position: relative;
+    min-height: 100dvh;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    background: #c3e2dc;
+}
+
+.ffx-404-sky {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.cloud {
+    position: absolute;
+    width: 14rem;
+    height: 8rem;
+    background: url("/images/Cloud.svg") no-repeat center / contain;
+    opacity: 0;
+    animation: cloud-float 102s linear infinite,
+        cloud-fade 12s ease-in-out infinite alternate;
+    filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.06));
+}
+
+.cloud.sway {
+    animation: cloud-sway var(--t, 18s) ease-in-out infinite alternate,
+        cloud-fade 12s ease-in-out infinite alternate;
+}
+
+.c1 {
+    top: 10%;
+    left: 20%;
+    animation-delay: 0s, 0s;
+    --amp: 2.6rem;
+    --t: 20s;
+    background-image: url("/images/Cloud.svg");
+}
+
+.c2 {
+    width: 8rem;
+    height: 6rem;
+    top: 18%;
+    left: 8%;
+    --amp: 1.8rem;
+    --t: 16s;
+    background-image: url("/images/Cloud.svg");
+    animation-delay: 6s, 2s;
+}
+
+.c3 {
+    width: 6rem;
+    height: 4rem;
+    top: 14%;
+    right: 25%;
+    --amp: 2.8rem;
+    --t: 22s;
+    animation-delay: 12s, 4s;
+    background-image: url("/images/Cloud.svg");
+}
+
+.c4 {
+    top: 3%;
+    right: 10%;
+    --amp: 1.6rem;
+    --t: 17s;
+    background-image: url("/images/Cloud.svg");
+    animation-delay: 18s, 1s;
+}
+
+.c5 {
+    width: 8rem;
+    height: 6rem;
+    top: 16%;
+    right: 4%;
+    --amp: 2rem;
+    --t: 19s;
+    background-image: url("/images/Cloud.svg");
+}
+
+@keyframes cloud-sway {
+    0% {
+        transform: translateX(calc(var(--amp, 24px) * -1)) scale(var(--s, 1));
+    }
+
+    100% {
+        transform: translateX(var(--amp, 24px)) scale(var(--s, 1));
+    }
+}
+
+@keyframes cloud-float {
+    0% {
+        transform: translateX(0) scale(var(--s, 1));
+    }
+
+    100% {
+        transform: translateX(140vw) scale(var(--s, 1));
+    }
+}
+
+@keyframes cloud-fade {
+    0% {
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 0.55;
+    }
+
+    60% {
+        opacity: 0.85;
+    }
+
+    100% {
+        opacity: 0.15;
+    }
+}
+
+/* Contenido */
+.ffx-404-content {
+    position: relative;
+    z-index: 2;
+    width: min(92vw, 760px);
+    text-align: center;
+    padding: 3rem 1rem 4rem;
+    color: #052348;
+}
+
+.ffx-404-hero {
+    display: block;
+    margin: 0 auto;
+    max-width: 620px;
+    width: 100%;
+    height: auto;
+}
+
+.ffx-404-text {
+    font-family: Poppins-Regular, sans-serif;
+    font-size: 1.6rem;
+    line-height: 1.6;
+    margin: 0 auto 4.5rem;
+    max-width: 46ch;
+    color: #052348;
+}
+
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+    font-family: Poppins-Medium, sans-serif;
+    letter-spacing: 0.04em;
+    border-radius: 25rem;
+    position: relative;
+    outline: none;
+    background: none;
+    color: #fff;
+}
+
+.button-404 {
+    width: 100%;
+    font-size: 1.6rem;
+    max-width: 36rem;
+}
+
+.button-404:before {
+    content: '';
+    display: inline-block;
+    height: 60%;
+    position: absolute;
+    bottom: -1px;
+    left: 1rem;
+    right: 1rem;
+    z-index: 0;
+    border-radius: 25rem;
+    filter: blur(14px) brightness(0.9);
+    transform-style: preserve-3d;
+    transition: all 0.3s ease-out;
+}
+
+.button-404 span {
+    display: inline-block;
+    width: 100%;
+    padding: 1.05rem 0;
+    border-radius: 25rem;
+    position: relative;
+    z-index: 2;
+    will-change: transform, filter;
+    transform-style: preserve-3d;
+    transition: all 0.3s ease-out;
+}
+
+.button-404:hover {
+    color: #fff;
+}
+
+.button-404:hover span {
+    filter: brightness(0.9) contrast(1.2);
+    transform: scale(0.96);
+}
+
+.button-404:hover:before {
+    bottom: 0.8rem;
+    filter: blur(6px) brightness(0.8);
+    left: 1.5rem;
+    right: 1.5rem;
+}
+
+.button-404 span,
+.button-404:before {
+    background: #f37136;
+}

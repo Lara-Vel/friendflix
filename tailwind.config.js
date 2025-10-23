@@ -13,16 +13,16 @@ export default {
     theme: {
         extend: {
             fontFamily: {
-                sans: ["Figtree", ...defaultTheme.fontFamily.sans],
+                sans: ["Poppins-Regular", ...defaultTheme.fontFamily.sans],
             },
             colors: {
                 transparent: "transparent",
                 current: "currentColor",
                 lightBlue: "#C3E2DC",
                 darkOrange: "#F37136",
-                brown: "#6A471C",
-                lightBrown: "#A68A69",
-                darkBlue: "#093266",
+                darkGrey: "#9597A1",
+                lightGrey:"#E2DEE9",
+                darkBlue: "#052348",
                 skyBlue: "#8798AD",
             },
         },
