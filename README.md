@@ -4,8 +4,6 @@ Friendflix is a web platform that allows users to share movie recommendations wi
 
 ## Preview
 
-![Preview](/images/preview.webp)
-
 Live demo: https://lara.v1-22.proyectosdwa.es/
 
 ### Features
@@ -49,3 +47,4 @@ Live demo: https://lara.v1-22.proyectosdwa.es/
 ##### License
 
 Friendflix was developed by Lara Velenik and is distributed under the [MIT license](https://opensource.org/licenses/MIT).
+
