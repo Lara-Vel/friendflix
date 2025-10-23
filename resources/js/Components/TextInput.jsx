@@ -13,6 +13,6 @@ export default forwardRef(function TextInput(
     }, []);
 
     return (
-        <input {...props} type={type} className={"login-form"} ref={input} />
+        <input {...props} type={type} className={className} ref={input} />
     );
 });

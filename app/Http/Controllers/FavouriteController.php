@@ -40,6 +40,7 @@ class FavouriteController extends Controller
         $movie_id = $validated['movie_id'];
         $data = $validated['filmData'];
 
+        try {
 
         $favourite = Favourite::where('user_id', $user->id)->where('movie_id', $movie_id)->first();
 
@@ -61,7 +62,16 @@ class FavouriteController extends Controller
             ]);
             return back()->with('status', '¡Favorito guardado!');
         }
+    } catch (\Throwable $e) {
+        \Log::error('Favourite toggle failed', [
+            'user_id' => $user->id,
+            'movie_id' => $movie_id,
+            'error' => $e->getMessage(),
+        ]);
+
+        return back()->with('error', 'No se pudo actualizar el favorito. Inténtalo de nuevo.');
     }
+}
 
     public function search()
     {

@@ -2,17 +2,20 @@ import { router, Head } from "@inertiajs/react";
 import axios from "axios";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { useState, useEffect } from "react";
-import { FaHeart } from "react-icons/fa";
+import Heart from "@/assets/icons/heart.svg?react";
 import { CiSearch } from "react-icons/ci";
-import Loader from "@/Components/Loader";
+import SkeletonCard from "@/Components/SearchSkeletonCard";
 
 export const SearchMovies = ({ favourites, auth }) => {
     const [query, setQuery] = useState("");
     const [results, setResults] = useState([]);
     const [favorites, setFavorites] = useState([]);
-    const [processing, setProcessing] = useState(false);
+    const [processing, setProcessing] = useState({});
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
+
+    const isQueryEmpty = query.trim().length === 0;
+    const showSkeleton = !isQueryEmpty && loading;
 
     useEffect(() => {
         if (favourites) {
@@ -87,12 +90,12 @@ export const SearchMovies = ({ favourites, auth }) => {
                     content="Encuentra las películas preferidas en nuestro buscador Friendflix. Descubre las películas por título."
                 />
             </Head>
-            <h2 className="home-container-text">
+            <h2 className="container-text-search">
                 {" "}
-                <span className="home-container-firsttext font-semibold text-xl text-gray-800 leading-tight">
+                <span className="container-text-search-firsttext">
                     Encuentra tu película
                 </span>{" "}
-                <span className="home-container-secondtext font-semibold text-xl text-gray-800 leading-tight">
+                <span className="container-text-search-secondtext">
                     preferida
                 </span>{" "}
             </h2>
@@ -103,7 +106,7 @@ export const SearchMovies = ({ favourites, auth }) => {
                             {!query && (
                                 <CiSearch
                                     style={{
-                                        color: "#093266",
+                                        color: "#9597A1",
                                         zIndex: 1000,
                                         fontSize: 24,
                                     }}
@@ -118,70 +121,103 @@ export const SearchMovies = ({ favourites, auth }) => {
                                 className={query ? "input-filled" : ""}
                             />
                         </div>
-                        {loading && <Loader />}
 
-                        {results.length > 0 && (
-                            <ul className="search-results">
-                                {results.map((film) => (
-                                    <li key={film.id}>
-                                        <div className="search-result-card">
-                                            <div className="search-poster-wrapper">
-                                                {film.poster_path ? (
-                                                    <img
-                                                        src={`https://image.tmdb.org/t/p/w200${film.poster_path}`}
-                                                        alt={`${film.title} Poster`}
-                                                    />
-                                                ) : (
-                                                    <div className="filler-poster" />
-                                                )}
-                                            </div>
+                            {isQueryEmpty && (
+                                <div className="search-placeholder">
+                                    <img
+                                        src="/images/bird-banner-friendflix.webp"
+                                        alt="Pajarito con gafas de cine y mensaje 'Aquí encuentras todas las pelis'"
+                                    />
+                                </div>
+                            )}
 
-                                            <div className="info">
-                                                <div className="header">
-                                                    <h3 className="title">
-                                                        {film.title}
-                                                    </h3>
-                                                </div>
+                            {showSkeleton && (
+                                <ul className="search-results" aria-busy="true">
+                                    {Array.from({ length: 6 }).map((_, i) => (
+                                        <li key={`sk-${i}`}>
+                                            <SkeletonCard />
+                                        </li>
+                                    ))}
+                                </ul>
+                            )}
 
-                                                <div className="controls">
-                                                    <button
-                                                        className="btn"
-                                                        onClick={() =>
-                                                            onAddFavorite(film)
-                                                        }
-                                                        disabled={
-                                                            processing[
-                                                                film.id
-                                                            ] || false
-                                                        }
-                                                        style={{
-                                                            fontSize: 20,
-                                                            color: isFavorite(
-                                                                film.id
-                                                            )
-                                                                ? "red"
-                                                                : "gray",
-                                                        }}
-                                                    >
-                                                        {processing[film.id] ? (
-                                                            "Guardando cambios..."
+                            {!showSkeleton &&
+                                !isQueryEmpty &&
+                                results.length > 0 && (
+                                    <ul className="search-results">
+                                        {results.map((film) => (
+                                            <li key={film.id}>
+                                                <div className="search-result-card">
+                                                    <div className="search-poster-wrapper">
+                                                        {film.poster_path ? (
+                                                            <img
+                                                                src={`https://image.tmdb.org/t/p/w200${film.poster_path}`}
+                                                                alt={`${film.title} Poster`}
+                                                            />
                                                         ) : (
-                                                            <FaHeart />
+                                                            <div className="filler-poster" />
                                                         )}
-                                                    </button>
+                                                    </div>
+
+                                                    <div className="info">
+                                                        <div className="header">
+                                                            <h3 className="title">
+                                                                {film.title}
+                                                            </h3>
+                                                        </div>
+
+                                                        <div className="controls">
+                                                            <button
+                                                                className="btn"
+                                                                onClick={() =>
+                                                                    onAddFavorite(
+                                                                        film
+                                                                    )
+                                                                }
+                                                                disabled={
+                                                                    processing[
+                                                                        film.id
+                                                                    ] || false
+                                                                }
+                                                                style={{
+                                                                    fontSize: 20,
+                                                                    color: isFavorite(
+                                                                        film.id
+                                                                    )
+                                                                        ? "red"
+                                                                        : "#9597A1",
+                                                                }}
+                                                            >
+                                                                <Heart className="heart-icon" />
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                    <p className="search-overview">
+                                                        {film.overview}
+                                                    </p>
                                                 </div>
-                                            </div>
-                                            <p className="search-overview">
-                                                {film.overview}
-                                            </p>
-                                        </div>
-                                    </li>
-                                ))}
-                            </ul>
-                        )}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                )}
+
+                            {!showSkeleton &&
+                                !isQueryEmpty &&
+                                results.length === 0 && (
+                                    <div className="search-no-results">
+                                        <p>
+                                            No se encontraron películas para “
+                                            {query}”.
+                                        </p>
+                                        <img
+                                            src="/images/Friendflix-sad.webp"
+                                            alt="Icono de Friendflix triste"
+                                        />
+                                    </div>
+                                )}
+                        </div>
                     </div>
                 </div>
-            </div>
         </AuthenticatedLayout>
     );
 };

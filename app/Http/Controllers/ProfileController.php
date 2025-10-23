@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use Inertia\Response;
 
+use Illuminate\Support\Facades\Storage;
+
 class ProfileController extends Controller
 {
     /**
@@ -60,4 +62,47 @@ class ProfileController extends Controller
 
         return Redirect::to('/');
     }
+
+    public function updateAvatar(Request $request)
+    {
+    $request->validate([
+    'avatar' => ['required','image','mimes:jpeg,png,webp,jpg','max:2048'],
+    ]);
+
+    $user = $request->user();
+
+    if ($request->hasFile('avatar')) {
+
+    $path = $request->file('avatar')->store('avatars', 'public');
+
+    if ($user->avatar && $user->avatar !== 'avatars/default.webp' && Storage::disk('public')->exists($user->avatar)) {
+    Storage::disk('public')->delete($user->avatar);
+    }
+
+    $user->avatar = $path;
+    $user->save();
+    }
+
+    return back(303)->with('success', 'Avatar actualizado');
+    }
+
+    public function deleteAvatar(Request $request)
+    {
+
+        $user = $request->user();
+
+        if ($user->avatar && $user->avatar !== 'avatars/default.webp') {
+
+            if (\Storage::disk('public')->exists($user->avatar)) {
+                \Storage::disk('public')->delete($user->avatar);
+            }
+
+            $user->avatar = 'avatars/default.webp';
+            $user->save();
+        }
+
+        return back(303)->with('success', 'Avatar eliminado y restablecido al predeterminado.');
+    }
+
+
 }

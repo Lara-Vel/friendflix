@@ -1,0 +1,493 @@
+/* MI PERFIL */
+
+.container-profile {
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2.5rem;
+    padding: 3rem 1rem 5rem 1rem;
+}
+
+.container-profile-information,
+.container-profile-avatar,
+.container-profile-password,
+.container-profile-delete {
+    padding: 2rem;
+}
+
+.container-profile-information-form{
+max-width: 36rem;
+}
+
+.container-text-profile {
+    text-align: center;
+    padding: 0rem 0rem 3rem 0rem;
+}
+
+.container-firsttext-profile {
+    font-family: Raleway-ExtraLight, sans-serif;
+    margin-right: 1rem;
+    font-size: 4rem;
+    color: #052348;
+}
+
+.container-secondtext-profile {
+    font-family: PlayfairDisplay-Bold, sans-serif;
+    font-weight: 600;
+    font-size: 4rem;
+    color: #052348;
+}
+
+.container-text-info {
+    font-family: Raleway-Regular, sans-serif;
+    color: #052348;
+    font-size: 1.6rem;
+    line-height: 2rem;
+}
+
+
+.profile-form {
+    font-family: Poppins-Regular, sans-serif;
+    color: #052348;
+    font-size: 1.6rem;
+    margin-top: 2.5rem;
+    display: flex;
+    gap: 1.5rem;
+    flex-direction: column;
+}
+
+
+.profile-form-text label,
+.update-password-text label {
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 1.3rem;
+    letter-spacing: 0.05rem;
+    color: #052348;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+}
+
+.profile-form-text input,
+.update-password-text input {
+    width: 100%;
+    height: 4.5rem;
+    font-size: 1.6rem;
+    border-radius: 25rem;
+    border-color: #e2dee9;
+    background-color: #fff;
+    font-family: Poppins-Regular, sans-serif;
+}
+
+.profile-form-text input:focus,
+.update-password-text input:focus {
+    box-shadow: 0 0 1rem #c3e2dc;
+    border-color: #c3e2dc;
+    outline: #e2dee9;
+}
+
+.profile-form-text input::placeholder,
+.update-password-text input::placeholder {
+    color: #cfcaca;
+}
+
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+    font-family: Poppins-Medium, sans-serif;
+    letter-spacing: 0.04em;
+    border-radius: 25rem;
+    position: relative;
+    outline: none;
+    background: none;
+    color: #fff;
+}
+
+.button-profile.button-save,
+.button-profile.button-update {
+    width: 100%;
+    font-size: 1.6rem;
+    margin-top: 3rem;
+}
+
+.button-profile.button-save:before,
+.button-profile.button-update:before {
+    content: '';
+    display: inline-block;
+    height: 60%;
+    position: absolute;
+    bottom: -1px;
+    left: 1rem;
+    right: 1rem;
+    z-index: 0;
+    border-radius: 25rem;
+    filter: blur(14px) brightness(0.9);
+    transform-style: preserve-3d;
+    transition: all 0.3s ease-out;
+}
+
+.button-profile.button-save span,
+.button-profile.button-update span {
+    display: inline-block;
+    width: 100%;
+    padding: 1.05rem 0;
+    border-radius: 25rem;
+    position: relative;
+    z-index: 2;
+    will-change: transform, filter;
+    transform-style: preserve-3d;
+    transition: all 0.3s ease-out;
+}
+
+.button-profile.button-save:hover,
+.button-profile.button-update:hover {
+    color: #fff;
+}
+
+.button-profile.button-save:hover span,
+.button-profile.button-update:hover span {
+    filter: brightness(0.9) contrast(1.2);
+    transform: scale(0.96);
+}
+
+.button-profile.button-save:hover:before,
+.button-profile.button-update:hover:before {
+    bottom: 0.8rem;
+    filter: blur(6px) brightness(0.8);
+    left: 1.5rem;
+    right: 1.5rem;
+}
+
+.button-profile.button-save span,
+.button-profile.button-save:before,
+.button-profile.button-update span,
+.button-profile.button-update:before {
+    background: #f37136;
+}
+
+.button-profile.button-save.is-disabled,
+.button-profile.button-update.is-disabled {
+    opacity: .6;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+
+/* PASSWORD UPLOAD - PERFIL */
+
+
+.update-password h2 {
+    font-family: Raleway-Bold, sans-serif;
+    color: #052348;
+    font-size: 2rem;
+}
+
+.update-password p {
+    font-family: Raleway-Regular, sans-serif;
+    color: #052348;
+    font-size: 1.6rem;
+    margin: 2rem 0 2rem 0;
+    line-height: 2rem;
+}
+
+.update-password-form {
+    font-family: Poppins-Regular, sans-serif;
+    color: #052348;
+    font-size: 1.6rem;
+    margin-top: 2.5rem;
+    display: flex;
+    gap: 1.5rem;
+    flex-direction: column;
+}
+
+
+.delete-user h2 {
+    font-family: Raleway-Bold, sans-serif;
+    color: #052348;
+    font-size: 2rem;
+}
+
+.delete-user p {
+    font-family: Raleway-Regular, sans-serif;
+    color: #052348;
+    font-size: 1.6rem;
+    margin: 2rem 0 2rem 0;
+    line-height: 2rem;
+}
+
+
+.button-delete {
+    width: 100%;
+    font-size: 1.6rem;
+}
+
+.button-delete:before {
+    content: '';
+    display: inline-block;
+    height: 60%;
+    position: absolute;
+    bottom: -1px;
+    left: 1rem;
+    right: 1rem;
+    z-index: 0;
+    border-radius: 25rem;
+    filter: blur(14px) brightness(0.9);
+    transform-style: preserve-3d;
+    transition: all 0.3s ease-out;
+}
+
+.button-delete span {
+    display: inline-block;
+    width: 100%;
+    padding: 1.05rem 0;
+    border-radius: 25rem;
+    position: relative;
+    z-index: 2;
+    will-change: transform, filter;
+    transform-style: preserve-3d;
+    transition: all 0.3s ease-out;
+}
+
+.button-delete:hover {
+    color: #fff;
+}
+
+.button-delete:hover span {
+    filter: brightness(0.9) contrast(1.2);
+    transform: scale(0.96);
+}
+
+.button-delete:hover:before {
+    bottom: 0.8rem;
+    filter: blur(6px) brightness(0.8);
+    left: 1.5rem;
+    right: 1.5rem;
+}
+
+.button-delete span,
+.button-delete:before {
+    background: red;
+}
+
+.button-delete.is-disabled {
+    opacity: .6;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* AVATAR UPLOAD - PERFIL */
+
+.update-avatar h2 {
+    font-family: Raleway-Bold, sans-serif;
+    color: #052348;
+    font-size: 2rem;
+}
+
+.update-avatar p {
+    font-family: Raleway-Regular, sans-serif;
+    color: #052348;
+    font-size: 1.6rem;
+    margin: 2rem 0 2rem 0;
+    line-height: 2rem;
+}
+
+.avatar-img-preview {
+    width: 20rem;
+    height: 20rem;
+    border-radius: 50%;
+    object-fit: cover;
+    background: #f8f8f8;
+    margin: 1.2rem auto 1rem auto;
+    box-shadow: 0 0 12px #c3e2dc44;
+}
+
+.avatar-img-edit-container {
+    position: relative;
+    display: inline-block;
+}
+
+.avatar-img-preview {
+    width: 20rem;
+    height: 20rem;
+    border-radius: 50%;
+    object-fit: cover;
+    background: #f8f8f8;
+    margin: 1.2rem auto 1rem auto;
+    box-shadow: 0 0 12px #c3e2dc44;
+    display: block;
+}
+
+.avatar-edit-btn {
+    position: absolute;
+    right: 1.8rem;
+    bottom: 1.8rem;
+    background: #fff;
+    border-radius: 50%;
+    border: 2px solid #e2dee9;
+    width: 4.4rem;
+    height: 4.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 8px #c3e2dc99;
+    transition: transform .3s ease,
+        box-shadow .3s ease,
+        border-color .3s ease,
+        background .3s ease,
+        color .2s ease;
+}
+
+.avatar-edit-btn {
+    color: #052348;
+}
+
+.avatar-edit-btn:hover,
+.avatar-edit-btn:focus-visible,
+.avatar-edit-btn:active {
+    transform: scale(0.96);
+    box-shadow: 0 0 0 6px #e6eafdd5;
+    border-color: #e2dee9;
+    background: #fff;
+    color: #052348;
+    outline: none;
+}
+
+.avatar-upload-input {
+    display: none;
+}
+
+.avatar-allowed-types {
+    display: block;
+    color: #888;
+    font-size: 1.08rem;
+    margin-bottom: 1.3rem;
+    margin-top: -1rem;
+    font-family: Poppins-Regular, sans-serif;
+}
+
+.avatar-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+.button-avatar.button-save,
+.button-avatar.button-delete {
+    width: 100%;
+    font-size: 1.6rem;
+}
+
+.button-avatar.button-save:before {
+    content: '';
+    display: inline-block;
+    height: 60%;
+    position: absolute;
+    bottom: -1px;
+    left: 1rem;
+    right: 1rem;
+    z-index: 0;
+    border-radius: 25rem;
+    filter: blur(14px) brightness(0.9);
+    transform-style: preserve-3d;
+    transition: all 0.3s ease-out;
+}
+
+.button-avatar.button-save span {
+    display: inline-block;
+    width: 100%;
+    padding: 1.05rem 0;
+    border-radius: 25rem;
+    position: relative;
+    z-index: 2;
+    will-change: transform, filter;
+    transform-style: preserve-3d;
+    transition: all 0.3s ease-out;
+}
+
+.button-avatar.button-save:hover {
+    color: #fff;
+}
+
+.button-avatar.button-save:hover span {
+    filter: brightness(0.9) contrast(1.2);
+    transform: scale(0.96);
+}
+
+.button-avatar.button-save:hover:before {
+    bottom: 0.8rem;
+    filter: blur(6px) brightness(0.8);
+    left: 1.5rem;
+    right: 1.5rem;
+}
+
+.button-avatar.button-save span {
+    background: #f37136;
+}
+
+.button-avatar.button-save.is-disabled {
+    opacity: .6;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* --- Botón gris (Borrar imagen)*/
+.button-avatar.button-delete {
+    width: 100%;
+    height: 4.5rem;
+    background: #fff;
+    color: #052348;
+    font-size: 1.6rem;
+    border-radius: 25rem;
+    border: 2px solid #e2dee9;
+    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    font-family: Poppins-Medium, sans-serif;
+    letter-spacing: 0.04em;
+}
+
+.button-avatar.button-delete::before {
+    content: none;
+}
+
+.button-avatar.button-delete:hover,
+.button-avatar.button-delete:focus-visible,
+.button-avatar.button-delete:active {
+    box-shadow: 0 0 0 6px #e6eafdd5;
+    border-color: #e2dee9;
+    background: #fff;
+    outline: none;
+    transform: scale(0.96);
+}
+
+.input-error-message {
+    margin-top: 0.7rem;
+    color: #dc2626;
+    font-size: 1.1rem;
+    font-family: Poppins-Regular, sans-serif;
+}
+
+@media (max-width: 480px) {
+
+    .container-profile {
+        gap: 4rem;
+    }
+
+    .profile-form-text input,
+    .update-password-text input {
+        height: 4rem;
+    }
+
+    .button-profile .button-save,
+    .button-profile .button-update,
+    .avatar-buttons .button-save,
+    .avatar-buttons .button-delete,
+    .button-delete {
+        height: 4rem;
+    }
+}

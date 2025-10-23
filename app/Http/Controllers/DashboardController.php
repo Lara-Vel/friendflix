@@ -24,6 +24,8 @@ class DashboardController
         $result = [];
         foreach ($groupedFavourites as $userName => $movies) {
             $userMovies = [];
+            $lastCreatedAt = $movies->max('created_at');
+            $lastCreatedAtHuman = \Carbon\Carbon::parse($lastCreatedAt)->diffForHumans();
             foreach ($movies as $movie) {
                 $posterPath = Str::startsWith($movie->poster_path, '/') ? $movie->poster_path : '/' . $movie->poster_path;
 
@@ -36,8 +38,12 @@ class DashboardController
                 ];
             }
             $result[] = [
-                'user' => $userName,
+                'user' => [
+                    'name' => $userName,
+                    'avatar' => $movies[0]->user->avatar ?? 'avatars/default.webp',
+                ],
                 'movies' => $userMovies,
+                'lastUpdatedAt' => $lastCreatedAtHuman,
             ];
         }
 

@@ -2,6 +2,7 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import DeleteUserForm from "./Partials/DeleteUserForm";
 import UpdatePasswordForm from "./Partials/UpdatePasswordForm";
 import UpdateProfileInformationForm from "./Partials/UpdateProfileInformationForm";
+import UpdateUserAvatarForm from "./Partials/UpdateUserAvatarForm";
 import { Head } from "@inertiajs/react";
 
 export default function Edit({ auth, mustVerifyEmail, status }) {
@@ -14,21 +15,24 @@ export default function Edit({ auth, mustVerifyEmail, status }) {
                 />
             </Head>
 
-            <div className="py-12">
-                <div className="continer-profile max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-                    <div className="p-4 sm:p-8 bg-white sm:rounded-lg">
+            <div>
+                <div className="container-profile">
+                    <div className="container-profile-information">
                         <UpdateProfileInformationForm
                             mustVerifyEmail={mustVerifyEmail}
                             status={status}
-                            className="max-w-xl"
+                            // className="max-w-xl"
+                            className="container-profile-information-form"
                         />
                     </div>
-
-                    <div className="p-4 sm:p-8 bg-white sm:rounded-lg">
-                        <UpdatePasswordForm className="max-w-xl" />
+                    <div className="container-profile-avatar">
+                        <UpdateUserAvatarForm className="max-w-xl" />
                     </div>
 
-                    <div className="p-4 sm:p-8 bg-white  sm:rounded-lg">
+                    <div className="container-profile-password">
+                        <UpdatePasswordForm className="max-w-xl" />
+                    </div>
+                    <div className="container-profile-delete">
                         <DeleteUserForm className="max-w-xl" />
                     </div>
                 </div>

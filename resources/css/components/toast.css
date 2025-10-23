@@ -1,0 +1,182 @@
+/* COMPONENTE TOAST */
+
+
+:root {
+    /* SUCCESS */
+    --toast-success-bg: #EFFEF5;
+    --toast-success-fg: #052348;
+
+    /* ERROR */
+    --toast-error-bg: #FFF0F0;
+    --toast-error-fg: #052348;
+
+    /* Layout/estética */
+    --toast-offset: 1rem;
+    --toast-radius: 1.2rem;
+    --toast-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+    --toast-z: 9999;
+}
+
+
+.toast {
+    position: fixed;
+    top: var(--toast-offset);
+    right: var(--toast-offset);
+    z-index: var(--toast-z);
+
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    min-width: 28rem;
+    max-width: 36rem;
+
+    padding: 1rem;
+    border-radius: var(--toast-radius);
+    box-shadow: var(--toast-shadow);
+
+
+    background: var(--toast-success-bg);
+    /* fallback para evitar parpadeo sin variante */
+    color: var(--toast-success-fg);
+
+    /* Animación de entrada/salida */
+    opacity: 0;
+    transform: translateY(-8px);
+    transition: opacity 180ms ease, transform 180ms ease;
+    pointer-events: none;
+}
+
+.toast--visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+/* ===========================
+   Variantes (solo success / error)
+   =========================== */
+.toast--success {
+    background: var(--toast-success-bg);
+    color: var(--toast-success-fg);
+}
+
+.toast--error {
+    background: var(--toast-error-bg);
+    color: var(--toast-error-fg);
+}
+
+/* ===========================
+   Estructura interna
+   =========================== */
+.toast__icon {
+    line-height: 1;
+    font-size: 1rem;
+}
+
+.toast__text {
+    font-size: 1.4rem;
+    line-height: 1.35;
+    font-family: Poppins-Regular, sans-serif;
+}
+
+/* Si algún día usas título/cuerpo, ya están listos */
+.toast__body {
+    flex: 1;
+}
+
+.toast__title {
+    font-family: Poppins-Regular, sans-serif;
+    margin-bottom: 0.2rem;
+}
+
+/* ===========================
+   Botón cerrar
+   =========================== */
+.toast__close {
+    background: transparent;
+    border: 0;
+    color: inherit;
+    font-size: 1rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0.2rem 0.4rem;
+    opacity: 0.9;
+    margin-left: auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 2.8rem;
+    height: 2.8rem;
+    border-radius: 25rem;
+}
+
+.toast__close:hover {
+    opacity: 1;
+}
+
+/* ===========================
+   Iconos SVG personalizados
+   (asegúrate de que tus SVG usan fill/stroke="currentColor")
+   =========================== */
+
+.tick-circle-icon {
+    color: #16A34A !important;
+}
+
+.error-circle-icon {
+    color: #DC2626 !important;
+}
+
+.close-circle-icon {
+    color: #052348 !important;
+}
+
+.tick-circle-icon [stroke]:not([stroke="none"]),
+.tick-circle-icon *[stroke]:not([stroke="none"]) {
+    stroke: #16A34A !important;
+}
+
+.tick-circle-icon [fill]:not([fill="none"]),
+.tick-circle-icon *[fill]:not([fill="none"]) {
+    fill: #16A34A !important;
+}
+
+
+.error-circle-icon [stroke]:not([stroke="none"]),
+.error-circle-icon *[stroke]:not([stroke="none"]) {
+    stroke: #DC2626 !important;
+}
+
+.error-circle-icon [fill]:not([fill="none"]),
+.error-circle-icon *[fill]:not([fill="none"]) {
+    fill: #DC2626 !important;
+}
+
+.close-circle-icon [stroke]:not([stroke="none"]),
+.close-circle-icon *[stroke]:not([stroke="none"]) {
+    stroke: #052348 !important;
+}
+
+.close-circle-icon [fill]:not([fill="none"]),
+.close-circle-icon *[fill]:not([fill="none"]) {
+    fill: #052348 !important;
+}
+
+.tick-circle-icon,
+.error-circle-icon,
+.close-circle-icon {
+    display: block;
+}
+
+.tick-circle-icon,
+.error-circle-icon {
+    width: 2.2rem;
+    height: 2.2rem;
+}
+
+.close-circle-icon {
+    width: 2.2rem;
+    height: 2.2rem;
+}

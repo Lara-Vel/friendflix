@@ -33,6 +33,13 @@ Route::get('/peliculas', [MovieDBController::class, 'index'])->name('popularmovi
 
 Route::get('/buscar-peliculas', [App\Http\Controllers\FavouriteController::class, 'search'])->name('searchmovies.search')->middleware('auth');
 
+Route::post('/profile/avatar', [ProfileController::class,
+'updateAvatar'])->name('profile.avatar.update')->middleware('auth');
+Route::post('/profile/avatar/delete', [ProfileController::class, 'deleteAvatar'])->name('profile.avatar.delete')->middleware('auth');
+
+Route::fallback(function () {
+    abort(404);
+});
 
 require __DIR__ . '/auth.php';
 require __DIR__ . '/api.php';

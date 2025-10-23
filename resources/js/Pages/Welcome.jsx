@@ -1,9 +1,8 @@
-import { Link, Head } from "@inertiajs/react";
+import { Link } from "@inertiajs/react";
 import Carousel from "@/Components/Carousel";
 
 export default function Welcome({ auth, laravelVersion, phpVersion }) {
     return (
-        <>
             <>
                 <div className="carousel-principal">
                     <Carousel />
@@ -11,20 +10,19 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                         <Link
                             as="button"
                             href={route("login")}
-                            className="button-login"
+                            className="button button-welcome"
                         >
-                            Iniciar sesión
+                            <span>Iniciar sesión</span>
                         </Link>
                         <Link
                             as="button"
                             href={route("register")}
-                            className="button-register"
+                            className="button button-welcome"
                         >
-                            Crea tu cuenta
+                            <span>Crea tu cuenta</span>
                         </Link>
                     </div>
                 </div>
             </>
-        </>
     );
 }

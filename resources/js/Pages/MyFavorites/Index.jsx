@@ -1,7 +1,7 @@
 import { router, Head } from "@inertiajs/react";
 import { useState, useEffect } from "react";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import { FaHeart } from "react-icons/fa";
+import Heart from "@/assets/icons/heart.svg?react";
 
 const MovieCard = ({ film, processing, onRemoveFavorite }) => {
     const [showDetails, setShowDetails] = useState(false);
@@ -13,6 +13,22 @@ const MovieCard = ({ film, processing, onRemoveFavorite }) => {
     return (
         <div className="movie-container">
             <div className="movie-card">
+                <button
+                    className="favourite-button favourite-button--topright"
+                    onClick={() => onRemoveFavorite(film)}
+                    disabled={processing}
+                    style={{
+                        color: "red",
+                        zIndex: 1000,
+                        fontSize: 24,
+                    }}
+                >
+                    {processing ? (
+                        "Borrando..."
+                    ) : (
+                        <Heart className="heart-icon" />
+                    )}
+                </button>
                 <img
                     src={`https://image.tmdb.org/t/p/w200${film.poster_path}`}
                     alt={film.title}
@@ -39,20 +55,8 @@ const MovieCard = ({ film, processing, onRemoveFavorite }) => {
                     </div>
                 </div>
             </div>
-            <div className="movie-card-title">
+            <div className="movie-card-title-favourites">
                 <h3 className="title">{film.title}</h3>
-                <button
-                    className="favorite-button"
-                    onClick={() => onRemoveFavorite(film)}
-                    disabled={processing}
-                    style={{
-                        color: "red",
-                        zIndex: 1000,
-                        fontSize: 24,
-                    }}
-                >
-                    {processing ? "Borrando..." : <FaHeart />}
-                </button>
             </div>
         </div>
     );
@@ -93,12 +97,12 @@ const MyFavorites = ({ auth, favourites }) => {
                     content="Mis películas favoritas para compartir en Friendflix."
                 />
             </Head>
-            <h2 className="home-container-text">
+            <h2 className="container-text-favourites">
                 {" "}
-                <span className="home-container-firsttext font-semibold text-xl text-gray-800 leading-tight">
+                <span className="container-text-favourites-firsttext">
                     Mis películas
                 </span>{" "}
-                <span className="home-container-secondtext font-semibold text-xl text-gray-800 leading-tight">
+                <span className="container-text-favourites-secondtext">
                     favoritas
                 </span>{" "}
             </h2>
@@ -116,7 +120,7 @@ const MyFavorites = ({ auth, favourites }) => {
                     />
                 </div>
             ) : (
-                <div className="movies-grid">
+                <div className="movies-grid-favourites">
                     {favorites.map((film) => (
                         <MovieCard
                             key={film.movie_id || film.id}

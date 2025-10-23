@@ -1,0 +1,249 @@
+/* USERFAVOURITESDETAIL */
+
+.detail-overlay{
+position: fixed;
+inset: 0;
+display: flex;
+align-items: center;
+justify-content: center;
+background-color: rgba(0, 0, 0, 0.6);
+backdrop-filter: blur(2px);
+z-index: 1000;
+}
+
+
+.detail-content {
+    background: #fff;
+    padding: 2.4rem 2.8rem;
+    border-radius: 2.8rem;
+    width: min(90vw, 85rem);
+    max-height: calc(100vh - 6rem);
+    overflow: auto;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.22);
+    overscroll-behavior: contain;
+    scroll-padding-bottom: 1rem;
+}
+
+.detail-content h2 {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 1.2rem 0 1.2rem 0;
+    font-size: 2.6rem;
+    font-family: Poppins-SemiBold, sans-serif;
+    color: #052348;
+}
+
+.detail-content h2::before {
+    content: "";
+    width: 4rem;
+    height: 4rem;
+    border-radius: 25rem;
+    background: center/cover no-repeat var(--avatar-url);
+    box-shadow: 0 1rem 3rem rgb(0 0 0 / 18%);
+    flex-shrink: 0;
+}
+
+.close-button {
+    position: absolute;
+    top: 3.5rem;
+    right: 3rem;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 25rem;
+    background: #fff;
+    border: 2px solid #e2dee9;
+    color: #052348;
+    transition:
+        transform .3s ease,
+        box-shadow .3s ease,
+        border-color .3s ease,
+        color .2s ease;
+}
+
+.close-button svg {
+    font-size: 1.5rem;
+    pointer-events: none;
+    display: inline;
+}
+
+.close-button:hover,
+.close-button:focus-visible,
+.close-button:active {
+    transform: scale(0.96);
+    box-shadow: 0 0 0 6px #e6eafdd5;
+    border-color: #e2dee9;
+    background: #fff;
+    color: #052348;
+    outline: none;
+}
+
+
+.user-movies-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 1.6rem 0 0;
+}
+
+.detail-content::-webkit-scrollbar {
+    width: 0.6rem;
+}
+
+.detail-content::-webkit-scrollbar-track {
+    background: transparent;
+    margin: 2rem;
+    border-radius: 1rem;
+}
+
+.detail-content::-webkit-scrollbar-thumb {
+    background: #e2dee9;
+    border-radius: 0.8rem;
+}
+
+
+.movie-item {
+    position: relative;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 2.4rem;
+    padding: 2.5rem;
+    border-radius: 2.4rem;
+    background: #fff;
+    box-shadow: 0px 4px 34px rgba(0, 0, 0, 0.09);
+    width: 100%;
+    margin-bottom: 3.2rem;
+}
+
+.movie-poster {
+    width: 19rem;
+    height: 27.3rem;
+    border-radius: 1.6rem;
+    object-fit: cover;
+    display: block;
+    flex-shrink: 0;
+    background: #9597a12a;
+}
+
+.details-movie {
+    grid-column: 2;
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+    font-family: Raleway-Bold, sans-serif;
+    gap: 0;
+    flex-wrap: wrap;
+}
+
+.details-movie h3 {
+    font-size: 2rem;
+    color: #052348;
+    line-height: 1.2;
+    margin: 0;
+    width: 100%;
+}
+
+.details-movie p {
+    margin: 0;
+    font-family: Raleway-Regular, sans-serif;
+    font-size: 1.6rem;
+    line-height: 1.7;
+    color: #9597A1;
+    max-height: 16rem;
+    overflow: auto;
+    padding-inline-end: 1.2rem;
+    scrollbar-gutter: stable;
+}
+
+.created-at {
+    font-size: 1.5rem;
+    color: #052348;
+    font-family: Raleway-Regular, sans-serif;
+    margin-top: 0.6rem;
+    width: 100%;
+}
+
+
+.details-movie p::-webkit-scrollbar {
+    width: 0.5rem;
+}
+
+.details-movie p::-webkit-scrollbar-thumb {
+    background: #e2dee9;
+    border-radius: 0.8rem;
+}
+
+
+@media (max-width: 900px) {
+    .movie-item {
+        grid-template-columns: 16rem 1fr;
+        column-gap: 2rem;
+        padding: 2rem 2.4rem;
+    }
+
+    .movie-poster {
+        width: 16rem;
+        height: 23rem;
+    }
+
+    .details-movie p {
+        max-height: 14rem;
+    }
+}
+
+@media (max-width: 640px) {
+
+    .detail-content {
+        padding: 1.6rem 1.8rem;
+        border-radius: 2.2rem;
+        max-height: calc(100vh - 3rem);
+    }
+
+    .close-button {
+        top: 3rem;
+        right: 2.5rem;
+    }
+
+    .movie-item {
+        grid-template-columns: 1fr;
+        row-gap: 2.5rem;
+        padding: 3rem;
+    }
+
+    .movie-poster {
+        grid-column: 1;
+        grid-row: 1;
+        display: block;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 19 / 27.3;
+        max-height: 42rem;
+        border-radius: 1.6rem;
+        object-fit: cover;
+        background: #9597a12a;
+    }
+
+    .details-movie {
+        grid-column: 1;
+        grid-row: 2;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        gap: 0.8rem;
+    }
+
+    .details-movie h3,
+    .details-movie p,
+    .created-at {
+        width: 100%;
+    }
+
+    .user-movies-list .details-movie p {
+        max-height: 12rem;
+        padding-right: 1.2rem;
+    }
+}

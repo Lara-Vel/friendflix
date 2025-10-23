@@ -1,0 +1,61 @@
+/* PElÍCULAS POPULARES */
+
+.container-text-popular {
+    text-align: center;
+    padding: 5rem 0rem 3rem 0rem;
+}
+
+.container-text-popular-firsttext {
+    font-family: Raleway-ExtraLight, sans-serif;
+    margin-right: 1rem;
+    font-size: 4rem;
+    color: #052348;
+}
+
+.container-text-popular-secondtext {
+    font-family: PlayfairDisplay-Bold, sans-serif;
+    font-weight: 600;
+    font-size: 4rem;
+    color: #052348;
+}
+
+button .heart-icon {
+    width: 2.4rem;
+    height: 2.4rem;
+    display: block;
+}
+
+button .heart-icon,
+button .heart-icon * {
+    fill: currentColor !important;
+    stroke: currentColor !important;
+    stroke-width: inherit;
+}
+
+.heart-icon {
+    font-size: 2.4rem;
+    z-index: 1000;
+    cursor: pointer;
+    transition: transform 0.15s ease;
+}
+
+.heart-icon:hover {
+    transform: scale(1.1);
+}
+
+.heart-icon--active {
+    color: red;
+}
+
+.heart-icon--inactive {
+    color: #9597a1;
+}
+
+@media (max-width: 767px) {
+
+    h2.container-text-popular {
+        padding-inline: 1.6rem;
+        max-width: 100%;
+        overflow-wrap: anywhere;
+    }
+}
