@@ -48,3 +48,12 @@ Live demo: https://lara.v1-22.proyectosdwa.es/
 
 Friendflix was developed by Lara Velenik and is distributed under the [MIT license](https://opensource.org/licenses/MIT).
 
+## 🖼 Preview
+
+<img width="1910" alt="Login - Friendflix" src="https://github.com/user-attachments/assets/14639ada-2507-485a-85b0-fc32f58edb89" />
+<img width="1910" alt="Home - Friendflix" src="https://github.com/user-attachments/assets/f59226f0-7985-4866-92a6-c878d06c070f" />
+<img width="1910" alt="Películas populares - Friendflix" src="https://github.com/user-attachments/assets/76bce7c1-70c7-4f9c-9344-1e2cfb416ac6" />
+<img width="1910" alt="Mis películas favoritas - Friendflix" src="https://github.com/user-attachments/assets/ad93ec02-44d2-43dc-af4e-da5b3d8029fc" />
+<img width="1910" alt="Buscar películas - Friendflix" src="https://github.com/user-attachments/assets/b7a630d9-1a66-4422-8e90-d15d8b4e0219" />
+<img width="1910" alt="Mi perfil - Friendflix" src="https://github.com/user-attachments/assets/e83e7cfb-d251-46bc-935d-8eeab73ca49e" />
+
